@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Kapakana:wght@300..400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jersey+10&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: var(--color-lime-50);
+  --color-primary-100: var(--color-lime-100);
+  --color-primary-200: var(--color-lime-200);
+  --color-primary-300: var(--color-lime-300);
+  --color-primary-400: var(--color-lime-400);
+  --color-primary-500: var(--color-lime-500);
+  --color-primary-600: var(--color-lime-600);
+  --color-primary-700: var(--color-lime-700);
+  --color-primary-800: var(--color-lime-800);
+  --color-primary-900: var(--color-lime-900);
+  --color-primary-950: var(--color-lime-950);
+
+  --color-secondary-50: var(--color-zinc-50);
+  --color-secondary-100: var(--color-zinc-100);
+  --color-secondary-200: var(--color-zinc-200);
+  --color-secondary-300: var(--color-zinc-300);
+  --color-secondary-400: var(--color-zinc-400);
+  --color-secondary-500: var(--color-zinc-500);
+  --color-secondary-600: var(--color-zinc-600);
+  --color-secondary-700: var(--color-zinc-700);
+  --color-secondary-800: var(--color-zinc-800);
+  --color-secondary-900: var(--color-zinc-900);
+  --color-secondary-950: var(--color-zinc-950);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.jersey-font {
+  font-family: "Jersey 10", sans-serif;
+}
+.kapakana-font {
+  font-family: "Kapakana", cursive;
+}
+.inter-font {
+  font-family: "Inter", sans-serif;
+}
