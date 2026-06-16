@@ -11,6 +11,7 @@ export type CategoryLabel = {
   className: string;
   blurClassName: string;
   drift: number;
+  transitionOutY: number;
 };
 
 export const categoryLabels: CategoryLabel[] = [
@@ -20,6 +21,7 @@ export const categoryLabels: CategoryLabel[] = [
     className: "left-[12%] top-[14%] text-[clamp(1.7rem,2.4vw,2.7rem)]",
     blurClassName: "blur-[2.5px]",
     drift: 22,
+    transitionOutY: -72,
   },
   {
     id: "curriculum-vitae",
@@ -27,6 +29,7 @@ export const categoryLabels: CategoryLabel[] = [
     className: "right-[20%] top-[11%] text-[clamp(1.9rem,2.6vw,3rem)]",
     blurClassName: "blur-[1.5px]",
     drift: 16,
+    transitionOutY: -96,
   },
   {
     id: "photo-video",
@@ -34,6 +37,7 @@ export const categoryLabels: CategoryLabel[] = [
     className: "left-[6%] top-[42%] text-[clamp(1rem,1.45vw,1.45rem)]",
     blurClassName: "blur-[4px]",
     drift: 28,
+    transitionOutY: -28,
   },
   {
     id: "big-project",
@@ -41,6 +45,7 @@ export const categoryLabels: CategoryLabel[] = [
     className: "left-[50%] top-[31%] text-[clamp(1rem,1.35vw,1.3rem)]",
     blurClassName: "blur-[2px]",
     drift: 14,
+    transitionOutY: -118,
   },
   {
     id: "branding",
@@ -48,6 +53,7 @@ export const categoryLabels: CategoryLabel[] = [
     className: "right-[13%] top-[33%] text-[clamp(1rem,1.35vw,1.3rem)]",
     blurClassName: "blur-[1px]",
     drift: 10,
+    transitionOutY: -66,
   },
   {
     id: "curriculum-vitae",
@@ -55,6 +61,7 @@ export const categoryLabels: CategoryLabel[] = [
     className: "left-[24%] top-[60%] text-[clamp(1rem,1.35vw,1.3rem)]",
     blurClassName: "blur-[3px]",
     drift: 24,
+    transitionOutY: -52,
   },
   {
     id: "social-media",
@@ -62,6 +69,7 @@ export const categoryLabels: CategoryLabel[] = [
     className: "right-[23%] top-[52%] text-[clamp(1rem,1.35vw,1.3rem)]",
     blurClassName: "blur-[2.25px]",
     drift: 18,
+    transitionOutY: -24,
   },
   {
     id: "big-project",
@@ -69,6 +77,7 @@ export const categoryLabels: CategoryLabel[] = [
     className: "left-[4%] bottom-[18%] text-[clamp(1.5rem,2vw,2.4rem)]",
     blurClassName: "blur-[1.75px]",
     drift: 15,
+    transitionOutY: -86,
   },
   {
     id: "branding",
@@ -76,6 +85,7 @@ export const categoryLabels: CategoryLabel[] = [
     className: "left-[53%] bottom-[11%] text-[clamp(1.1rem,1.55vw,1.7rem)]",
     blurClassName: "blur-[3.5px]",
     drift: 26,
+    transitionOutY: -110,
   },
   {
     id: "photo-video",
@@ -83,6 +93,7 @@ export const categoryLabels: CategoryLabel[] = [
     className: "right-[8%] bottom-[22%] text-[clamp(1.65rem,2.2vw,2.6rem)]",
     blurClassName: "blur-[2.75px]",
     drift: 20,
+    transitionOutY: -94,
   },
 ];
 
