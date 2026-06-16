@@ -40,8 +40,8 @@ const WelcomeSection = forwardRef<WelcomeSectionHandle, WelcomeSectionProps>(
               .to(
                 heroContentRef.current,
                 {
-                  yPercent: -10,
-                  duration: 1.25,
+                  yPercent: -100,
+                  duration: 3,
                 },
                 0,
               )
@@ -49,25 +49,25 @@ const WelcomeSection = forwardRef<WelcomeSectionHandle, WelcomeSectionProps>(
                 labelRefs.current,
                 {
                   yPercent: (index) => labels[index]?.transitionOutY ?? -60,
-                  duration: 1.18,
+                  duration: 3,
                 },
-                0,
+                "-=3",
               )
               .to(
                 portfolioRef.current,
                 {
                   yPercent: -78,
-                  duration: 1.2,
+                  duration: 3,
                 },
-                0,
+                "-=3",
               )
               .to(
                 amaliaRef.current,
                 {
                   yPercent: -138,
-                  duration: 1.28,
+                  duration: 3,
                 },
-                0.04,
+                "-=3",
               );
 
             return;

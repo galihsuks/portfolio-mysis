@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import WelcomeSection, {
-  type WelcomeSectionHandle,
-} from "../components/welcome/WelcomeSection";
+import WelcomeSection, { type WelcomeSectionHandle } from "../components/welcome/WelcomeSection";
 import CategorySection, {
   type CategorySectionHandle,
 } from "../components/sections/CategorySection";
