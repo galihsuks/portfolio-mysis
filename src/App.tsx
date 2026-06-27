@@ -1,4 +1,4 @@
-import PortfolioExperience from "./pages/PortfolioExperience";
+import PortfolioExperience from "./components/template/PortfolioExperience";
 
 function App() {
   return <PortfolioExperience />;
