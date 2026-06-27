@@ -5,18 +5,57 @@ interface BackgroundProps {
 }
 
 function Background({ variant }: BackgroundProps) {
+  const isLight = variant === "light";
+  const isDarkGlow = variant === "dark-glow";
+
   return (
-    <div
-      className={`fixed inset-0 overflow-hidden -z-20 pointer-events-none transition-all duration-500 ${variant === "light" ? "bg-gradient-to-b from-primary-100 via-primary-300 to-primary-500" : "bg-secondary-950"}`}
-    >
+    <div className="fixed inset-0 overflow-hidden -z-20 pointer-events-none">
+      {/* Light Gradient */}
       <div
-        className={`transition-all duration-500 absolute rounded-full top-80 left-2/5 -translate-x-0 md:-translate-x-1/2 size-300 md:size-130 bg-primary-700 blur-[150px] ${variant === "dark-glow" ? "opacity-100" : "opacity-0"}`}
+        className={`
+          absolute inset-0 transition-opacity duration-500 ease-in-out
+          bg-gradient-to-b from-primary-100 via-primary-300 to-primary-500
+          ${isLight ? "opacity-100" : "opacity-0"}
+        `}
       />
+
+      {/* Dark Gradient */}
       <div
-        className={`transition-all duration-500 absolute rounded-full top-80 right-0 -translate-x-1/2 size-130 bg-primary-900 blur-[200px] hidden md:block ${variant === "dark-glow" ? "opacity-100" : "opacity-0"}`}
+        className={`
+          absolute inset-0 transition-opacity duration-500 ease-in-out
+          bg-gradient-to-b from-secondary-950 via-secondary-950 to-secondary-950
+          ${isLight ? "opacity-0" : "opacity-100"}
+        `}
       />
+
+      {/* Glow 1 */}
       <div
-        className={`transition-all duration-500 absolute rounded-full top-0 left-1/2 -translate-x-1/2 size-130 bg-primary-800 blur-[100px] hidden md:block ${variant === "dark-glow" ? "opacity-100" : "opacity-0"}`}
+        className={`
+          absolute rounded-full top-80 left-2/5 -translate-x-0 md:-translate-x-1/2
+          size-300 md:size-130 bg-primary-700 blur-[150px]
+          transition-opacity duration-700 ease-in-out
+          ${isDarkGlow ? "opacity-100" : "opacity-0"}
+        `}
+      />
+
+      {/* Glow 2 */}
+      <div
+        className={`
+          absolute rounded-full top-80 right-0 -translate-x-1/2
+          size-130 bg-primary-900 blur-[200px] hidden md:block
+          transition-opacity duration-700 ease-in-out
+          ${isDarkGlow ? "opacity-100" : "opacity-0"}
+        `}
+      />
+
+      {/* Glow 3 */}
+      <div
+        className={`
+          absolute rounded-full top-0 left-1/2 -translate-x-1/2
+          size-130 bg-primary-800 blur-[100px] hidden md:block
+          transition-opacity duration-700 ease-in-out
+          ${isDarkGlow ? "opacity-100" : "opacity-0"}
+        `}
       />
     </div>
   );

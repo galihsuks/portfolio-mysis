@@ -8,10 +8,10 @@ export default function PortfolioExperience() {
   const shellRef = useRef<HTMLDivElement | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activePage, setActivePage] = useState({
-    current: "curriculum-vitae",
+    current: "welcome",
     before: "",
   });
-  const [background, setBackground] = useState<VariantBackgroundType>("dark-glow");
+  const [background, setBackground] = useState<VariantBackgroundType>("light");
 
   useEffect(() => {
     const ctx = gsap.context(() => {}, shellRef);
@@ -22,14 +22,14 @@ export default function PortfolioExperience() {
     <main className="h-screen w-full overflow-hidden text-secondary-950">
       <Background variant={background} />
       <div ref={shellRef} className="relative h-full w-full overflow-hidden">
-        {/* <WelcomeSection
+        <WelcomeSection
           isTransitioning={isTransitioning}
           setIsTransitioning={setIsTransitioning}
           activePage={activePage}
           setActivePage={setActivePage}
           setBackground={setBackground}
           background={background}
-        /> */}
+        />
 
         <CurriculumSection
           isTransitioning={isTransitioning}

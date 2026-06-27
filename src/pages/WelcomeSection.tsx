@@ -32,11 +32,12 @@ export default function WelcomeSection({
   const introCompletedRef = useRef(false);
   const firstRender = useRef(true);
   const isThisPageActive = useRef(true);
+  const isTransitionRef = useRef(isTransitioning);
 
   const handleMouseMove = (event: MouseEvent) => {
     if (
       !introCompletedRef.current ||
-      isTransitioning ||
+      isTransitionRef.current ||
       !containerRef.current ||
       !portfolioRef.current ||
       !amaliaRef.current ||
@@ -81,7 +82,7 @@ export default function WelcomeSection({
   const handleMouseLeave = () => {
     if (
       !introCompletedRef.current ||
-      isTransitioning ||
+      isTransitionRef.current ||
       !containerRef.current ||
       !portfolioRef.current ||
       !amaliaRef.current ||
@@ -108,55 +109,32 @@ export default function WelcomeSection({
   };
 
   useEffect(() => {
+    isTransitionRef.current = isTransitioning;
+  }, [isTransitioning]);
+
+  useEffect(() => {
     if (firstRender.current) {
       firstRender.current = false;
       return;
     }
     if (activePage.current == "welcome") {
       const timeline = gsap.timeline({
-        defaults: { ease: "power3.inOut" },
-      });
-      timeline
-        .to(
-          heroContentRef.current,
-          {
-            yPercent: 0,
-            duration: TRANSITION_DURATION,
-          },
-          0,
-        )
-        .to(
-          labelRefs.current,
-          {
-            yPercent: 0,
-            duration: TRANSITION_DURATION,
-          },
-          `-=${TRANSITION_DURATION}`,
-        )
-        .to(
-          portfolioRef.current,
-          {
-            yPercent: 0,
-            duration: TRANSITION_DURATION,
-          },
-          `-=${TRANSITION_DURATION}`,
-        )
-        .to(
-          amaliaRef.current,
-          {
-            yPercent: 0,
-            duration: TRANSITION_DURATION,
-          },
-          `-=${TRANSITION_DURATION}`,
-        )
-        .call(() => {
+        defaults: {
+          yPercent: 0,
+          duration: TRANSITION_DURATION,
+          ease: "power3.inOut",
+        },
+        onComplete: () => {
           isThisPageActive.current = true;
           containerRef.current?.addEventListener("mousemove", handleMouseMove);
           containerRef.current?.addEventListener("mouseleave", handleMouseLeave);
-        });
-    } else {
-      containerRef.current?.removeEventListener("mousemove", handleMouseMove);
-      containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
+        },
+      });
+      timeline
+        .to(heroContentRef.current, {}, 0)
+        .to(labelRefs.current, {}, `-=${TRANSITION_DURATION}`)
+        .to(portfolioRef.current, {}, `-=${TRANSITION_DURATION}`)
+        .to(amaliaRef.current, {}, `-=${TRANSITION_DURATION}`);
     }
   }, [activePage.current]);
 
@@ -234,12 +212,14 @@ export default function WelcomeSection({
     }
 
     isThisPageActive.current = false;
+    containerRef.current?.removeEventListener("mousemove", handleMouseMove);
+    containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
     setActivePage({ current: labelId, before: "welcome" });
     setIsTransitioning(true);
     setBackground("dark-glow");
 
     const timeline = gsap.timeline({
-      defaults: { ease: "power3.inOut" },
+      defaults: { duration: TRANSITION_DURATION, ease: "power3.inOut" },
       onComplete: () => {
         setIsTransitioning(false);
       },
@@ -249,7 +229,6 @@ export default function WelcomeSection({
         heroContentRef.current,
         {
           yPercent: -100,
-          duration: TRANSITION_DURATION,
         },
         0,
       )
@@ -257,7 +236,6 @@ export default function WelcomeSection({
         labelRefs.current,
         {
           yPercent: (index) => categoryLabels[index]?.transitionOutY ?? -60,
-          duration: TRANSITION_DURATION,
         },
         0,
       )
@@ -265,7 +243,6 @@ export default function WelcomeSection({
         portfolioRef.current,
         {
           yPercent: -78,
-          duration: TRANSITION_DURATION,
         },
         `-=${TRANSITION_DURATION}`,
       )
@@ -273,7 +250,6 @@ export default function WelcomeSection({
         amaliaRef.current,
         {
           yPercent: -538,
-          duration: TRANSITION_DURATION,
         },
         `-=${TRANSITION_DURATION}`,
       );
