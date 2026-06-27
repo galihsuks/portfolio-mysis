@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { Menu } from "lucide-react";
 import WelcomeSection from "../../pages/WelcomeSection";
 import Background, { type VariantBackgroundType } from "../ui/Background";
 import CurriculumSection from "../../pages/CurriculumSection";
 
 export default function PortfolioExperience() {
   const shellRef = useRef<HTMLDivElement | null>(null);
+  const [backAction, setBackAction] = useState<(() => void) | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activePage, setActivePage] = useState({
     current: "welcome",
@@ -22,6 +24,17 @@ export default function PortfolioExperience() {
     <main className="h-screen w-full overflow-hidden text-secondary-950">
       <Background variant={background} />
       <div ref={shellRef} className="relative h-full w-full overflow-hidden">
+        {activePage.current !== "welcome" && backAction ? (
+          <button
+            type="button"
+            onClick={backAction}
+            className="absolute right-[2.15%] top-[3.4%] z-50 flex h-[4.2rem] w-[4.2rem] items-center justify-center rounded-2xl border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
+            aria-label="Back to welcome section"
+          >
+            <Menu strokeWidth={2.75} className="h-8 w-8" />
+          </button>
+        ) : null}
+
         <WelcomeSection
           isTransitioning={isTransitioning}
           setIsTransitioning={setIsTransitioning}
@@ -37,6 +50,7 @@ export default function PortfolioExperience() {
           activePage={activePage}
           setActivePage={setActivePage}
           setBackground={setBackground}
+          registerBackAction={setBackAction}
         />
       </div>
     </main>

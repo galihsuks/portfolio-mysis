@@ -6,6 +6,7 @@ import Icon, { type IconName } from "./Icon";
 type FolderProps = {
   icons: IconName[];
   label: string;
+  onClick?: () => void;
   className?: string;
   folderClassName?: string;
   labelClassName?: string;
@@ -284,6 +285,7 @@ const sizeClasses = {
 function Folder({
   icons,
   label,
+  onClick,
   className = "",
   folderClassName = "",
   labelClassName = "",
@@ -296,9 +298,11 @@ function Folder({
 
   return (
     <div
-      className={`${sizeConfig.wrapper} relative ${className}`}
+      className={`${sizeConfig.wrapper} relative ${onClick ? "cursor-pointer" : ""} ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={onClick}
+      role={onClick ? "button" : undefined}
     >
       <div className={`relative mx-auto ${sizeConfig.stage} ${folderClassName}`}>
         <img

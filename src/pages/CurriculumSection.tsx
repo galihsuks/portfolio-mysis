@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import photoImage from "../assets/my_pic.png";
 import shapeBottomLeft from "../assets/elements/14 2.png";
@@ -16,6 +16,7 @@ type CurriculumSectionProps = {
     before: string;
   };
   setActivePage: ({ current, before }: { current: string; before: string }) => void;
+  registerBackAction: (handler: (() => void) | null) => void;
 };
 
 const layerMotion = {
@@ -28,7 +29,6 @@ const layerMotion = {
   skill: 9,
   language: 10,
   experience: 7,
-  menu: 11,
   shapeTop: 2,
   shapeBottom: 4,
 } as const;
@@ -39,7 +39,9 @@ export default function CurriculumSection({
   activePage,
   setActivePage,
   setBackground,
+  registerBackAction,
 }: CurriculumSectionProps) {
+  const [isLanguageWindowOpen, setIsLanguageWindowOpen] = useState(false);
   const containerRef = useRef<HTMLElement | null>(null);
   const curriculumRef = useRef<HTMLDivElement | null>(null);
   const vitaeRef = useRef<HTMLDivElement | null>(null);
@@ -50,7 +52,6 @@ export default function CurriculumSection({
   const skillRef = useRef<HTMLDivElement | null>(null);
   const languageRef = useRef<HTMLDivElement | null>(null);
   const experienceRef = useRef<HTMLDivElement | null>(null);
-  const menuRef = useRef<HTMLButtonElement | null>(null);
   const topShapeRef = useRef<HTMLImageElement | null>(null);
   const bottomShapeRef = useRef<HTMLImageElement | null>(null);
   const firstRender = useRef(true);
@@ -67,7 +68,6 @@ export default function CurriculumSection({
     { ref: skillRef, x: layerMotion.skill, y: layerMotion.skill },
     { ref: languageRef, x: layerMotion.language, y: layerMotion.language },
     { ref: experienceRef, x: layerMotion.experience, y: layerMotion.experience },
-    { ref: menuRef, x: layerMotion.menu, y: layerMotion.menu },
     { ref: topShapeRef, x: layerMotion.shapeTop, y: layerMotion.shapeTop },
     { ref: bottomShapeRef, x: layerMotion.shapeBottom, y: layerMotion.shapeBottom },
   ];
@@ -152,9 +152,6 @@ export default function CurriculumSection({
       gsap.set(experienceRef.current, {
         yPercent: 70,
       });
-      gsap.set(menuRef.current, {
-        yPercent: 26,
-      });
       gsap.set(topShapeRef.current, {
         yPercent: 22,
       });
@@ -195,9 +192,6 @@ export default function CurriculumSection({
       gsap.set(experienceRef.current, {
         yPercent: fromWelcome ? 70 : -86,
       });
-      gsap.set(menuRef.current, {
-        yPercent: fromWelcome ? 26 : -34,
-      });
       gsap.set(topShapeRef.current, {
         yPercent: fromWelcome ? 22 : -26,
       });
@@ -229,7 +223,6 @@ export default function CurriculumSection({
         .to(skillRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(languageRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(experienceRef.current, {}, `-=${TRANSITION_DURATION}`)
-        .to(menuRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(topShapeRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(bottomShapeRef.current, {}, `-=${TRANSITION_DURATION}`);
     }
@@ -240,6 +233,7 @@ export default function CurriculumSection({
       return;
     }
 
+    setIsLanguageWindowOpen(false);
     isThisPageActive.current = false;
     containerRef.current?.removeEventListener("mousemove", handleMouseMove);
     containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
@@ -264,10 +258,17 @@ export default function CurriculumSection({
       .to(skillRef.current, { yPercent: 78 }, `-=${TRANSITION_DURATION}`)
       .to(languageRef.current, { yPercent: 86 }, `-=${TRANSITION_DURATION}`)
       .to(experienceRef.current, { yPercent: 94 }, `-=${TRANSITION_DURATION}`)
-      .to(menuRef.current, { yPercent: 42 }, `-=${TRANSITION_DURATION}`)
       .to(topShapeRef.current, { yPercent: 30 }, `-=${TRANSITION_DURATION}`)
       .to(bottomShapeRef.current, { yPercent: 46 }, `-=${TRANSITION_DURATION}`);
   };
+
+  useEffect(() => {
+    registerBackAction(() => handleBackToWelcome);
+
+    return () => {
+      registerBackAction(null);
+    };
+  }, [registerBackAction, isTransitioning, activePage.current]);
 
   return (
     <section
@@ -288,20 +289,6 @@ export default function CurriculumSection({
         alt=""
         className="pointer-events-none absolute bottom-[5%] left-[-1.5%] z-11 w-[20rem] max-w-[22vw] opacity-95"
       />
-
-      <button
-        ref={menuRef}
-        type="button"
-        onClick={handleBackToWelcome}
-        className="absolute right-[2.15%] top-[3.4%] z-40 flex h-[4.2rem] w-[4.2rem] items-center justify-center rounded-2xl border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
-        aria-label="Back to welcome section"
-      >
-        <span className="relative flex h-7 w-7 flex-col items-center justify-center gap-[0.34rem]">
-          <span className="block h-[0.24rem] w-full rounded-full bg-current" />
-          <span className="block h-[0.24rem] w-full rounded-full bg-current" />
-          <span className="block h-[0.24rem] w-full rounded-full bg-current" />
-        </span>
-      </button>
 
       <div ref={nameRef} className="absolute left-[6.6%] top-[21.5%] z-20 text-primary-400">
         <span className="inter-font whitespace-pre-line text-left text-[clamp(1.55rem,2.2vw,2.55rem)] leading-[1.06] font-normal tracking-[-0.03em]">
@@ -398,11 +385,33 @@ export default function CurriculumSection({
           label="Language"
           size="lg"
           icons={["figma", "canva", "blender"]}
+          onClick={() => setIsLanguageWindowOpen(true)}
           className="w-[14.5rem]"
           folderClassName="h-[12.2rem] w-[12.4rem]"
           labelClassName="mt-0.5 text-[1.1rem]"
         />
       </div>
+
+      {isLanguageWindowOpen ? (
+        <div className="absolute right-[5.8%] top-[50%] z-50 w-[27rem] max-w-[28vw]">
+          <Window
+            size="md"
+            title="Language"
+            onClose={() => setIsLanguageWindowOpen(false)}
+            titleClassName="jersey-font text-[2.4rem] tracking-[0.01em]"
+            closeButtonClassName="text-primary-500"
+            headerClassName="px-8 pt-7"
+            bodyClassName="px-8 pb-8 pt-4"
+            panelClassName="min-h-[15.2rem] bg-secondary-900/48"
+          >
+            <ul className="inter-font list-disc space-y-2.5 pl-8 text-[1.55rem] leading-[1.1] text-primary-400/95 marker:text-primary-400">
+              <li>Javanese</li>
+              <li>Indonesia</li>
+              <li>English</li>
+            </ul>
+          </Window>
+        </div>
+      ) : null}
 
       <div ref={experienceRef} className="absolute left-[45.3%] top-[71.7%] z-30">
         <Folder

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { X } from "lucide-react";
 
 type WindowSize = "sm" | "md" | "lg" | "xl";
 
@@ -43,10 +44,15 @@ function Window({
   return (
     <section className={`relative w-full ${sizeClasses[size]} ${className}`}>
       <div
-        className={`relative overflow-hidden rounded-[1.4rem] border border-primary-500/90 bg-secondary-950/55 text-primary-400 shadow-[0_0_0_1px_rgba(132,204,22,0.16),0_18px_60px_rgba(0,0,0,0.34)] backdrop-blur-[14px] ${panelClassName}`}
+        className={`relative overflow-hidden rounded-[1.9rem] bg-secondary-950/55 text-primary-400 shadow-[0_0_0_1px_rgba(64,255,30,0.08),0_0_26px_rgba(64,255,30,0.18),0_18px_60px_rgba(0,0,0,0.34)] backdrop-blur-[14px] ${panelClassName}`}
       >
+        <div className="pointer-events-none absolute inset-0 rounded-[inherit] border-[1.6px] border-primary-500/88" />
+        <div className="pointer-events-none absolute inset-[3px] rounded-[calc(1.9rem-3px)] border border-primary-400/18" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.03)_28%,rgba(255,255,255,0.01)_100%)]" />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-primary-300/40" />
+        <div className="pointer-events-none absolute inset-x-[1.2rem] top-0 h-[1.5px] rounded-full bg-primary-300/45 blur-[0.4px]" />
+        <div className="pointer-events-none absolute inset-y-[1.25rem] left-0 w-[1.5px] rounded-full bg-primary-400/25 blur-[0.4px]" />
+        <div className="pointer-events-none absolute inset-y-[1.25rem] right-0 w-[1.5px] rounded-full bg-primary-400/45 blur-[0.2px]" />
+        <div className="pointer-events-none absolute inset-x-[1.2rem] bottom-0 h-[2px] rounded-full bg-primary-500/95" />
 
         {(title || showCloseButton) && (
           <div
@@ -55,7 +61,7 @@ function Window({
             <div className="min-w-0 flex-1">
               {title ? (
                 <div
-                  className={`inter-font text-[clamp(1.1rem,1.45vw,1.7rem)] font-semibold leading-none text-primary-400 ${titleClassName}`}
+                  className={`jersey-font text-[clamp(1.1rem,1.7vw,2rem)] leading-none text-primary-400 ${titleClassName}`}
                 >
                   {title}
                 </div>
@@ -73,7 +79,7 @@ function Window({
                   : { "aria-hidden": true })}
                 className={`relative z-10 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-primary-400 transition-transform duration-300 ${onClose ? "cursor-pointer hover:scale-105" : ""} ${closeButtonClassName}`}
               >
-                <span className="block text-[2.25rem] leading-none">x</span>
+                <X strokeWidth={3} className="h-10 w-10" />
               </CloseElement>
             ) : null}
           </div>
