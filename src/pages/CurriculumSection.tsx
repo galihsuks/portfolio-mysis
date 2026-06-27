@@ -162,41 +162,55 @@ export default function CurriculumSection({
     }
     if (activePage.current == "curriculum-vitae") {
       const fromWelcome = activePage.before === "welcome";
+      const direction = fromWelcome ? "yPercent" : "xPercent";
+      const directionOpposite = direction === "xPercent" ? "yPercent" : "xPercent";
       gsap.set(containerRef.current, {
-        yPercent: fromWelcome ? 100 : -100,
+        [direction]: fromWelcome ? 100 : -100,
+        [directionOpposite]: 0,
       });
       gsap.set(curriculumRef.current, {
-        yPercent: fromWelcome ? 120 : -120,
+        [direction]: fromWelcome ? 120 : -120,
+        [directionOpposite]: 0,
       });
       gsap.set(vitaeRef.current, {
-        yPercent: fromWelcome ? 165 : -145,
+        [direction]: fromWelcome ? 165 : -165,
+        [directionOpposite]: 0,
       });
       gsap.set(nameRef.current, {
-        yPercent: fromWelcome ? 52 : -62,
+        [direction]: fromWelcome ? 52 : -55,
+        [directionOpposite]: 0,
       });
       gsap.set(photoRef.current, {
-        yPercent: fromWelcome ? 58 : -70,
+        [direction]: fromWelcome ? 58 : -58,
+        [directionOpposite]: 0,
       });
       gsap.set(introWindowRef.current, {
-        yPercent: fromWelcome ? 40 : -54,
+        [direction]: fromWelcome ? 200 : -40,
+        [directionOpposite]: 0,
       });
       gsap.set(educationRef.current, {
-        yPercent: fromWelcome ? 36 : -56,
+        [direction]: fromWelcome ? 100 : -100,
+        [directionOpposite]: 0,
       });
       gsap.set(skillRef.current, {
-        yPercent: fromWelcome ? 50 : -72,
+        [direction]: fromWelcome ? 50 : -50,
+        [directionOpposite]: 0,
       });
       gsap.set(languageRef.current, {
-        yPercent: fromWelcome ? 56 : -78,
+        [direction]: fromWelcome ? 56 : -56,
+        [directionOpposite]: 0,
       });
       gsap.set(experienceRef.current, {
-        yPercent: fromWelcome ? 70 : -86,
+        [direction]: fromWelcome ? 70 : -70,
+        [directionOpposite]: 0,
       });
       gsap.set(topShapeRef.current, {
-        yPercent: fromWelcome ? 22 : -26,
+        [direction]: fromWelcome ? 22 : -22,
+        [directionOpposite]: 0,
       });
       gsap.set(bottomShapeRef.current, {
-        yPercent: fromWelcome ? 34 : -42,
+        [direction]: fromWelcome ? 34 : -34,
+        [directionOpposite]: 0,
       });
 
       const timeline = gsap.timeline({
@@ -253,13 +267,48 @@ export default function CurriculumSection({
       .to(vitaeRef.current, { yPercent: 155 }, `-=${TRANSITION_DURATION}`)
       .to(nameRef.current, { yPercent: 70 }, `-=${TRANSITION_DURATION}`)
       .to(photoRef.current, { yPercent: 82 }, `-=${TRANSITION_DURATION}`)
-      .to(introWindowRef.current, { yPercent: 58 }, `-=${TRANSITION_DURATION}`)
-      .to(educationRef.current, { yPercent: 62 }, `-=${TRANSITION_DURATION}`)
-      .to(skillRef.current, { yPercent: 78 }, `-=${TRANSITION_DURATION}`)
+      .to(introWindowRef.current, { yPercent: 200 }, `-=${TRANSITION_DURATION}`)
+      .to(educationRef.current, { yPercent: 200 }, `-=${TRANSITION_DURATION}`)
+      .to(skillRef.current, { yPercent: 100 }, `-=${TRANSITION_DURATION}`)
       .to(languageRef.current, { yPercent: 86 }, `-=${TRANSITION_DURATION}`)
       .to(experienceRef.current, { yPercent: 94 }, `-=${TRANSITION_DURATION}`)
       .to(topShapeRef.current, { yPercent: 30 }, `-=${TRANSITION_DURATION}`)
       .to(bottomShapeRef.current, { yPercent: 46 }, `-=${TRANSITION_DURATION}`);
+  };
+
+  const handleToFolder = (page: string) => {
+    if (isTransitioning) {
+      return;
+    }
+
+    setIsLanguageWindowOpen(false);
+    isThisPageActive.current = false;
+    containerRef.current?.removeEventListener("mousemove", handleMouseMove);
+    containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
+    setActivePage({ current: page, before: "curriculum-vitae" });
+    setIsTransitioning(true);
+    setBackground("light");
+
+    const timeline = gsap.timeline({
+      defaults: { duration: TRANSITION_DURATION, ease: "power3.inOut" },
+      onComplete: () => {
+        setIsTransitioning(false);
+      },
+    });
+
+    timeline
+      .to(containerRef.current, { xPercent: -100 }, 0)
+      .to(curriculumRef.current, { xPercent: -125 }, `-=${TRANSITION_DURATION}`)
+      .to(vitaeRef.current, { xPercent: -155 }, `-=${TRANSITION_DURATION}`)
+      .to(nameRef.current, { xPercent: -70 }, `-=${TRANSITION_DURATION}`)
+      .to(photoRef.current, { xPercent: -82 }, `-=${TRANSITION_DURATION}`)
+      .to(introWindowRef.current, { xPercent: -200 }, `-=${TRANSITION_DURATION}`)
+      .to(educationRef.current, { xPercent: -62 }, `-=${TRANSITION_DURATION}`)
+      .to(skillRef.current, { xPercent: -78 }, `-=${TRANSITION_DURATION}`)
+      .to(languageRef.current, { xPercent: -86 }, `-=${TRANSITION_DURATION}`)
+      .to(experienceRef.current, { xPercent: -94 }, `-=${TRANSITION_DURATION}`)
+      .to(topShapeRef.current, { xPercent: -30 }, `-=${TRANSITION_DURATION}`)
+      .to(bottomShapeRef.current, { xPercent: -46 }, `-=${TRANSITION_DURATION}`);
   };
 
   useEffect(() => {
@@ -356,6 +405,7 @@ export default function CurriculumSection({
           className="w-[14.5rem]"
           folderClassName="h-[12.1rem] w-[12.5rem]"
           labelClassName="mt-1 text-[1.1rem]"
+          onClick={() => handleToFolder("education")}
         />
       </div>
 
@@ -377,6 +427,7 @@ export default function CurriculumSection({
           className="w-[15.2rem]"
           folderClassName="h-[12.4rem] w-[13rem]"
           labelClassName="mt-0.5 text-[1.1rem]"
+          onClick={() => handleToFolder("skill")}
         />
       </div>
 
@@ -421,6 +472,7 @@ export default function CurriculumSection({
           className="w-[13.8rem]"
           folderClassName="h-[11.4rem] w-[11.7rem]"
           labelClassName="mt-1 text-[1.05rem]"
+          onClick={() => handleToFolder("experience")}
         />
       </div>
     </section>
