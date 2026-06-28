@@ -161,6 +161,7 @@ export default function CurriculumSection({
       return;
     }
     if (activePage.current == "curriculum-vitae") {
+      registerBackAction(() => handleBackToWelcome);
       const fromWelcome = activePage.before === "welcome";
       const direction = fromWelcome ? "yPercent" : "xPercent";
       const directionOpposite = direction === "xPercent" ? "yPercent" : "xPercent";
@@ -243,7 +244,7 @@ export default function CurriculumSection({
   }, [activePage.current]);
 
   const handleBackToWelcome = () => {
-    if (isTransitioning) {
+    if (isTransitionRef.current) {
       return;
     }
 
@@ -277,7 +278,7 @@ export default function CurriculumSection({
   };
 
   const handleToFolder = (page: string) => {
-    if (isTransitioning) {
+    if (isTransitionRef.current) {
       return;
     }
 
@@ -310,14 +311,6 @@ export default function CurriculumSection({
       .to(topShapeRef.current, { xPercent: -30 }, `-=${TRANSITION_DURATION}`)
       .to(bottomShapeRef.current, { xPercent: -46 }, `-=${TRANSITION_DURATION}`);
   };
-
-  useEffect(() => {
-    registerBackAction(() => handleBackToWelcome);
-
-    return () => {
-      registerBackAction(null);
-    };
-  }, [registerBackAction, isTransitioning, activePage.current]);
 
   return (
     <section
@@ -384,8 +377,8 @@ export default function CurriculumSection({
         ref={introWindowRef}
         className="absolute left-[calc(5%+34rem)] top-[25%] z-9 w-[27.7rem] max-w-[27vw]"
       >
-        <Window size="md">
-          <p className="inter-font text-[1.01rem] leading-[1.27] tracking-[-0.02em] text-primary-400/95">
+        <Window size="md" bodyClassName="px-15 pb-13">
+          <p className="inter-font text-[0.9rem] leading-[1.27] tracking-[-0.02em] text-primary-400/95">
             As a Bachelor of Design graduate who is currently studying Postgraduate education in
             Videography, I have abilities in the field of visual design concepts, such as graphic
             design, 3D, videography and photography. I also have a deep interest in the study of

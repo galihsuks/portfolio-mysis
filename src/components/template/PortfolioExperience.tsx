@@ -4,6 +4,7 @@ import { Menu } from "lucide-react";
 import WelcomeSection from "../../pages/WelcomeSection";
 import Background, { type VariantBackgroundType } from "../ui/Background";
 import CurriculumSection from "../../pages/CurriculumSection";
+import ExperienceSection from "../../pages/ExperienceSection";
 
 export default function PortfolioExperience() {
   const shellRef = useRef<HTMLDivElement | null>(null);
@@ -45,6 +46,15 @@ export default function PortfolioExperience() {
         />
 
         <CurriculumSection
+          isTransitioning={isTransitioning}
+          setIsTransitioning={setIsTransitioning}
+          activePage={activePage}
+          setActivePage={setActivePage}
+          setBackground={setBackground}
+          registerBackAction={setBackAction}
+        />
+
+        <ExperienceSection
           isTransitioning={isTransitioning}
           setIsTransitioning={setIsTransitioning}
           activePage={activePage}
