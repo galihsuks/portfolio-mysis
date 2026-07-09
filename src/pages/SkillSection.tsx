@@ -10,6 +10,10 @@ import instaPost5 from "../assets/karya/insta_post_5.jpg";
 import instaPost6 from "../assets/karya/insta_post_6.jpg";
 import instaPost7 from "../assets/karya/insta_post_7.jpg";
 import instaPost8 from "../assets/karya/insta_post_8.jpg";
+import instaPost9 from "../assets/karya/insta_post_9.jpg";
+import instaPost10 from "../assets/karya/insta_post_10.jpg";
+import instaPost11 from "../assets/karya/insta_post_11.jpg";
+import instaPost12 from "../assets/karya/insta_post_12.jpg";
 import { TRANSITION_DURATION } from "../constant";
 import type { VariantBackgroundType } from "../components/ui/Background";
 import Window from "../components/ui/Window";
@@ -89,6 +93,30 @@ const skillShowcaseItems: SkillShowcaseItem[] = [
     id: "insta-post-8",
     image: instaPost8,
     alt: "Skill showcase 8",
+    tools: ["premier", "photoshop", "ilustrator", "afterEffect"],
+  },
+  {
+    id: "insta-post-9",
+    image: instaPost9,
+    alt: "Skill showcase 9",
+    tools: ["premier", "camera"],
+  },
+  {
+    id: "insta-post-10",
+    image: instaPost10,
+    alt: "Skill showcase 10",
+    tools: ["blender", "photoshop", "ilustrator", "afterEffect"],
+  },
+  {
+    id: "insta-post-11",
+    image: instaPost11,
+    alt: "Skill showcase 11",
+    tools: ["blender", "afterEffect"],
+  },
+  {
+    id: "insta-post-12",
+    image: instaPost12,
+    alt: "Skill showcase 12",
     tools: ["premier", "photoshop", "ilustrator", "afterEffect"],
   },
 ];
@@ -451,7 +479,7 @@ export default function SkillSection({
               ref={carouselRef}
               className="w-full overflow-x-auto overflow-y-hidden scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
-              <div className="flex w-max items-center gap-4 px-[2%] py-6">
+              <div className="flex w-max items-center gap-4 px-[2%] h-[31.5rem]">
                 {loopedShowcaseItems.map((item, index) => {
                   const isActive = skillShowcaseItems[activeSkillIndex]?.id === item.id;
 
@@ -459,7 +487,7 @@ export default function SkillSection({
                     <article
                       key={`${item.id}-${index}`}
                       data-skill-card
-                      className={`shrink-0 overflow-hidden rounded-[1.35rem] bg-white/32 shadow-[0_14px_28px_rgba(34,119,24,0.14)] w-[22rem] transition-all duration-500 ease-out ${
+                      className={`shrink-0 overflow-hidden rounded-[1.35rem] bg-white/32 shadow-[0_14px_28px_rgba(34,119,24,0.14)] transition-all duration-500 ease-out ${
                         isActive ? "mt-0 h-[31.5rem]" : "mt-8 h-[28rem]"
                       }`}
                     >
