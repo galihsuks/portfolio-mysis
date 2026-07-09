@@ -30,7 +30,7 @@ export default function WelcomeSection({
   const amaliaRef = useRef<HTMLDivElement | null>(null);
   const labelRefs = useRef<HTMLButtonElement[]>([]);
   const introCompletedRef = useRef(false);
-  const firstRender = useRef(true);
+  // const firstRender = useRef(true);
   const isThisPageActive = useRef(true);
   const isTransitionRef = useRef(isTransitioning);
 
@@ -113,10 +113,6 @@ export default function WelcomeSection({
   }, [isTransitioning]);
 
   useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
-    }
     if (activePage.current == "welcome") {
       const timeline = gsap.timeline({
         defaults: {

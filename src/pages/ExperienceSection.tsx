@@ -86,10 +86,6 @@ const layerMotion = {
   name: 4,
   photo: 3,
   intro: 6,
-  education: 8,
-  skill: 9,
-  language: 10,
-  experience: 7,
   shapeTop: 2,
   shapeBottom: 4,
 } as const;
