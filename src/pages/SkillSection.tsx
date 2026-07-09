@@ -105,6 +105,21 @@ const dockIcons: IconName[] = [
   "capcut",
 ];
 
+const dockIconRotations: Record<IconName, string> = {
+  premier: "-rotate-[14deg]",
+  photoshop: "rotate-[13deg]",
+  ilustrator: "-rotate-[4deg]",
+  afterEffect: "rotate-[18deg]",
+  canva: "rotate-0",
+  figma: "rotate-[16deg]",
+  blender: "-rotate-[12deg]",
+  camera: "-rotate-[8deg]",
+  capcut: "rotate-0",
+  star: "rotate-0",
+  univIsi: "rotate-0",
+  univIts: "rotate-0",
+};
+
 const loopedShowcaseItems = [...skillShowcaseItems, ...skillShowcaseItems, ...skillShowcaseItems];
 
 export default function SkillSection({
@@ -468,7 +483,7 @@ export default function SkillSection({
                 return (
                   <Icon
                     key={icon}
-                    className={`transition-all duration-500 ease-out ${
+                    className={`transition-all duration-500 ease-out ${dockIconRotations[icon]} ${
                       isCamera
                         ? isActive
                           ? "h-18 w-auto scale-110 opacity-100"
