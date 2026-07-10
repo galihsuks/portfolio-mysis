@@ -6,6 +6,7 @@ import Background, { type VariantBackgroundType } from "../ui/Background";
 import CurriculumSection from "../../pages/CurriculumSection";
 import ExperienceSection from "../../pages/ExperienceSection";
 import SkillSection from "../../pages/SkillSection";
+import EducationSection from "../../pages/EducationSection";
 
 export default function PortfolioExperience() {
   const shellRef = useRef<HTMLDivElement | null>(null);
@@ -56,6 +57,15 @@ export default function PortfolioExperience() {
         />
 
         <ExperienceSection
+          isTransitioning={isTransitioning}
+          setIsTransitioning={setIsTransitioning}
+          activePage={activePage}
+          setActivePage={setActivePage}
+          setBackground={setBackground}
+          registerBackAction={setBackAction}
+        />
+
+        <EducationSection
           isTransitioning={isTransitioning}
           setIsTransitioning={setIsTransitioning}
           activePage={activePage}
