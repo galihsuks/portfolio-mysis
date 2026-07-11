@@ -1,5 +1,5 @@
 export type CategoryId =
-  | "social-media"
+  | "social-media-1"
   | "curriculum-vitae"
   | "photo-video-1"
   | "big-project"
@@ -16,7 +16,7 @@ export type CategoryLabel = {
 
 export const categoryLabels: CategoryLabel[] = [
   {
-    id: "social-media",
+    id: "social-media-1",
     text: "Social\nMedia",
     className: "left-[12%] top-[14%] text-[clamp(1.7rem,2.4vw,2.7rem)]",
     blurClassName: "blur-[2.5px]",
@@ -64,7 +64,7 @@ export const categoryLabels: CategoryLabel[] = [
     transitionOutY: -752 * 1.5,
   },
   {
-    id: "social-media",
+    id: "social-media-1",
     text: "Social\nMedia",
     className: "right-[23%] top-[52%] text-[clamp(1rem,1.35vw,1.3rem)]",
     blurClassName: "blur-[2.25px]",
@@ -105,7 +105,7 @@ export const categoryContent: Record<
     description: string;
   }
 > = {
-  "social-media": {
+  "social-media-1": {
     eyebrow: "Social Media",
     title: "Campaign visuals, feeds, and motion that still feel human.",
     description:
