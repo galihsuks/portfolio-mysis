@@ -7,7 +7,7 @@ import shapeBottomLeft from "../assets/elements/14 2.png";
 import { TRANSITION_DURATION } from "../constant";
 import type { VariantBackgroundType } from "../components/ui/Background";
 import Window from "../components/ui/Window";
-import { ArrowRight, Heart, MessageCircle, Repeat2, Send } from "lucide-react";
+import { Heart, MessageCircle, Repeat2, Send } from "lucide-react";
 
 type PhotoVideo2SectionProps = {
   setBackground: (value: VariantBackgroundType) => void;
@@ -427,24 +427,19 @@ export default function PhotoVideo2Section({
         </Window>
       </div>
 
-      <button
-        type="button"
-        onClick={() => handleToBack("photo-video-1")}
-        className="absolute bottom-[4.7%] left-[10%] z-30 inline-flex items-center gap-2 bg-transparent p-0 text-primary-400 transition-opacity duration-300 hover:opacity-80"
-      >
-        <span className="inter-font text-[1.05rem] tracking-[-0.02em]">Back</span>
-        <ArrowRight className="h-5 w-5" strokeWidth={2.4} />
-      </button>
-
       <div className="absolute bottom-[9.8%] right-[8.7%] z-20">
-        <p className="inter-font text-[1.25rem] leading-[1.05] tracking-[-0.04em] text-primary-400 mb-10">
+        <div className="inter-font text-[1.25rem] leading-[1.05] tracking-[-0.04em] text-primary-400 mb-10">
           Video
-        </p>
-        <p className="inter-font text-[1.02rem] tracking-[-0.03em] text-primary-400/70">
+        </div>
+        <button
+          type="button"
+          onClick={() => handleToBack("photo-video-1")}
+          className="inter-font text-[1.02rem] tracking-[-0.03em] text-primary-400/70 border-b border-transparent hover:border-primary-400 cursor-pointer text-start"
+        >
           Photo
           <br />
           Concept
-        </p>
+        </button>
       </div>
     </section>
   );
