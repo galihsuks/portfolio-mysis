@@ -1,7 +1,7 @@
 export type CategoryId =
   | "social-media"
   | "curriculum-vitae"
-  | "photo-video"
+  | "photo-video-1"
   | "big-project"
   | "branding";
 
@@ -32,7 +32,7 @@ export const categoryLabels: CategoryLabel[] = [
     transitionOutY: -196 * 1.5,
   },
   {
-    id: "photo-video",
+    id: "photo-video-1",
     text: "Photo\nand\nVideo",
     className: "left-[6%] top-[42%] text-[clamp(1rem,1.45vw,1.45rem)]",
     blurClassName: "blur-[4px]",
@@ -88,7 +88,7 @@ export const categoryLabels: CategoryLabel[] = [
     transitionOutY: -810 * 1.5,
   },
   {
-    id: "photo-video",
+    id: "photo-video-1",
     text: "Photo\nand\nVideo",
     className: "right-[8%] bottom-[22%] text-[clamp(1.65rem,2.2vw,2.6rem)]",
     blurClassName: "blur-[2.75px]",
@@ -117,7 +117,7 @@ export const categoryContent: Record<
     description:
       "Cocok untuk section CV digital, education timeline, pengalaman kerja, dan tools yang kamu kuasai dalam format yang lebih editorial.",
   },
-  "photo-video": {
+  "photo-video-1": {
     eyebrow: "Photo and Video",
     title: "Frame, movement, and edits with a softer cinematic feel.",
     description:

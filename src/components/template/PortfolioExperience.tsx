@@ -7,6 +7,7 @@ import CurriculumSection from "../../pages/CurriculumSection";
 import ExperienceSection from "../../pages/ExperienceSection";
 import SkillSection from "../../pages/SkillSection";
 import EducationSection from "../../pages/EducationSection";
+import PhotoVideo1Section from "../../pages/PhotoVideo1";
 
 export default function PortfolioExperience() {
   const shellRef = useRef<HTMLDivElement | null>(null);
@@ -75,6 +76,15 @@ export default function PortfolioExperience() {
         />
 
         <SkillSection
+          isTransitioning={isTransitioning}
+          setIsTransitioning={setIsTransitioning}
+          activePage={activePage}
+          setActivePage={setActivePage}
+          setBackground={setBackground}
+          registerBackAction={setBackAction}
+        />
+
+        <PhotoVideo1Section
           isTransitioning={isTransitioning}
           setIsTransitioning={setIsTransitioning}
           activePage={activePage}
