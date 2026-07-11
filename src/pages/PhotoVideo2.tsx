@@ -1,16 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ppIgImage from "../assets/pp_ig.jpg";
-import photoVideo1Image from "../assets/photo-video/photo-video-1.jpg";
-import photoVideo2Image from "../assets/photo-video/photo-video-2.jpg";
-import photoVideo3Image from "../assets/photo-video/photo-video-3.jpg";
+import photoVideo1Image from "../assets/karya/insta_post_12.jpg";
+import photoVideo2Image from "../assets/karya/insta_post_9.jpg";
 import shapeBottomLeft from "../assets/elements/14 2.png";
 import { TRANSITION_DURATION } from "../constant";
 import type { VariantBackgroundType } from "../components/ui/Background";
 import Window from "../components/ui/Window";
-import { ArrowLeft, Heart, MessageCircle, Repeat2, Send } from "lucide-react";
+import { ArrowRight, Heart, MessageCircle, Repeat2, Send } from "lucide-react";
 
-type PhotoVideo1SectionProps = {
+type PhotoVideo2SectionProps = {
   setBackground: (value: VariantBackgroundType) => void;
   isTransitioning: boolean;
   setIsTransitioning: (value: boolean) => void;
@@ -36,21 +35,20 @@ const layerMotion = {
   shapeBottom: 4,
 } as const;
 
-export default function PhotoVideo1Section({
+export default function PhotoVideo2Section({
   isTransitioning,
   setIsTransitioning,
   activePage,
   setActivePage,
   setBackground,
   registerBackAction,
-}: PhotoVideo1SectionProps) {
+}: PhotoVideo2SectionProps) {
   const [, setIsLanguageWindowOpen] = useState(false);
   const containerRef = useRef<HTMLElement | null>(null);
   const curriculumRef = useRef<HTMLDivElement | null>(null);
   const vitaeRef = useRef<HTMLDivElement | null>(null);
   const introWindowRef = useRef<HTMLDivElement | null>(null);
   const educationRef = useRef<HTMLDivElement | null>(null);
-  const skillRef = useRef<HTMLDivElement | null>(null);
   const languageRef = useRef<HTMLDivElement | null>(null);
   const experienceRef = useRef<HTMLDivElement | null>(null);
   const topShapeRef = useRef<HTMLImageElement | null>(null);
@@ -64,7 +62,6 @@ export default function PhotoVideo1Section({
     { ref: vitaeRef, x: layerMotion.titleSub, y: layerMotion.titleSub },
     { ref: introWindowRef, x: layerMotion.intro, y: layerMotion.intro },
     { ref: educationRef, x: layerMotion.education, y: layerMotion.education },
-    { ref: skillRef, x: layerMotion.skill, y: layerMotion.skill },
     { ref: languageRef, x: layerMotion.language, y: layerMotion.language },
     { ref: experienceRef, x: layerMotion.experience, y: layerMotion.experience },
     { ref: topShapeRef, x: layerMotion.shapeTop, y: layerMotion.shapeTop },
@@ -122,81 +119,71 @@ export default function PhotoVideo1Section({
     if (firstRender.current) {
       firstRender.current = false;
       gsap.set(containerRef.current, {
-        yPercent: 100,
+        yPercent: -100,
       });
       gsap.set(curriculumRef.current, {
-        yPercent: 120,
+        yPercent: -120,
       });
       gsap.set(vitaeRef.current, {
-        yPercent: 165,
+        yPercent: -165,
       });
       gsap.set(introWindowRef.current, {
-        yPercent: 40,
+        yPercent: -40,
       });
       gsap.set(educationRef.current, {
-        yPercent: 36,
-      });
-      gsap.set(skillRef.current, {
-        yPercent: 50,
+        yPercent: -36,
       });
       gsap.set(languageRef.current, {
-        yPercent: 56,
+        yPercent: -56,
       });
       gsap.set(experienceRef.current, {
-        yPercent: 70,
+        yPercent: -70,
       });
       gsap.set(topShapeRef.current, {
-        yPercent: 22,
+        yPercent: -22,
       });
       gsap.set(bottomShapeRef.current, {
-        yPercent: 34,
+        yPercent: -34,
       });
       return;
     }
-    if (activePage.current == "photo-video-1") {
+    if (activePage.current == "photo-video-2") {
       registerBackAction(() => handleBackToWelcome);
-      const fromWelcome = activePage.before === "welcome";
-      const direction = fromWelcome ? "yPercent" : "xPercent";
-      const directionOpposite = direction === "xPercent" ? "yPercent" : "xPercent";
       gsap.set(containerRef.current, {
-        [direction]: 100,
-        [directionOpposite]: 0,
+        xPercent: -100,
+        yPercent: 0,
       });
       gsap.set(curriculumRef.current, {
-        [direction]: 120,
-        [directionOpposite]: 0,
+        xPercent: -120,
+        yPercent: 0,
       });
       gsap.set(vitaeRef.current, {
-        [direction]: 165,
-        [directionOpposite]: 0,
+        xPercent: -165,
+        yPercent: 0,
       });
       gsap.set(introWindowRef.current, {
-        [direction]: 40,
-        [directionOpposite]: 0,
+        xPercent: -40,
+        yPercent: 0,
       });
       gsap.set(educationRef.current, {
-        [direction]: 100,
-        [directionOpposite]: 0,
-      });
-      gsap.set(skillRef.current, {
-        [direction]: 50,
-        [directionOpposite]: 0,
+        xPercent: -100,
+        yPercent: 0,
       });
       gsap.set(languageRef.current, {
-        [direction]: 56,
-        [directionOpposite]: 0,
+        xPercent: -56,
+        yPercent: 0,
       });
       gsap.set(experienceRef.current, {
-        [direction]: 70,
-        [directionOpposite]: 0,
+        xPercent: -70,
+        yPercent: 0,
       });
       gsap.set(topShapeRef.current, {
-        [direction]: 22,
-        [directionOpposite]: 0,
+        xPercent: -22,
+        yPercent: 0,
       });
       gsap.set(bottomShapeRef.current, {
-        [direction]: 34,
-        [directionOpposite]: 0,
+        xPercent: -34,
+        yPercent: 0,
       });
 
       const timeline = gsap.timeline({
@@ -218,7 +205,6 @@ export default function PhotoVideo1Section({
         .to(vitaeRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(introWindowRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(educationRef.current, {}, `-=${TRANSITION_DURATION}`)
-        .to(skillRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(languageRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(experienceRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(topShapeRef.current, {}, `-=${TRANSITION_DURATION}`)
@@ -235,7 +221,7 @@ export default function PhotoVideo1Section({
     isThisPageActive.current = false;
     containerRef.current?.removeEventListener("mousemove", handleMouseMove);
     containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
-    setActivePage({ current: "welcome", before: "photo-video-1" });
+    setActivePage({ current: "welcome", before: "photo-video-2" });
     setIsTransitioning(true);
     setBackground("light");
 
@@ -251,14 +237,13 @@ export default function PhotoVideo1Section({
       .to(vitaeRef.current, { yPercent: 155 }, `-=${TRANSITION_DURATION}`)
       .to(introWindowRef.current, { yPercent: 200 }, `-=${TRANSITION_DURATION}`)
       .to(educationRef.current, { yPercent: 200 }, `-=${TRANSITION_DURATION}`)
-      .to(skillRef.current, { yPercent: 100 }, `-=${TRANSITION_DURATION}`)
       .to(languageRef.current, { yPercent: 86 }, `-=${TRANSITION_DURATION}`)
       .to(experienceRef.current, { yPercent: 94 }, `-=${TRANSITION_DURATION}`)
       .to(topShapeRef.current, { yPercent: 30 }, `-=${TRANSITION_DURATION}`)
       .to(bottomShapeRef.current, { yPercent: 46 }, `-=${TRANSITION_DURATION}`);
   };
 
-  const handleToMore = (page: string) => {
+  const handleToBack = (page: string) => {
     if (isTransitionRef.current) {
       return;
     }
@@ -267,7 +252,7 @@ export default function PhotoVideo1Section({
     isThisPageActive.current = false;
     containerRef.current?.removeEventListener("mousemove", handleMouseMove);
     containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
-    setActivePage({ current: page, before: "photo-video-1" });
+    setActivePage({ current: page, before: "photo-video-2" });
     setIsTransitioning(true);
 
     const timeline = gsap.timeline({
@@ -278,23 +263,22 @@ export default function PhotoVideo1Section({
     });
 
     timeline
-      .to(containerRef.current, { xPercent: 100 }, 0)
-      .to(curriculumRef.current, { xPercent: 125 }, `-=${TRANSITION_DURATION}`)
-      .to(vitaeRef.current, { xPercent: 155 }, `-=${TRANSITION_DURATION}`)
-      .to(introWindowRef.current, { xPercent: 200 }, `-=${TRANSITION_DURATION}`)
-      .to(educationRef.current, { xPercent: 62 }, `-=${TRANSITION_DURATION}`)
-      .to(skillRef.current, { xPercent: 78 }, `-=${TRANSITION_DURATION}`)
-      .to(languageRef.current, { xPercent: 86 }, `-=${TRANSITION_DURATION}`)
-      .to(experienceRef.current, { xPercent: 94 }, `-=${TRANSITION_DURATION}`)
-      .to(topShapeRef.current, { xPercent: 30 }, `-=${TRANSITION_DURATION}`)
-      .to(bottomShapeRef.current, { xPercent: 46 }, `-=${TRANSITION_DURATION}`);
+      .to(containerRef.current, { xPercent: -100 }, 0)
+      .to(curriculumRef.current, { xPercent: -125 }, `-=${TRANSITION_DURATION}`)
+      .to(vitaeRef.current, { xPercent: -155 }, `-=${TRANSITION_DURATION}`)
+      .to(introWindowRef.current, { xPercent: -200 }, `-=${TRANSITION_DURATION}`)
+      .to(educationRef.current, { xPercent: -62 }, `-=${TRANSITION_DURATION}`)
+      .to(languageRef.current, { xPercent: -86 }, `-=${TRANSITION_DURATION}`)
+      .to(experienceRef.current, { xPercent: -94 }, `-=${TRANSITION_DURATION}`)
+      .to(topShapeRef.current, { xPercent: -30 }, `-=${TRANSITION_DURATION}`)
+      .to(bottomShapeRef.current, { xPercent: -46 }, `-=${TRANSITION_DURATION}`);
   };
 
   return (
     <section
       ref={containerRef}
       className={`absolute inset-0 transition-colors duration-500 ${
-        activePage.current !== "photo-video-1" ? "pointer-events-none" : ""
+        activePage.current !== "photo-video-2" ? "pointer-events-none" : ""
       }`}
     >
       <img
@@ -333,20 +317,18 @@ export default function PhotoVideo1Section({
 
       <div
         ref={introWindowRef}
-        className="absolute left-[55.2%] bottom-[70%] z-20 w-[20rem] max-w-[21vw]"
+        className="absolute top-[70%] right-[60%] z-20 w-[20rem] max-w-[21vw]"
       >
         <p className="inter-font text-[0.92rem] leading-[1.22] tracking-[-0.02em] text-primary-400/95">
-          This is the result of my photography for someone&apos;s graduation concept and a regular
-          concept photo with a depression theme. I used a DSLR camera to shoot the concept photos.
+          I successfully created a video for the campus where I teach, and in 2021, I was given the
+          responsibility to create a branding video for Klaten. The software I used to create the
+          video was Adobe Premiere Pro and CapCut.
         </p>
       </div>
 
-      <div
-        ref={educationRef}
-        className="absolute left-[5%] bottom-[10%] z-20 w-[28rem] max-w-[29vw]"
-      >
+      <div ref={educationRef} className="absolute left-[13%] top-[6%] z-20 w-[40rem] max-w-[39vw]">
         <Window
-          size="md"
+          size="lg"
           panelClassName="bg-secondary-900/52"
           bodyClassName="px-6 pb-6 pt-4"
           closeButtonClassName="text-primary-500"
@@ -367,58 +349,9 @@ export default function PhotoVideo1Section({
           </div>
 
           <img
-            src={photoVideo3Image}
+            src={photoVideo1Image}
             alt="Graduation concept photography 1"
-            className="block h-[32rem] w-full rounded-[1.1rem] object-cover"
-          />
-
-          <div className="mt-4 flex items-center gap-4 text-primary-50">
-            <div className="flex items-center gap-1.5">
-              <Heart className="h-5 w-5" strokeWidth={2.2} />
-              <span className="inter-font text-[0.78rem]">04</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <MessageCircle className="h-5 w-5" strokeWidth={2.2} />
-              <span className="inter-font text-[0.78rem]">07</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <Repeat2 className="h-5 w-5" strokeWidth={2.2} />
-              <span className="inter-font text-[0.78rem]">19</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <Send className="h-5 w-5" strokeWidth={2.2} />
-              <span className="inter-font text-[0.78rem]">99</span>
-            </div>
-          </div>
-        </Window>
-      </div>
-
-      <div ref={skillRef} className="absolute left-[25.6%] top-[5%] z-21 w-[33rem] max-w-[27vw]">
-        <Window
-          size="md"
-          panelClassName="bg-secondary-900/52"
-          bodyClassName="px-6 pb-6 pt-4"
-          closeButtonClassName="text-primary-500"
-        >
-          <div className="flex items-center gap-3 pb-4">
-            <img
-              src={ppIgImage}
-              alt="Instagram profile"
-              className="h-11 w-11 rounded-full object-cover"
-            />
-            <div className="min-w-0 flex-1 text-primary-50">
-              <p className="inter-font truncate text-[0.72rem] font-semibold">amalialatifahputri</p>
-              <p className="inter-font truncate text-[0.6rem] text-primary-50/85">
-                ♫ AMEL PUTRI . Mawar Tanpa Duri
-              </p>
-            </div>
-            <span className="inter-font text-[0.95rem] text-primary-50/85">...</span>
-          </div>
-
-          <img
-            src={photoVideo2Image}
-            alt="Graduation concept photography 2"
-            className="block h-[34rem] w-full rounded-[1.1rem] object-cover"
+            className="block h-[22rem] w-full rounded-[1.1rem] object-cover"
           />
 
           <div className="mt-4 flex items-center gap-4 text-primary-50">
@@ -444,7 +377,7 @@ export default function PhotoVideo1Section({
 
       <div
         ref={experienceRef}
-        className="absolute left-[46.5%] bottom-[5%] z-22 w-[40rem] max-w-[39vw]"
+        className="absolute right-[22%] bottom-[5%] z-22 w-[40rem] max-w-[39vw]"
       >
         <Window
           size="lg"
@@ -468,7 +401,7 @@ export default function PhotoVideo1Section({
           </div>
 
           <img
-            src={photoVideo1Image}
+            src={photoVideo2Image}
             alt="Depression theme concept photography"
             className="block h-[22rem] w-full rounded-[1.1rem] object-cover"
           />
@@ -496,18 +429,18 @@ export default function PhotoVideo1Section({
 
       <button
         type="button"
-        onClick={() => handleToMore("photo-video-2")}
-        className="absolute bottom-[4.7%] left-[3.8%] z-30 inline-flex items-center gap-2 bg-transparent p-0 text-primary-400 transition-opacity duration-300 hover:opacity-80"
+        onClick={() => handleToBack("photo-video-1")}
+        className="absolute bottom-[4.7%] left-[10%] z-30 inline-flex items-center gap-2 bg-transparent p-0 text-primary-400 transition-opacity duration-300 hover:opacity-80"
       >
-        <ArrowLeft className="h-5 w-5" strokeWidth={2.4} />
-        <span className="inter-font text-[1.05rem] tracking-[-0.02em]">More</span>
+        <span className="inter-font text-[1.05rem] tracking-[-0.02em]">Back</span>
+        <ArrowRight className="h-5 w-5" strokeWidth={2.4} />
       </button>
 
       <div className="absolute bottom-[9.8%] right-[8.7%] z-20">
-        <p className="inter-font text-[1.02rem] tracking-[-0.03em] text-primary-400/70 mb-10">
+        <p className="inter-font text-[1.25rem] leading-[1.05] tracking-[-0.04em] text-primary-400 mb-10">
           Video
         </p>
-        <p className="inter-font text-[1.25rem] leading-[1.05] tracking-[-0.04em] text-primary-400">
+        <p className="inter-font text-[1.02rem] tracking-[-0.03em] text-primary-400/70">
           Photo
           <br />
           Concept
