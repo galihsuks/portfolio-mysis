@@ -10,6 +10,9 @@ import premierIcon from "../../assets/icons/premier.png";
 import starIcon from "../../assets/icons/star.png";
 import univIsiIcon from "../../assets/icons/univ-isi.png";
 import univItsIcon from "../../assets/icons/univ-its.png";
+import jtvIcon from "../../assets/big-project/jtv_thumb.png";
+import muhiIcon from "../../assets/big-project/muhi_thumb.png";
+import tunnelIcon from "../../assets/big-project/tunnel_thumb.png";
 
 const iconMap = {
   afterEffect: afterEffectIcon,
@@ -24,6 +27,9 @@ const iconMap = {
   star: starIcon,
   univIsi: univIsiIcon,
   univIts: univItsIcon,
+  jtv: jtvIcon,
+  muhi: muhiIcon,
+  tunnel: tunnelIcon,
 } as const;
 
 export type IconName = keyof typeof iconMap;

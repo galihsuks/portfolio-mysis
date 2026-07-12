@@ -12,6 +12,7 @@ import PhotoVideo2Section from "../../pages/PhotoVideo2";
 import SocialMedia1Section from "../../pages/SocialMedia1";
 import SocialMedia2Section from "../../pages/SocialMedia2";
 import SocialMedia3Section from "../../pages/SocialMedia3";
+import BigProjectSection from "../../pages/BigProjectSection";
 
 export default function PortfolioExperience() {
   const shellRef = useRef<HTMLDivElement | null>(null);
@@ -125,6 +126,15 @@ export default function PortfolioExperience() {
         />
 
         <SocialMedia3Section
+          isTransitioning={isTransitioning}
+          setIsTransitioning={setIsTransitioning}
+          activePage={activePage}
+          setActivePage={setActivePage}
+          setBackground={setBackground}
+          registerBackAction={setBackAction}
+        />
+
+        <BigProjectSection
           isTransitioning={isTransitioning}
           setIsTransitioning={setIsTransitioning}
           activePage={activePage}
