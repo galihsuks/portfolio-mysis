@@ -146,6 +146,9 @@ const dockIconRotations: Record<IconName, string> = {
   star: "rotate-0",
   univIsi: "rotate-0",
   univIts: "rotate-0",
+  jtv: "rotate-0",
+  muhi: "rotate-0",
+  tunnel: "rotate-0",
 };
 
 const loopedShowcaseItems = [...skillShowcaseItems, ...skillShowcaseItems, ...skillShowcaseItems];

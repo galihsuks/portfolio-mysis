@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import photoImage from "../assets/my_pic.png";
 import shapeBottomLeft from "../assets/elements/14 2.png";
 import { TRANSITION_DURATION } from "../constant";
 import type { VariantBackgroundType } from "../components/ui/Background";
@@ -147,43 +146,41 @@ export default function BigProjectSection({
     if (activePage.current == "big-project") {
       registerBackAction(() => handleBackToWelcome);
       const fromWelcome = activePage.before === "welcome";
-      const direction = fromWelcome ? "yPercent" : "xPercent";
-      const directionOpposite = direction === "xPercent" ? "yPercent" : "xPercent";
       gsap.set(containerRef.current, {
-        [direction]: fromWelcome ? 100 : -100,
-        [directionOpposite]: 0,
+        yPercent: fromWelcome ? 100 : -100,
+        xPercent: 0,
       });
       gsap.set(curriculumRef.current, {
-        [direction]: fromWelcome ? 120 : -120,
-        [directionOpposite]: 0,
+        yPercent: fromWelcome ? 120 : -120,
+        xPercent: 0,
       });
       gsap.set(vitaeRef.current, {
-        [direction]: fromWelcome ? 165 : -165,
-        [directionOpposite]: 0,
+        yPercent: fromWelcome ? 165 : -165,
+        xPercent: 0,
       });
       gsap.set(introWindowRef.current, {
-        [direction]: fromWelcome ? 200 : -40,
-        [directionOpposite]: 0,
+        yPercent: fromWelcome ? 200 : -40,
+        xPercent: 0,
       });
       gsap.set(muhiRef.current, {
-        [direction]: fromWelcome ? 100 : -100,
-        [directionOpposite]: 0,
+        yPercent: fromWelcome ? 100 : -100,
+        xPercent: 0,
       });
       gsap.set(tunnelRef.current, {
-        [direction]: fromWelcome ? 50 : -50,
-        [directionOpposite]: 0,
+        yPercent: fromWelcome ? 50 : -50,
+        xPercent: 0,
       });
       gsap.set(jtvRef.current, {
-        [direction]: fromWelcome ? 56 : -56,
-        [directionOpposite]: 0,
+        yPercent: fromWelcome ? 56 : -56,
+        xPercent: 0,
       });
       gsap.set(topShapeRef.current, {
-        [direction]: fromWelcome ? 22 : -22,
-        [directionOpposite]: 0,
+        yPercent: fromWelcome ? 22 : -22,
+        xPercent: 0,
       });
       gsap.set(bottomShapeRef.current, {
-        [direction]: fromWelcome ? 34 : -34,
-        [directionOpposite]: 0,
+        yPercent: fromWelcome ? 34 : -34,
+        xPercent: 0,
       });
 
       const timeline = gsap.timeline({
@@ -252,7 +249,7 @@ export default function BigProjectSection({
     containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
     setActivePage({ current: page, before: "big-project" });
     setIsTransitioning(true);
-    setBackground("light");
+    setBackground("dark-solid");
 
     const timeline = gsap.timeline({
       defaults: { duration: TRANSITION_DURATION, ease: "power3.inOut" },
@@ -262,15 +259,15 @@ export default function BigProjectSection({
     });
 
     timeline
-      .to(containerRef.current, { xPercent: -100 }, 0)
-      .to(curriculumRef.current, { xPercent: -125 }, `-=${TRANSITION_DURATION}`)
-      .to(vitaeRef.current, { xPercent: -155 }, `-=${TRANSITION_DURATION}`)
-      .to(introWindowRef.current, { xPercent: -200 }, `-=${TRANSITION_DURATION}`)
-      .to(muhiRef.current, { xPercent: -62 }, `-=${TRANSITION_DURATION}`)
-      .to(tunnelRef.current, { xPercent: -78 }, `-=${TRANSITION_DURATION}`)
-      .to(jtvRef.current, { xPercent: -86 }, `-=${TRANSITION_DURATION}`)
-      .to(topShapeRef.current, { xPercent: -30 }, `-=${TRANSITION_DURATION}`)
-      .to(bottomShapeRef.current, { xPercent: -46 }, `-=${TRANSITION_DURATION}`);
+      .to(containerRef.current, { yPercent: -100 }, 0)
+      .to(curriculumRef.current, { yPercent: -125 }, `-=${TRANSITION_DURATION}`)
+      .to(vitaeRef.current, { yPercent: -155 }, `-=${TRANSITION_DURATION}`)
+      .to(introWindowRef.current, { yPercent: -200 }, `-=${TRANSITION_DURATION}`)
+      .to(muhiRef.current, { yPercent: -62 }, `-=${TRANSITION_DURATION}`)
+      .to(tunnelRef.current, { yPercent: -78 }, `-=${TRANSITION_DURATION}`)
+      .to(jtvRef.current, { yPercent: -86 }, `-=${TRANSITION_DURATION}`)
+      .to(topShapeRef.current, { yPercent: -30 }, `-=${TRANSITION_DURATION}`)
+      .to(bottomShapeRef.current, { yPercent: -46 }, `-=${TRANSITION_DURATION}`);
   };
 
   return (

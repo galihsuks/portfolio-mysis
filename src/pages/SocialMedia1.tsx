@@ -374,16 +374,6 @@ export default function SocialMedia1Section({
         </Window>
       </div>
 
-      <div ref={skillRef} className="absolute left-[26.5%] top-[4.5%] z-0 h-px w-px opacity-0" />
-      <div
-        ref={languageRef}
-        className="absolute right-[19%] bottom-[31%] z-0 h-px w-px opacity-0"
-      />
-      <div
-        ref={experienceRef}
-        className="absolute left-[46.5%] bottom-[5%] z-0 h-px w-px opacity-0"
-      />
-
       <div className="absolute bottom-[8.3%] right-[8.9%] z-20 flex flex-col items-start gap-13">
         <button
           type="button"

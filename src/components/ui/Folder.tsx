@@ -340,7 +340,7 @@ function Folder({
       </div>
 
       <p
-        className={`jersey-font text-center text-primary-400 ${sizeConfig.label} ${labelClassName}`}
+        className={`jersey-font text-center text-primary-400 leading-none ${sizeConfig.label} ${labelClassName}`}
       >
         {label}
       </p>
