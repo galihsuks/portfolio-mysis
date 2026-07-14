@@ -280,7 +280,7 @@ export default function BPTunnelSection({
   return (
     <section
       ref={containerRef}
-      className={`absolute inset-0 overflow-hidden transition-colors duration-500 ${
+      className={`absolute inset-0 transition-colors duration-500 ${
         activePage.current !== "bp-tunnel" ? "pointer-events-none" : ""
       }`}
     >

@@ -22,7 +22,8 @@ export default function Carousel({
   classNameWrapperImg,
 }: CarouselProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const loopedImages = useMemo(() => [...images, ...images, ...images], [images]);
+  const imagesKey = useMemo(() => images.join("||"), [images]);
+  const loopedImages = useMemo(() => [...images, ...images, ...images], [imagesKey]);
 
   useEffect(() => {
     const carousel = containerRef.current;
@@ -115,7 +116,7 @@ export default function Carousel({
       carousel.removeEventListener("scroll", handleScroll);
       carousel.removeEventListener("wheel", handleWheel);
     };
-  }, [autoScroll, images]);
+  }, [autoScroll, imagesKey]);
 
   if (images.length === 0) {
     return null;
