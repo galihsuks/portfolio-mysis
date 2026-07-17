@@ -249,7 +249,6 @@ export default function BigProjectSection({
     containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
     setActivePage({ current: page, before: "big-project" });
     setIsTransitioning(true);
-    setBackground("dark-solid");
 
     const timeline = gsap.timeline({
       defaults: { duration: TRANSITION_DURATION, ease: "power3.inOut" },

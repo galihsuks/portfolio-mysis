@@ -1,20 +1,17 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import avesImage from "../assets/big-project/tunnel/aves.png";
-import mamaliaImage from "../assets/big-project/tunnel/mamalia.png";
-import piscesImage from "../assets/big-project/tunnel/pisces.png";
-import reptilImage from "../assets/big-project/tunnel/reptil.png";
-import mockupImage1 from "../assets/big-project/tunnel/3d mockup 1.jpg";
-import mockupImage2 from "../assets/big-project/tunnel/3d mockup 2.jpg";
+import scroll1Image from "../assets/big-project/muhi/muhi-kuning.jpg";
+import scroll2Image from "../assets/big-project/muhi/muhi-biru.jpg";
+import scroll3Image from "../assets/big-project/muhi/muhi-merah.jpg";
 import overlayImage from "../assets/big-project/overlay.svg";
-import tunnelThumbImage from "../assets/big-project/tunnel_thumb.png";
+import tunnelThumbImage from "../assets/big-project/muhi_thumb.png";
 import shapeBottomLeft from "../assets/elements/14 2.png";
 import { TRANSITION_DURATION } from "../constant";
 import type { VariantBackgroundType } from "../components/ui/Background";
 import Window from "../components/ui/Window";
 import Carousel from "../components/ui/Carousel";
 
-type BPTunnelSectionProps = {
+type BPMuhiSectionProps = {
   setBackground: (value: VariantBackgroundType) => void;
   isTransitioning: boolean;
   setIsTransitioning: (value: boolean) => void;
@@ -40,20 +37,18 @@ const layerMotion = {
   shapeBottom: 4,
 } as const;
 
-export default function BPTunnelSection({
+export default function BPMuhiSection({
   isTransitioning,
   setIsTransitioning,
   activePage,
   setActivePage,
   setBackground,
   registerBackAction,
-}: BPTunnelSectionProps) {
+}: BPMuhiSectionProps) {
   const containerRef = useRef<HTMLElement | null>(null);
   const curriculumRef = useRef<HTMLDivElement | null>(null);
   const vitaeRef = useRef<HTMLDivElement | null>(null);
   const introWindowRef = useRef<HTMLDivElement | null>(null);
-  const mockup2Ref = useRef<HTMLImageElement | null>(null);
-  const mockup1Ref = useRef<HTMLImageElement | null>(null);
   const thumbRef = useRef<HTMLImageElement | null>(null);
   const topShapeRef = useRef<HTMLImageElement | null>(null);
   const bottomShapeRef = useRef<HTMLImageElement | null>(null);
@@ -65,8 +60,6 @@ export default function BPTunnelSection({
     { ref: curriculumRef, x: layerMotion.titleMain, y: layerMotion.titleMain },
     { ref: vitaeRef, x: layerMotion.titleSub, y: layerMotion.titleSub },
     { ref: introWindowRef, x: layerMotion.intro, y: layerMotion.intro },
-    { ref: mockup2Ref, x: layerMotion.language, y: layerMotion.language },
-    { ref: mockup1Ref, x: layerMotion.experience, y: layerMotion.experience },
     { ref: thumbRef, x: layerMotion.shapeTop, y: layerMotion.shapeTop },
     { ref: topShapeRef, x: layerMotion.skill, y: layerMotion.skill },
     { ref: bottomShapeRef, x: layerMotion.shapeBottom, y: layerMotion.shapeBottom },
@@ -134,12 +127,6 @@ export default function BPTunnelSection({
       gsap.set(introWindowRef.current, {
         yPercent: 40,
       });
-      gsap.set(mockup2Ref.current, {
-        yPercent: 100,
-      });
-      gsap.set(mockup1Ref.current, {
-        yPercent: 70,
-      });
       gsap.set(thumbRef.current, {
         yPercent: 55,
       });
@@ -151,8 +138,8 @@ export default function BPTunnelSection({
       });
       return;
     }
-    if (activePage.current == "bp-tunnel") {
-      setBackground("dark-solid");
+    if (activePage.current == "bp-muhi") {
+      setBackground("white");
       registerBackAction(() => handleBackToWelcome);
       gsap.set(containerRef.current, {
         yPercent: 100,
@@ -168,14 +155,6 @@ export default function BPTunnelSection({
       });
       gsap.set(introWindowRef.current, {
         yPercent: 200,
-        xPercent: 0,
-      });
-      gsap.set(mockup2Ref.current, {
-        yPercent: 100,
-        xPercent: 0,
-      });
-      gsap.set(mockup1Ref.current, {
-        yPercent: 70,
         xPercent: 0,
       });
       gsap.set(thumbRef.current, {
@@ -209,8 +188,6 @@ export default function BPTunnelSection({
         .to(curriculumRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(vitaeRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(introWindowRef.current, {}, `-=${TRANSITION_DURATION}`)
-        .to(mockup2Ref.current, {}, `-=${TRANSITION_DURATION}`)
-        .to(mockup1Ref.current, {}, `-=${TRANSITION_DURATION}`)
         .to(thumbRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(topShapeRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(bottomShapeRef.current, {}, `-=${TRANSITION_DURATION}`);
@@ -225,7 +202,7 @@ export default function BPTunnelSection({
     isThisPageActive.current = false;
     containerRef.current?.removeEventListener("mousemove", handleMouseMove);
     containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
-    setActivePage({ current: "welcome", before: "bp-tunnel" });
+    setActivePage({ current: "welcome", before: "bp-muhi" });
     setIsTransitioning(true);
     setBackground("light");
 
@@ -240,8 +217,6 @@ export default function BPTunnelSection({
       .to(curriculumRef.current, { yPercent: 125 }, `-=${TRANSITION_DURATION}`)
       .to(vitaeRef.current, { yPercent: 155 }, `-=${TRANSITION_DURATION}`)
       .to(introWindowRef.current, { yPercent: 200 }, `-=${TRANSITION_DURATION}`)
-      .to(mockup2Ref.current, { yPercent: 30 }, `-=${TRANSITION_DURATION}`)
-      .to(mockup1Ref.current, { yPercent: 30 }, `-=${TRANSITION_DURATION}`)
       .to(thumbRef.current, { yPercent: 30 }, `-=${TRANSITION_DURATION}`)
       .to(topShapeRef.current, { yPercent: 30 }, `-=${TRANSITION_DURATION}`)
       .to(bottomShapeRef.current, { yPercent: 46 }, `-=${TRANSITION_DURATION}`);
@@ -255,8 +230,9 @@ export default function BPTunnelSection({
     isThisPageActive.current = false;
     containerRef.current?.removeEventListener("mousemove", handleMouseMove);
     containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
-    setActivePage({ current: page, before: "bp-tunnel" });
+    setActivePage({ current: page, before: "bp-muhi" });
     setIsTransitioning(true);
+    setBackground("light");
 
     const timeline = gsap.timeline({
       defaults: { duration: TRANSITION_DURATION, ease: "power3.inOut" },
@@ -270,8 +246,6 @@ export default function BPTunnelSection({
       .to(curriculumRef.current, { yPercent: -125 }, `-=${TRANSITION_DURATION}`)
       .to(vitaeRef.current, { yPercent: -155 }, `-=${TRANSITION_DURATION}`)
       .to(introWindowRef.current, { yPercent: -200 }, `-=${TRANSITION_DURATION}`)
-      .to(mockup2Ref.current, { yPercent: -100 }, `-=${TRANSITION_DURATION}`)
-      .to(mockup1Ref.current, { yPercent: -70 }, `-=${TRANSITION_DURATION}`)
       .to(thumbRef.current, { yPercent: -55 }, `-=${TRANSITION_DURATION}`)
       .to(topShapeRef.current, { yPercent: -30 }, `-=${TRANSITION_DURATION}`)
       .to(bottomShapeRef.current, { yPercent: -46 }, `-=${TRANSITION_DURATION}`);
@@ -281,7 +255,7 @@ export default function BPTunnelSection({
     <section
       ref={containerRef}
       className={`absolute inset-0 transition-colors duration-500 ${
-        activePage.current !== "bp-tunnel" ? "pointer-events-none" : ""
+        activePage.current !== "bp-muhi" ? "pointer-events-none" : ""
       }`}
     >
       <img
@@ -297,31 +271,24 @@ export default function BPTunnelSection({
         className="pointer-events-none absolute bottom-[-10%] left-[31%] z-11 w-[30rem]"
       />
 
-      <div className="absolute inset-0 overflow-hidden z-9 flex flex-col gap-[9px]">
+      <div className="absolute inset-0 overflow-hidden z-9 flex flex-col">
         <Carousel
-          images={[avesImage]}
+          images={[scroll1Image]}
           autoScroll="right"
           className="h-full"
           imageClassName="rounded-none"
           classNameWrapperImg="gap-[12px]"
         />
         <Carousel
-          images={[mamaliaImage]}
+          images={[scroll2Image]}
           autoScroll="left"
           className="h-full"
           imageClassName="rounded-none"
           classNameWrapperImg="gap-[12px]"
         />
         <Carousel
-          images={[piscesImage]}
+          images={[scroll3Image]}
           autoScroll="right"
-          className="h-full"
-          imageClassName="rounded-none"
-          classNameWrapperImg="gap-[12px]"
-        />
-        <Carousel
-          images={[reptilImage]}
-          autoScroll="left"
           className="h-full"
           imageClassName="rounded-none"
           classNameWrapperImg="gap-[12px]"
@@ -336,22 +303,8 @@ export default function BPTunnelSection({
       <img
         ref={thumbRef}
         src={tunnelThumbImage}
-        alt="Tunnel KBS cover presentation"
-        className="absolute left-[40%] top-[11%] z-30 w-[40rem] rotate-[7deg] drop-shadow-[0_28px_60px_rgba(0,0,0,0.28)]"
-      />
-
-      <img
-        ref={mockup1Ref}
-        src={mockupImage1}
-        alt="Tunnel mural mockup 1"
-        className="absolute bottom-[20%] left-[40%] z-30 w-[23rem] rounded-[1.25rem] shadow-[0_20px_50px_rgba(0,0,0,0.24)]"
-      />
-
-      <img
-        ref={mockup2Ref}
-        src={mockupImage2}
-        alt="Tunnel mural mockup 2"
-        className="absolute bottom-[2.5%] right-[23%] z-31 w-[25rem] rounded-[1.25rem] shadow-[0_20px_50px_rgba(0,0,0,0.24)]"
+        alt="Museum Muhammadiyah"
+        className="absolute left-[40%] bottom-[23%] z-30 w-[50rem] rotate-[7deg] drop-shadow-[0_28px_60px_rgba(0,0,0,0.28)]"
       />
 
       <div
@@ -376,7 +329,7 @@ export default function BPTunnelSection({
 
       <div
         ref={introWindowRef}
-        className="absolute right-[6%] top-[37.7%] z-40 w-[31rem] max-w-[31vw]"
+        className="absolute right-[30%] bottom-[10%] z-40 w-[31rem] max-w-[31vw]"
       >
         <Window
           size="custom"
@@ -386,10 +339,10 @@ export default function BPTunnelSection({
         >
           <div className="space-y-5">
             <p className="inter-font max-w-[25rem] text-[0.9rem] leading-[1.2] tracking-[-0.02em] text-secondary-950/92">
-              In this project, I successfully designed and created a mural for the tunnel wall
-              connecting the parking lot and the entrance to the Surabaya Zoo, with an average
-              tunnel wall size of 3x100 meters. I worked on the design requirements using Photoshop
-              and Adobe Illustrator.
+              This was my big project as a freelance graphic designer, working on the Muhammadiyah
+              Museum in Yogyakarta. In this project, I successfully designed and created murals for
+              the museum walls, measuring an average of 3x12 meters. I worked on the design
+              requirements using Photoshop and Adobe Illustrator.
             </p>
 
             <button
@@ -403,15 +356,11 @@ export default function BPTunnelSection({
       </div>
 
       <div className="absolute bottom-[8.3%] right-[8.9%] z-40 flex flex-col items-start gap-13">
-        <button
-          type="button"
-          onClick={() => handleToMore("bp-muhi")}
-          className="inter-font cursor-pointer border-b border-transparent text-start text-[1.02rem] leading-[1.08] tracking-[-0.03em] text-secondary-950/58 hover:border-secondary-950"
-        >
+        <div className="inter-font text-[1.25rem] leading-[1.05] tracking-[-0.04em] text-secondary-950 transition-colors">
           Museum
           <br />
           Muhammadiyah
-        </button>
+        </div>
         <button
           type="button"
           onClick={() => handleToMore("bp-jtv")}
@@ -421,11 +370,15 @@ export default function BPTunnelSection({
           <br />
           JTV
         </button>
-        <div className="inter-font text-[1.25rem] leading-[1.05] tracking-[-0.04em] text-secondary-950 transition-colors">
+        <button
+          type="button"
+          onClick={() => handleToMore("bp-tunnel")}
+          className="inter-font cursor-pointer border-b border-transparent text-start text-[1.02rem] leading-[1.08] tracking-[-0.03em] text-secondary-950/58 hover:border-secondary-950"
+        >
           Tunnel
           <br />
           KBS
-        </div>
+        </button>
       </div>
     </section>
   );

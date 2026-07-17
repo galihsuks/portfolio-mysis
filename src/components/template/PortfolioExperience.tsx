@@ -14,6 +14,8 @@ import SocialMedia2Section from "../../pages/SocialMedia2";
 import SocialMedia3Section from "../../pages/SocialMedia3";
 import BigProjectSection from "../../pages/BigProjectSection";
 import BPTunnelSection from "../../pages/BPTunnelSection";
+import BPJtvSection from "../../pages/BPJtvSection";
+import BPMuhiSection from "../../pages/BPMuhiSection";
 
 export default function PortfolioExperience() {
   const shellRef = useRef<HTMLDivElement | null>(null);
@@ -145,6 +147,24 @@ export default function PortfolioExperience() {
         />
 
         <BPTunnelSection
+          isTransitioning={isTransitioning}
+          setIsTransitioning={setIsTransitioning}
+          activePage={activePage}
+          setActivePage={setActivePage}
+          setBackground={setBackground}
+          registerBackAction={setBackAction}
+        />
+
+        <BPJtvSection
+          isTransitioning={isTransitioning}
+          setIsTransitioning={setIsTransitioning}
+          activePage={activePage}
+          setActivePage={setActivePage}
+          setBackground={setBackground}
+          registerBackAction={setBackAction}
+        />
+
+        <BPMuhiSection
           isTransitioning={isTransitioning}
           setIsTransitioning={setIsTransitioning}
           activePage={activePage}

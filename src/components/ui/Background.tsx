@@ -1,4 +1,4 @@
-export type VariantBackgroundType = "light" | "dark-solid" | "dark-glow";
+export type VariantBackgroundType = "light" | "dark-solid" | "dark-glow" | "white";
 
 interface BackgroundProps {
   variant: VariantBackgroundType;
@@ -7,6 +7,7 @@ interface BackgroundProps {
 function Background({ variant }: BackgroundProps) {
   const isLight = variant === "light";
   const isDarkGlow = variant === "dark-glow";
+  const isWhite = variant === "white";
 
   return (
     <div className="fixed inset-0 overflow-hidden -z-20 pointer-events-none">
@@ -55,6 +56,15 @@ function Background({ variant }: BackgroundProps) {
           size-130 bg-primary-800 blur-[100px] hidden md:block
           transition-opacity duration-700 ease-in-out
           ${isDarkGlow ? "opacity-100" : "opacity-0"}
+        `}
+      />
+
+      {/* White */}
+      <div
+        className={`
+          absolute inset-0 transition-opacity duration-500 ease-in-out
+          bg-gradient-to-b from-secondary-50 via-secondary-50 to-secondary-50
+          ${isWhite ? "opacity-100" : "opacity-0"}
         `}
       />
     </div>
