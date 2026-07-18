@@ -272,13 +272,13 @@ const sizeClasses = {
     wrapper: "w-[11.5rem]",
     stage: "h-[8.75rem] w-[9.6rem]",
     back: "bottom-[1.05rem] w-[87%]",
-    label: "mt-2 text-[1rem]",
+    label: "mt-2 text-[10svh]",
   },
   lg: {
-    wrapper: "w-[13rem]",
-    stage: "h-[9.75rem] w-[10.85rem]",
-    back: "bottom-[1.15rem] w-[88%]",
-    label: "mt-2.5 text-[1.5rem]",
+    wrapper: "w-[28svh]",
+    stage: "h-[20svh] w-[27svh]",
+    back: "h-auto w-[21svh]",
+    label: "mt-[1svh] text-[3.5svh]",
   },
 } as const;
 
@@ -289,7 +289,7 @@ function Folder({
   className = "",
   folderClassName = "",
   labelClassName = "",
-  size = "md",
+  size = "lg",
 }: FolderProps) {
   const [isHovered, setIsHovered] = useState(false);
   const sizeConfig = sizeClasses[size];
@@ -308,7 +308,7 @@ function Folder({
         <img
           src={folderBack}
           alt=""
-          className={`pointer-events-none absolute inset-x-0 mx-auto opacity-90 ${sizeConfig.back}`}
+          className={`pointer-events-none absolute right-0 bottom-0 ${sizeConfig.back}`}
         />
 
         {visibleIcons.map((icon, index) => {
@@ -335,7 +335,7 @@ function Folder({
         <img
           src={folderFront}
           alt=""
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-20 mx-auto w-full"
+          className="pointer-events-none absolute right-0 bottom-0 z-20 w-full"
         />
       </div>
 

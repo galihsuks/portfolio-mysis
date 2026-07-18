@@ -341,12 +341,9 @@ export default function PhotoVideo1Section({
         </p>
       </div>
 
-      <div
-        ref={educationRef}
-        className="absolute left-[5%] bottom-[10%] z-20 w-[28rem] max-w-[29vw]"
-      >
+      <div ref={educationRef} className="absolute left-[5%] bottom-[10%] z-20">
         <Window
-          size="md"
+          size="lg"
           panelClassName="bg-secondary-900/52"
           bodyClassName="px-6 pb-6 pt-4"
           closeButtonClassName="text-primary-500"
@@ -369,7 +366,7 @@ export default function PhotoVideo1Section({
           <img
             src={photoVideo3Image}
             alt="Graduation concept photography 1"
-            className="block h-[32rem] w-full rounded-[1.1rem] object-cover"
+            className="block h-[40svh] w-full rounded-[1.1rem] object-cover"
           />
 
           <div className="mt-4 flex items-center gap-4 text-primary-50">

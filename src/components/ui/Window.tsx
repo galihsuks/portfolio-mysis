@@ -18,6 +18,7 @@ type WindowProps = {
   showCloseButton?: boolean;
   onClose?: () => void;
   closeLabel?: string;
+  isMobile?: boolean;
 };
 
 const sizeClasses: Record<WindowSize, string> = {
@@ -82,11 +83,12 @@ function Window({
   bodyClassName = "",
   titleClassName = "",
   closeButtonClassName = "",
-  size = "md",
+  size = "custom",
   variant = "dark",
   showCloseButton = true,
   onClose,
   closeLabel = "Close window",
+  isMobile = false,
 }: WindowProps) {
   const CloseElement = onClose ? "button" : "span";
   const variantConfig = variantClasses[variant];
@@ -94,13 +96,13 @@ function Window({
   return (
     <section className={`relative w-full ${sizeClasses[size]} ${className}`}>
       <div
-        className={`relative overflow-hidden rounded-[1.9rem] ${variantConfig.panel} ${panelClassName}`}
+        className={`relative overflow-hidden ${isMobile ? "rounded-[10px]" : "rounded-[1.9rem]"} ${variantConfig.panel} ${panelClassName}`}
       >
         <div
           className={`pointer-events-none absolute inset-0 rounded-[inherit] border-[1.6px] ${variantConfig.outerBorder}`}
         />
         <div
-          className={`pointer-events-none absolute inset-[3px] rounded-[calc(1.9rem-3px)] border ${variantConfig.innerBorder}`}
+          className={`pointer-events-none absolute inset-[3px] ${isMobile ? "rounded-[10px]" : "rounded-[calc(1.9rem-3px)]"} border ${variantConfig.innerBorder}`}
         />
         <div className={`pointer-events-none absolute inset-0 ${variantConfig.overlay}`} />
         <div
@@ -118,12 +120,12 @@ function Window({
 
         {(title || showCloseButton) && (
           <div
-            className={`relative z-10 flex items-start justify-between gap-4 px-6 pt-5 ${headerClassName}`}
+            className={`relative z-10 flex items-start justify-between gap-4 ${isMobile ? "px-3 pt-2" : "px-6 pt-5"} ${headerClassName}`}
           >
             <div className="min-w-0 flex-1">
               {title ? (
                 <div
-                  className={`jersey-font text-[clamp(1.1rem,1.7vw,2rem)] leading-none ${variantConfig.title} ${titleClassName}`}
+                  className={`jersey-font text-[1shv] leading-none ${variantConfig.title} ${titleClassName}`}
                 >
                   {title}
                 </div>
@@ -139,16 +141,16 @@ function Window({
                       "aria-label": closeLabel,
                     }
                   : { "aria-hidden": true })}
-                className={`relative z-10 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-transform duration-300 ${variantConfig.close} ${onClose ? "cursor-pointer hover:scale-105" : ""} ${closeButtonClassName}`}
+                className={`relative z-10 inline-flex ${isMobile ? "h-3 w-3" : "h-8 w-8"} shrink-0 items-center justify-center rounded-full transition-transform duration-300 ${variantConfig.close} ${onClose ? "cursor-pointer hover:scale-105" : ""} ${closeButtonClassName}`}
               >
-                <X strokeWidth={3} className="h-10 w-10" />
+                <X strokeWidth={3} className={isMobile ? "h-3 w-3" : "h-10 w-10"} />
               </CloseElement>
             ) : null}
           </div>
         )}
 
         <div
-          className={`relative z-10 px-6 pb-6 ${title || showCloseButton ? "pt-3" : "pt-6"} ${bodyClassName}`}
+          className={`relative z-10 ${isMobile ? "px-3 pb-3" : "px-6 pb-6"} ${title || showCloseButton ? (isMobile ? "pt-0" : "pt-3") : isMobile ? "pt-2" : "pt-6"} ${bodyClassName}`}
         >
           {children}
         </div>

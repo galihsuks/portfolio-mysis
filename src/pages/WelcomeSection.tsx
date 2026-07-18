@@ -14,6 +14,7 @@ type WelcomeSectionProps = {
     before: string;
   };
   setActivePage: ({ current, before }: { current: string; before: string }) => void;
+  isMobile: boolean;
 };
 
 export default function WelcomeSection({
@@ -23,6 +24,7 @@ export default function WelcomeSection({
   setActivePage,
   setBackground,
   background,
+  isMobile,
 }: WelcomeSectionProps) {
   const containerRef = useRef<HTMLElement | null>(null);
   const heroContentRef = useRef<HTMLDivElement | null>(null);
@@ -293,7 +295,7 @@ export default function WelcomeSection({
 
         <div
           ref={portfolioRef}
-          className={`absolute left-[29%] top-[40%] z-20 flex items-baseline leading-[0.85] transition-colors duration-500 max-[900px]:left-[17%] max-[900px]:top-[37%] max-sm:left-[8%] max-sm:top-[36%] ${
+          className={`absolute left-[29%] top-[40%] z-20 flex items-baseline leading-[0.85] transition-colors duration-500 ${
             background === "light" ? "text-secondary-950" : "text-primary-500"
           }`}
         >
@@ -306,7 +308,7 @@ export default function WelcomeSection({
 
         <div
           ref={amaliaRef}
-          className={`absolute left-[44%] top-[54%] z-20 flex items-baseline leading-[0.85] transition-colors duration-500 max-[900px]:left-[30%] max-[900px]:top-[49%] max-sm:left-[22%] max-sm:top-[48%] ${
+          className={`absolute left-[44%] top-[54%] z-20 flex items-baseline leading-[0.85] transition-colors duration-500 ${
             background === "light" ? "text-secondary-950" : "text-primary-500"
           }`}
         >

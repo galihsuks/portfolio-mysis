@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { Menu } from "lucide-react";
+import { Menu, Smartphone } from "lucide-react";
 import WelcomeSection from "../../pages/WelcomeSection";
 import Background, { type VariantBackgroundType } from "../ui/Background";
 import CurriculumSection from "../../pages/CurriculumSection";
@@ -18,6 +18,7 @@ import BPJtvSection from "../../pages/BPJtvSection";
 import BPMuhiSection from "../../pages/BPMuhiSection";
 import BrandingSection from "../../pages/BrandingSection";
 import BrandingSWKSection from "../../pages/BrandingSWKSection";
+import { useDeviceDetect } from "../../hooks/UseDeviceDetect";
 
 export default function PortfolioExperience() {
   const shellRef = useRef<HTMLDivElement | null>(null);
@@ -28,24 +29,36 @@ export default function PortfolioExperience() {
     before: "",
   });
   const [background, setBackground] = useState<VariantBackgroundType>("light");
+  const { isMobile, isLandscape } = useDeviceDetect();
 
   useEffect(() => {
     const ctx = gsap.context(() => {}, shellRef);
     return () => ctx.revert();
   }, []);
 
+  if (!isLandscape) {
+    return (
+      <div className="h-[100svh] w-full flex flex-col justify-center items-center">
+        <div>
+          <Smartphone size={40} />
+        </div>
+        <p>Rotate your phone</p>
+      </div>
+    );
+  }
+
   return (
-    <main className="h-screen w-full overflow-hidden text-secondary-950">
+    <main className="h-[100svh] w-full overflow-hidden text-secondary-950">
       <Background variant={background} />
-      <div ref={shellRef} className="relative h-full w-full overflow-hidden">
+      <div ref={shellRef} className={`relative h-full w-full overflow-hidden`}>
         {activePage.current !== "welcome" && backAction ? (
           <button
             type="button"
             onClick={backAction}
-            className="absolute right-[2.15%] top-[3.4%] z-50 flex h-[4.2rem] w-[4.2rem] items-center justify-center rounded-2xl border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
+            className="absolute p-2 right-[2.15%] top-[3.4%] z-50 flex h-[10svh] w-[10svh] max-h-[4.2rem] max-w-[4.2rem] items-center justify-center rounded-[10px] border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
             aria-label="Back to welcome section"
           >
-            <Menu strokeWidth={2.75} className="h-8 w-8" />
+            <Menu strokeWidth={2.75} className="h-full w-full" />
           </button>
         ) : null}
 
@@ -56,6 +69,7 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           background={background}
+          isMobile={isMobile}
         />
 
         <CurriculumSection
@@ -65,6 +79,7 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
         />
 
         <ExperienceSection
