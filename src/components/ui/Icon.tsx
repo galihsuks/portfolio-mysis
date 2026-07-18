@@ -13,6 +13,11 @@ import univItsIcon from "../../assets/icons/univ-its.png";
 import jtvIcon from "../../assets/big-project/jtv_thumb.png";
 import muhiIcon from "../../assets/big-project/muhi_thumb.png";
 import tunnelIcon from "../../assets/big-project/tunnel_thumb.png";
+import swkIcon from "../../assets/branding/thumb_swk.png";
+import plazaIcon from "../../assets/branding/thumb_plaza.png";
+import ragamIcon from "../../assets/branding/thumb_ragam.png";
+import aafreedaIcon from "../../assets/branding/thumb_aafreeda.png";
+import sosmedITSIcon from "../../assets/branding/thumb_sosmed.png";
 
 const iconMap = {
   afterEffect: afterEffectIcon,
@@ -30,6 +35,11 @@ const iconMap = {
   jtv: jtvIcon,
   muhi: muhiIcon,
   tunnel: tunnelIcon,
+  swk: swkIcon,
+  plaza: plazaIcon,
+  ragam: ragamIcon,
+  aafreeda: aafreedaIcon,
+  sosmedITS: sosmedITSIcon,
 } as const;
 
 export type IconName = keyof typeof iconMap;

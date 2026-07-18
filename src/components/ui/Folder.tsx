@@ -21,8 +21,8 @@ type IconMotionClasses = {
 const iconLayoutByCount: Record<number, IconMotionClasses[]> = {
   1: [
     {
-      base: "left-[-8%] bottom-[8%] z-[8] w-[120%] rotate-0",
-      hover: "left-[-15%] bottom-[12%] z-[8] w-[140%] rotate-0",
+      base: "left-[-5%] bottom-[8%] z-[8] w-[110%] rotate-0",
+      hover: "left-[-15%] bottom-[12%] z-[8] w-[120%] rotate-0",
     },
   ],
   2: [

@@ -149,6 +149,11 @@ const dockIconRotations: Record<IconName, string> = {
   jtv: "rotate-0",
   muhi: "rotate-0",
   tunnel: "rotate-0",
+  aafreeda: "rotate-0",
+  plaza: "rotate-0",
+  ragam: "rotate-0",
+  sosmedITS: "rotate-0",
+  swk: "rotate-0",
 };
 
 const loopedShowcaseItems = [...skillShowcaseItems, ...skillShowcaseItems, ...skillShowcaseItems];
