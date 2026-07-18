@@ -58,7 +58,7 @@ export default function PortfolioExperience() {
             className="absolute p-2 right-[2.15%] top-[3.4%] z-50 flex h-[10svh] w-[10svh] max-h-[4.2rem] max-w-[4.2rem] items-center justify-center rounded-[10px] border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
             aria-label="Back to welcome section"
           >
-            <Menu strokeWidth={2.75} className="h-full w-full" />
+            <Menu strokeWidth={2.75} className={isMobile ? "h-4 w-4" : "h-8 w-8"} />
           </button>
         ) : null}
 
@@ -98,6 +98,7 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
         />
 
         <SkillSection

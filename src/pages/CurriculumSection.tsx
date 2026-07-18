@@ -377,7 +377,7 @@ export default function CurriculumSection({
 
         <div
           ref={introWindowRef}
-          className={`absolute ${isMobile ? "left-[35%]" : "left-[calc(5%+34rem)]"} top-[25%] z-9`}
+          className={`absolute ${isMobile ? "left-[42%]" : "left-[calc(5%+34rem)]"} top-[25%] z-9`}
         >
           <Window
             isMobile={isMobile}

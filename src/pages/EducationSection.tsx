@@ -22,6 +22,7 @@ type EducationSectionProps = {
   };
   setActivePage: ({ current, before }: { current: string; before: string }) => void;
   registerBackAction: (handler: (() => void) | null) => void;
+  isMobile: boolean;
 };
 
 const educationItems = [
@@ -71,6 +72,7 @@ export default function EducationSection({
   setActivePage,
   setBackground,
   registerBackAction,
+  isMobile,
 }: EducationSectionProps) {
   const [activeEducationIndex, setActiveEducationIndex] = useState(0);
   const containerRef = useRef<HTMLElement | null>(null);
@@ -296,98 +298,111 @@ export default function EducationSection({
       <button
         type="button"
         onClick={backToCurriculum}
-        className="absolute left-[2.15%] top-[3.4%] z-50 flex h-[4.2rem] w-[4.2rem] items-center justify-center rounded-2xl border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
+        className="absolute left-[2.15%] top-[3.4%] z-50 flex h-[10svh] w-[10svh] max-h-[4.2rem] max-w-[4.2rem] items-center justify-center rounded-[10px] border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
         aria-label="Back to welcome section"
       >
-        <ArrowLeft strokeWidth={2.75} className="h-8 w-8" />
+        <ArrowLeft strokeWidth={2.75} className={isMobile ? "h-4 w-4" : "h-8 w-8"} />
       </button>
-      <img
-        ref={topShapeRef}
-        src={shapeBottomLeft}
-        alt=""
-        className="pointer-events-none absolute left-[14.5%] top-[-10%] z-0 w-[40rem] max-w-[36vw]"
-      />
-      <img
-        ref={bottomShapeRef}
-        src={shapeBottomLeft}
-        alt=""
-        className="pointer-events-none absolute bottom-[5%] left-[-1.5%] z-11 w-[20rem] max-w-[22vw]"
-      />
-
-      <div ref={nameRef} className="absolute left-[6.6%] top-[21.5%] z-20 text-secondary-950">
-        <span className="inter-font whitespace-pre-line text-left text-[clamp(1.55rem,2.2vw,2.55rem)] leading-[1.06] font-normal tracking-[-0.03em]">
-          Amalia
-          <br />
-          Latifah
-          <br />
-          Putri
-        </span>
-      </div>
-
-      <div
-        ref={photoRef}
-        className="absolute bottom-0 left-[5%] top-[10%] z-10 w-[40rem] max-w-[70vw]"
-      >
+      {/* menjaga rasio 16:9 */}
+      <div className="h-full relative aspect-video mx-auto">
         <img
-          src={photoImage}
-          alt="Portrait of Amalia Latifah Putri"
-          className="block h-auto w-full object-contain drop-shadow-[0_14px_30px_rgba(0,0,0,0.32)]"
+          ref={topShapeRef}
+          src={shapeBottomLeft}
+          alt=""
+          className={`pointer-events-none absolute ${isMobile ? "left-[20%]" : "left-[14.5%]"} top-[-10%] z-0 h-[60svh] blur-[16px] opacity-95`}
         />
-      </div>
+        <img
+          ref={bottomShapeRef}
+          src={shapeBottomLeft}
+          alt=""
+          className={`pointer-events-none absolute bottom-[5%] ${isMobile ? "left-[0%]" : "left-[-1.5%]"} z-11 h-[40svh] opacity-95`}
+        />
 
-      <div
-        ref={experienceRef}
-        className="absolute left-1/2 -translate-y-1/2 top-[10%] z-20 flex items-baseline leading-[0.8] text-secondary-950"
-      >
-        <span className="jersey-font text-[clamp(4rem,6vw,6.25rem)] font-normal">Education</span>
-      </div>
+        <div ref={nameRef} className="absolute left-[6.6%] top-[21.5%] z-20 text-secondary-950">
+          <span
+            className={`inter-font text-left text-[4vh] ${isMobile ? "leading-5" : "leading-[1.06]"} font-normal`}
+          >
+            Amalia
+            <br />
+            Latifah
+            <br />
+            Putri
+          </span>
+        </div>
 
-      <div ref={introWindowRef} className="absolute left-[calc(5%+22rem)] top-[20%] z-9">
-        <Window
-          variant="light"
-          size="custom"
-          bodyClassName="ps-72 pe-10 pb-10 pt-8"
-          closeButtonClassName="text-primary-500"
+        <div
+          ref={photoRef}
+          className={`absolute ${isMobile ? "bottom-[-40%] left-[5%]" : "bottom-[-1%] left-[7%]"} top-[10%] z-10`}
         >
-          <div className="relative w-[calc(75vw-5vw-22rem)] items-start gap-10">
-            <div className="flex gap-5 items-center">
-              <div
-                onClick={showPreviousEducation}
-                className="flex h-16 w-16 z-20 items-center justify-center rounded-full border border-secondary-950/12 bg-white/12 text-secondary-950/25 backdrop-blur-[2px] transition-colors duration-300 hover:text-secondary-950/45"
-                aria-label="Previous document"
-              >
-                <ChevronLeft strokeWidth={2.5} className="h-10 w-10" />
-              </div>
-              <div className="h-[30rem] w-[40rem] overflow-hidden flex items-center justify-center">
-                <img
-                  src={activeEducation.image}
-                  alt={activeEducation.title}
-                  className={`rounded-[2rem] ${activeEducation.id === "transkrip-s2" ? "h-full" : "w-full"} object-cover shadow-[0_18px_36px_rgba(52,138,32,0.16)]`}
-                />
-              </div>
-              <div
-                onClick={showNextEducation}
-                className="flex h-16 w-16 items-center justify-center rounded-full border border-secondary-950/12 bg-white/12 text-secondary-950/25 backdrop-blur-[2px] transition-colors duration-300 hover:text-secondary-950/45"
-                aria-label="Next document"
-              >
-                <ChevronRight strokeWidth={2.5} className="h-10 w-10" />
-              </div>
-            </div>
+          <img
+            src={photoImage}
+            alt="Portrait of Amalia Latifah Putri"
+            className="block h-full w-full object-contain drop-shadow-[0_14px_30px_rgba(0,0,0,0.32)]"
+          />
+        </div>
 
-            <div className="ps-21 text-secondary-950 max-w-sm mt-5">
-              <h3 className="inter-font text-[1.15rem] leading-[1.1] tracking-[-0.03em]">
-                {activeEducation.title}
-              </h3>
-              <p className="inter-font mt-5 text-[1.05rem] leading-none">
-                {activeEducation.period}
-              </p>
-            </div>
+        <div
+          ref={experienceRef}
+          className="absolute left-1/2 -translate-y-1/2 top-[10%] z-20 flex items-baseline leading-[0.8] text-secondary-950"
+        >
+          <span className="jersey-font text-[10svh] font-normal">Education</span>
+        </div>
 
-            <div className="absolute bottom-0 right-0 flex items-end justify-between gap-8">
-              <div className="flex flex-col gap-4">
+        <div
+          ref={introWindowRef}
+          className={`absolute ${isMobile ? "left-[20%]" : "left-[calc(5%+22rem)]"} top-[20%] z-9`}
+        >
+          <Window
+            variant="light"
+            size="custom"
+            isMobile={isMobile}
+            bodyClassName={isMobile ? "ps-30 pe-5 pb-0 pt-0" : "ps-72 pe-10 pb-10 pt-8"}
+            closeButtonClassName="text-primary-500"
+          >
+            <div className={`relative ${isMobile ? "w-[calc(36vw)]" : "w-[calc(75vw-5vw-22rem)]"}`}>
+              <div className="flex gap-5 items-center">
+                <div
+                  onClick={showPreviousEducation}
+                  className={`flex ${isMobile ? "h-5 w-5" : "h-16 w-16"} z-20 items-center justify-center rounded-full border border-secondary-950/12 bg-white/12 text-secondary-950/25 backdrop-blur-[2px] transition-colors duration-300 hover:text-secondary-950/45`}
+                  aria-label="Previous document"
+                >
+                  <ChevronLeft strokeWidth={2.5} className="h-10 w-10" />
+                </div>
+                <div
+                  className={`${isMobile ? "h-[50svh] w-[50svh]" : "h-[30rem] w-[40rem]"} overflow-hidden flex items-center justify-center`}
+                >
+                  <img
+                    src={activeEducation.image}
+                    alt={activeEducation.title}
+                    className={`${isMobile ? "rounded-[10px]" : "rounded-[2rem] shadow-[0_18px_36px_rgba(52,138,32,0.16)]"} ${activeEducation.id === "transkrip-s2" ? "h-full" : "w-full"} object-cover`}
+                  />
+                </div>
+                <div
+                  onClick={showNextEducation}
+                  className={`flex ${isMobile ? "h-5 w-5" : "h-16 w-16"} items-center justify-center rounded-full border border-secondary-950/12 bg-white/12 text-secondary-950/25 backdrop-blur-[2px] transition-colors duration-300 hover:text-secondary-950/45`}
+                  aria-label="Next document"
+                >
+                  <ChevronRight strokeWidth={2.5} className="h-10 w-10" />
+                </div>
+              </div>
+
+              <div
+                className={`${isMobile ? "ps-10 max-w-[130px] mt-1" : "ps-21 max-w-sm mt-5"} text-secondary-950`}
+              >
+                <h3 className="inter-font text-[2.3svh] leading-[1.1] tracking-[-0.03em]">
+                  {activeEducation.title}
+                </h3>
+                <p className={`inter-font text-[2svh] leading-non ${isMobile ? "mt-1" : "mt-5"}`}>
+                  {activeEducation.period}
+                </p>
+              </div>
+
+              <div
+                className={`absolute bottom-0 right-0 flex flex-col items-end justify-between ${isMobile ? "gap-1" : "gap-4"}`}
+              >
                 <Icon
                   children="univIsi"
-                  className={`h-[7.25rem] w-[7.25rem] rounded-[1.35rem] bg-white/70 p-3 shadow-[0_10px_22px_rgba(52,138,32,0.18)] transition-all duration-300 ${
+                  className={`bg-white/70 ${isMobile ? "rounded-[7px] h-[40px] w-[40px] p-1" : "p-3 h-[7.25rem] w-[7.25rem] rounded-[1.35rem] shadow-[0_10px_22px_rgba(52,138,32,0.18)]"} transition-all duration-300 ${
                     activeEducation.university === "univIsi"
                       ? "opacity-100 saturate-100"
                       : "opacity-45 saturate-0"
@@ -395,7 +410,7 @@ export default function EducationSection({
                 />
                 <Icon
                   children="univIts"
-                  className={`h-[7.25rem] w-[7.25rem] rounded-[1.35rem] bg-white/70 p-3 shadow-[0_10px_22px_rgba(52,138,32,0.18)] transition-all duration-300 ${
+                  className={`bg-white/70 ${isMobile ? "rounded-[7px] h-[40px] w-[40px] p-1" : "p-3 h-[7.25rem] w-[7.25rem] rounded-[1.35rem] shadow-[0_10px_22px_rgba(52,138,32,0.18)]"} transition-all duration-300 ${
                     activeEducation.university === "univIts"
                       ? "opacity-100 saturate-100"
                       : "opacity-45 saturate-0"
@@ -403,8 +418,8 @@ export default function EducationSection({
                 />
               </div>
             </div>
-          </div>
-        </Window>
+          </Window>
+        </div>
       </div>
     </section>
   );
