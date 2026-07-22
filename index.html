@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="canonical" href="https://amaliarchives.com/" />
     <meta
       name="description"
       content="Portfolio of Amalia Latifah Putri featuring graphic design, videography, branding, social media, photography, and large-scale visual projects."
@@ -13,6 +17,8 @@
       content="Amalia Latifah Putri, portfolio, graphic designer, videography, branding, social media design, photography, visual design, creative portfolio"
     />
     <meta name="author" content="Amalia Latifah Putri" />
+    <meta name="creator" content="Amalia Latifah Putri" />
+    <meta name="publisher" content="Amalia Latifah Putri" />
     <meta name="robots" content="index, follow" />
     <meta
       name="googlebot"
@@ -22,6 +28,7 @@
     <meta name="application-name" content="Amalia Latifah Putri Portfolio" />
 
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://amaliarchives.com/" />
     <meta property="og:site_name" content="Amalia Latifah Putri Portfolio" />
     <meta property="og:locale" content="en_US" />
     <meta
@@ -32,8 +39,15 @@
       property="og:description"
       content="Explore selected works by Amalia Latifah Putri in graphic design, videography, branding, social media, photography, and visual storytelling."
     />
+    <meta
+      property="og:image"
+      content="https://amaliarchives.com/my_pic_meta.jpg"
+    />
+    <meta property="og:image:alt" content="Portrait of Amalia Latifah Putri" />
+    <meta property="og:image:type" content="image/jpeg" />
 
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://amaliarchives.com/" />
     <meta
       name="twitter:title"
       content="Amalia Latifah Putri | Graphic Design & Videography Portfolio"
@@ -42,23 +56,58 @@
       name="twitter:description"
       content="Selected portfolio works by Amalia Latifah Putri across graphic design, videography, branding, social media, and photography."
     />
+    <meta
+      name="twitter:image"
+      content="https://amaliarchives.com/my_pic_meta.jpg"
+    />
+    <meta name="twitter:image:alt" content="Portrait of Amalia Latifah Putri" />
 
     <title>Amalia Latifah Putri | Graphic Design & Videography Portfolio</title>
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Amalia Latifah Putri",
-        "jobTitle": "Graphic Designer and Videography Creator",
-        "description": "Portfolio of Amalia Latifah Putri featuring graphic design, videography, branding, social media, photography, and large-scale visual projects.",
-        "knowsAbout": [
-          "Graphic Design",
-          "Videography",
-          "Branding",
-          "Social Media Design",
-          "Photography",
-          "Visual Storytelling"
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://amaliarchives.com/#website",
+            "url": "https://amaliarchives.com/",
+            "name": "Amalia Latifah Putri Portfolio",
+            "description": "Portfolio of Amalia Latifah Putri featuring graphic design, videography, branding, social media, photography, and large-scale visual projects.",
+            "publisher": {
+              "@id": "https://amaliarchives.com/#person"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://amaliarchives.com/#webpage",
+            "url": "https://amaliarchives.com/",
+            "name": "Amalia Latifah Putri | Graphic Design & Videography Portfolio",
+            "isPartOf": {
+              "@id": "https://amaliarchives.com/#website"
+            },
+            "about": {
+              "@id": "https://amaliarchives.com/#person"
+            },
+            "description": "Explore selected works by Amalia Latifah Putri in graphic design, videography, branding, social media, photography, and visual storytelling."
+          },
+          {
+            "@type": "Person",
+            "@id": "https://amaliarchives.com/#person",
+            "name": "Amalia Latifah Putri",
+            "url": "https://amaliarchives.com/",
+            "image": "https://amaliarchives.com/my_pic_meta.jpg",
+            "jobTitle": "Graphic Designer and Videography Creator",
+            "description": "Portfolio of Amalia Latifah Putri featuring graphic design, videography, branding, social media, photography, and large-scale visual projects.",
+            "knowsAbout": [
+              "Graphic Design",
+              "Videography",
+              "Branding",
+              "Social Media Design",
+              "Photography",
+              "Visual Storytelling"
+            ]
+          }
         ]
       }
     </script>
