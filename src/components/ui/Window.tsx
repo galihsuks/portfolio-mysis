@@ -106,16 +106,16 @@ function Window({
         />
         <div className={`pointer-events-none absolute inset-0 ${variantConfig.overlay}`} />
         <div
-          className={`pointer-events-none absolute inset-x-[1.2rem] top-0 h-[1.5px] rounded-full blur-[0.4px] ${variantConfig.topGlow}`}
+          className={`pointer-events-none absolute inset-x-[1.2rem] top-0 ${isMobile ? "h-[1px]" : "h-[1.5px]"} rounded-full blur-[0.4px] ${variantConfig.topGlow}`}
         />
         <div
-          className={`pointer-events-none absolute inset-y-[1.25rem] left-0 w-[1.5px] rounded-full blur-[0.4px] ${variantConfig.leftGlow}`}
+          className={`pointer-events-none absolute inset-y-[1.25rem] left-0 ${isMobile ? "w-[1px]" : "w-[1.5px]"} rounded-full blur-[0.4px] ${variantConfig.leftGlow}`}
         />
         <div
-          className={`pointer-events-none absolute inset-y-[1.25rem] right-0 w-[1.5px] rounded-full blur-[0.2px] ${variantConfig.rightGlow}`}
+          className={`pointer-events-none absolute inset-y-[1.25rem] right-0 ${isMobile ? "w-[1px]" : "w-[1.5px]"} rounded-full blur-[0.2px] ${variantConfig.rightGlow}`}
         />
         <div
-          className={`pointer-events-none absolute inset-x-[1.2rem] bottom-0 h-[2px] rounded-full ${variantConfig.bottomGlow}`}
+          className={`pointer-events-none absolute inset-x-[1.2rem] bottom-0 ${isMobile ? "h-[1px]" : "h-[2px]"} rounded-full ${variantConfig.bottomGlow}`}
         />
 
         {(title || showCloseButton) && (

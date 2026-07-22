@@ -14,7 +14,6 @@ type WelcomeSectionProps = {
     before: string;
   };
   setActivePage: ({ current, before }: { current: string; before: string }) => void;
-  isMobile: boolean;
 };
 
 export default function WelcomeSection({
@@ -24,7 +23,6 @@ export default function WelcomeSection({
   setActivePage,
   setBackground,
   background,
-  isMobile,
 }: WelcomeSectionProps) {
   const containerRef = useRef<HTMLElement | null>(null);
   const heroContentRef = useRef<HTMLDivElement | null>(null);
