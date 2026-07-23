@@ -88,6 +88,7 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
         />
 
         <EducationSection
