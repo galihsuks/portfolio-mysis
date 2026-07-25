@@ -21,6 +21,7 @@ type SocialMedia2SectionProps = {
   };
   setActivePage: ({ current, before }: { current: string; before: string }) => void;
   registerBackAction: (handler: (() => void) | null) => void;
+  isMobile: boolean;
 };
 
 const layerMotion = {
@@ -44,6 +45,7 @@ export default function SocialMedia2Section({
   setActivePage,
   setBackground,
   registerBackAction,
+  isMobile,
 }: SocialMedia2SectionProps) {
   const [, setIsLanguageWindowOpen] = useState(false);
   const containerRef = useRef<HTMLElement | null>(null);
@@ -307,105 +309,89 @@ export default function SocialMedia2Section({
         activePage.current !== "social-media-2" ? "pointer-events-none" : ""
       }`}
     >
-      <img
-        ref={topShapeRef}
-        src={shapeBottomLeft}
-        alt=""
-        className="pointer-events-none absolute left-[14.5%] top-[-10%] z-0 w-[40rem] max-w-[36vw] blur-[16px] opacity-95"
-      />
-      <img
-        ref={bottomShapeRef}
-        src={shapeBottomLeft}
-        alt=""
-        className="pointer-events-none absolute bottom-[5%] left-[-1.5%] z-11 w-[20rem] max-w-[22vw] opacity-95"
-      />
+      {/* menjaga rasio 16:9 */}
+      <div className="h-full relative aspect-video mx-auto">
+        <img
+          ref={topShapeRef}
+          src={shapeBottomLeft}
+          alt=""
+          className={`pointer-events-none absolute ${isMobile ? "left-[20%]" : "left-[14.5%]"} top-[-10%] z-0 h-[60svh] blur-[16px] opacity-95`}
+        />
+        <img
+          ref={bottomShapeRef}
+          src={shapeBottomLeft}
+          alt=""
+          className={`pointer-events-none absolute bottom-[5%] ${isMobile ? "left-[-5%]" : "left-[-1.5%]"} z-11 h-[40svh] opacity-95`}
+        />
 
-      <div
-        ref={curriculumRef}
-        className="absolute right-[20%] top-[4.5%] z-20 flex items-baseline leading-[0.82] text-primary-500"
-      >
-        <span className="kapakana-font text-[clamp(7.8rem,12.4vw,13rem)] leading-[0.72]">S</span>
-        <span className="inter-font text-[clamp(4rem,6vw,6.25rem)] font-normal tracking-[-0.055em]">
-          ocial
-        </span>
-      </div>
-
-      <div
-        ref={vitaeRef}
-        className="absolute right-[10.6%] top-[14.2%] z-20 flex items-baseline leading-[0.8] text-primary-500"
-      >
-        <span className="kapakana-font text-[clamp(7.8rem,12.4vw,13rem)] leading-[0.72]">M</span>
-        <span className="inter-font text-[clamp(4rem,6vw,6.25rem)] font-normal tracking-[-0.055em]">
-          edia
-        </span>
-      </div>
-
-      <div
-        ref={introWindowRef}
-        className="absolute right-[20%] top-[41.5%] z-20 w-[19rem] max-w-[19vw]"
-      >
-        <p className="inter-font text-[0.92rem] leading-[1.22] tracking-[-0.02em] text-primary-400/95">
-          This is the result of my design while at Tedmond Groups in holding responsibility for the
-          design of their beauty brand, namely "Miracle" specifically for the Manado branch. This
-          design result uses Photoshop, Illustrator and Canva software (if needed)
-        </p>
-      </div>
-
-      <div
-        ref={educationRef}
-        className="absolute right-[40%] top-[5%] z-20 w-[60rem] max-w-[60.7vw]"
-      >
-        <Window
-          size="xl"
-          panelClassName="bg-secondary-900/52"
-          bodyClassName="px-10 pb-10 pt-5"
-          closeButtonClassName="text-primary-500"
+        <div
+          ref={curriculumRef}
+          className="absolute right-[15%] top-[4.5%] z-20 flex items-baseline leading-[0.82] text-primary-500"
         >
-          <div className="grid grid-cols-3 gap-1.5">
-            {socialMediaPosts.map((imageSrc, index) => (
-              <img
-                key={imageSrc}
-                src={imageSrc}
-                alt={`Social media design ${index + 1}`}
-                className="block aspect-[4.1/5.16] w-full rounded-[0.2rem] object-cover"
-              />
-            ))}
-          </div>
-        </Window>
-      </div>
-
-      <div ref={skillRef} className="absolute left-[26.5%] top-[4.5%] z-0 h-px w-px opacity-0" />
-      <div
-        ref={languageRef}
-        className="absolute right-[19%] bottom-[31%] z-0 h-px w-px opacity-0"
-      />
-      <div
-        ref={experienceRef}
-        className="absolute left-[46.5%] bottom-[5%] z-0 h-px w-px opacity-0"
-      />
-
-      <div className="absolute bottom-[8.3%] right-[8.9%] z-20 flex flex-col items-start gap-13">
-        <div className="inter-font cursor-pointer text-[1.25rem] leading-[1.05] tracking-[-0.04em] text-primary-400 transition-colors hover:text-primary-500">
-          Beauty
-          <br />
-          Brand
+          <span className="kapakana-font text-[20svh] leading-[0.72]">S</span>
+          <span className="inter-font text-[10svh] font-normal tracking-[-0.055em]">ocial</span>
         </div>
-        <button
-          type="button"
-          onClick={() => handleToMore("social-media-3")}
-          className="inter-font text-[1.02rem] leading-[1.08] tracking-[-0.03em] text-start text-primary-400/58 border-b border-transparent hover:border-primary-400 cursor-pointer"
+
+        <div
+          ref={vitaeRef}
+          className="absolute right-[10.6%] top-[14.2%] z-20 flex items-baseline leading-[0.8] text-primary-500"
         >
-          Food and
-          <br />
-          Beverage
-        </button>
-        <button
-          type="button"
-          onClick={() => handleToMore("social-media-1")}
-          className="inter-font text-[1.02rem] leading-[1.08] tracking-[-0.03em] text-start text-primary-400/58 border-b border-transparent hover:border-primary-400 cursor-pointer"
+          <span className="kapakana-font text-[20svh] leading-[0.72]">M</span>
+          <span className="inter-font text-[10svh] font-normal tracking-[-0.055em]">edia</span>
+        </div>
+
+        <div ref={introWindowRef} className="absolute right-[20%] top-[41.5%] z-20 w-[30svh]">
+          <p className="inter-font text-[1.5svh] leading-[1.22] tracking-[-0.02em] text-primary-400/95">
+            This is the result of my design while at Tedmond Groups in holding responsibility for
+            the design of their beauty brand, namely "Miracle" specifically for the Manado branch.
+            This design result uses Photoshop, Illustrator and Canva software (if needed)
+          </p>
+        </div>
+
+        <div ref={educationRef} className="absolute right-[40%] top-[5%] z-20 w-[100svh]">
+          <Window
+            isMobile={isMobile}
+            size="custom"
+            panelClassName="bg-secondary-900/52"
+            bodyClassName={isMobile ? "px-1 pb-1 pt-1" : "px-10 pb-10 pt-5"}
+            closeButtonClassName="text-primary-500"
+          >
+            <div className="grid grid-cols-3 gap-1.5">
+              {socialMediaPosts.map((imageSrc, index) => (
+                <img
+                  key={imageSrc}
+                  src={imageSrc}
+                  alt={`Social media design ${index + 1}`}
+                  className="block aspect-[4.1/5.16] w-full rounded-[0.2rem] object-cover"
+                />
+              ))}
+            </div>
+          </Window>
+        </div>
+
+        <div
+          className={`absolute flex flex-col items-left ${isMobile ? "gap-5" : "gap-10"} bottom-[9.8%] z-20 ${isMobile ? "right-[0%]" : "right-[8.7%]"}`}
         >
-          Product
-        </button>
+          <div className="inter-font text-[3.5svh] leading-[1.05] tracking-[-0.04em] text-primary-400">
+            Beauty
+            <br />
+            Brand
+          </div>
+          <div
+            onClick={() => handleToMore("social-media-3")}
+            className={`inter-font text-[3svh] tracking-[-0.03em] text-primary-400/70 border-b border-transparent hover:border-primary-400 cursor-pointer`}
+          >
+            Food and
+            <br />
+            Beverage
+          </div>
+          <div
+            onClick={() => handleToMore("social-media-1")}
+            className={`inter-font text-[3svh] tracking-[-0.03em] text-primary-400/70 border-b border-transparent hover:border-primary-400 cursor-pointer`}
+          >
+            Product
+          </div>
+        </div>
       </div>
     </section>
   );

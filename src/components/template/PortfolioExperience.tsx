@@ -138,6 +138,7 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
         />
 
         <SocialMedia2Section
@@ -147,6 +148,7 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
         />
 
         <SocialMedia3Section
@@ -156,6 +158,7 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
         />
 
         <BigProjectSection
