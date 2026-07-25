@@ -125,7 +125,7 @@ function Window({
             <div className="min-w-0 flex-1">
               {title ? (
                 <div
-                  className={`jersey-font text-[1shv] leading-none ${variantConfig.title} ${titleClassName}`}
+                  className={`jersey-font ${isMobile ? "text-[1.4rem]" : "text-[2.4rem] tracking-[0.01em]"} leading-none ${variantConfig.title} ${titleClassName}`}
                 >
                   {title}
                 </div>

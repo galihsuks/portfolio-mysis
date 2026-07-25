@@ -40,9 +40,9 @@ export default function PortfolioExperience() {
     return (
       <div className="h-[100svh] w-full flex flex-col justify-center items-center">
         <div>
-          <Smartphone size={40} />
+          <Smartphone size={30} />
         </div>
-        <p>Rotate your phone</p>
+        <p className="text-[11px] mt-2 font-semibold">Rotate your phone</p>
       </div>
     );
   }
@@ -88,6 +88,7 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
         />
 
         <EducationSection
@@ -107,6 +108,7 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
         />
 
         <PhotoVideo1Section
@@ -136,6 +138,7 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
         />
 
         <SocialMedia2Section
@@ -145,6 +148,7 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
         />
 
         <SocialMedia3Section
@@ -154,6 +158,7 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
         />
 
         <BigProjectSection

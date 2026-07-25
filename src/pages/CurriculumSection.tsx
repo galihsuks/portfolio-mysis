@@ -434,18 +434,18 @@ export default function CurriculumSection({
         </div>
 
         {isLanguageWindowOpen ? (
-          <div className="absolute right-[5.8%] top-[50%] z-50 w-[27rem] max-w-[28vw]">
+          <div className="absolute right-[5.8%] top-[50%] z-50">
             <Window
-              size="md"
+              isMobile={isMobile}
+              size="custom"
               title="Language"
               onClose={() => setIsLanguageWindowOpen(false)}
-              titleClassName="jersey-font text-[2.4rem] tracking-[0.01em]"
               closeButtonClassName="text-primary-500"
-              headerClassName="px-8 pt-7"
-              bodyClassName="px-8 pb-8 pt-4"
-              panelClassName="min-h-[15.2rem] bg-secondary-900/48"
+              bodyClassName={isMobile ? "px-5 pb-5 pt-2" : `ps-10 pe-20 pb-10 pt-7`}
             >
-              <ul className="inter-font list-disc space-y-2.5 pl-8 text-[1.55rem] leading-[1.1] text-primary-400/95 marker:text-primary-400">
+              <ul
+                className={`inter-font list-disc space-y-2.5 text-[3svh] ${isMobile ? "pl-2 leading-[0]" : "pl-8 leading-[1.1]"} text-primary-400/95 marker:text-primary-400`}
+              >
                 <li>Javanese</li>
                 <li>Indonesia</li>
                 <li>English</li>

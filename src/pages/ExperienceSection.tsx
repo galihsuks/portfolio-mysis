@@ -17,6 +17,7 @@ type ExperienceSectionProps = {
   };
   setActivePage: ({ current, before }: { current: string; before: string }) => void;
   registerBackAction: (handler: (() => void) | null) => void;
+  isMobile: boolean;
 };
 
 const experienceItems = [
@@ -97,6 +98,7 @@ export default function ExperienceSection({
   setActivePage,
   setBackground,
   registerBackAction,
+  isMobile,
 }: ExperienceSectionProps) {
   const containerRef = useRef<HTMLElement | null>(null);
   const experienceRef = useRef<HTMLDivElement | null>(null);
@@ -312,78 +314,105 @@ export default function ExperienceSection({
       <button
         type="button"
         onClick={backToCurriculum}
-        className="absolute left-[2.15%] top-[3.4%] z-50 flex h-[4.2rem] w-[4.2rem] items-center justify-center rounded-2xl border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
+        className="absolute left-[2.15%] top-[3.4%] z-50 flex h-[10svh] w-[10svh] max-h-[4.2rem] max-w-[4.2rem] items-center justify-center rounded-[10px] border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
         aria-label="Back to welcome section"
       >
-        <ArrowLeft strokeWidth={2.75} className="h-8 w-8" />
+        <ArrowLeft strokeWidth={2.75} className={isMobile ? "h-4 w-4" : "h-8 w-8"} />
       </button>
-      <img
-        ref={topShapeRef}
-        src={shapeBottomLeft}
-        alt=""
-        className="pointer-events-none absolute left-[14.5%] top-[-10%] z-0 w-[40rem] max-w-[36vw]"
-      />
-      <img
-        ref={bottomShapeRef}
-        src={shapeBottomLeft}
-        alt=""
-        className="pointer-events-none absolute bottom-[5%] left-[-1.5%] z-11 w-[20rem] max-w-[22vw]"
-      />
 
-      <div ref={nameRef} className="absolute left-[6.6%] top-[21.5%] z-20 text-secondary-950">
-        <span className="inter-font whitespace-pre-line text-left text-[clamp(1.55rem,2.2vw,2.55rem)] leading-[1.06] font-normal tracking-[-0.03em]">
-          Amalia
-          <br />
-          Latifah
-          <br />
-          Putri
-        </span>
-      </div>
-
-      <div
-        ref={photoRef}
-        className="absolute bottom-0 left-[5%] top-[10%] z-10 w-[40rem] max-w-[70vw]"
-      >
+      {/* menjaga rasio 16:9 */}
+      <div className="h-full relative aspect-video mx-auto">
         <img
-          src={photoImage}
-          alt="Portrait of Amalia Latifah Putri"
-          className="block h-auto w-full object-contain drop-shadow-[0_14px_30px_rgba(0,0,0,0.32)]"
+          ref={topShapeRef}
+          src={shapeBottomLeft}
+          alt=""
+          className={`pointer-events-none absolute ${isMobile ? "left-[20%]" : "left-[14.5%]"} top-[-10%] z-0 h-[60svh] blur-[16px] opacity-95`}
         />
-      </div>
+        <img
+          ref={bottomShapeRef}
+          src={shapeBottomLeft}
+          alt=""
+          className={`pointer-events-none absolute bottom-[5%] ${isMobile ? "left-[-5%]" : "left-[-1.5%]"} z-11 h-[40svh] opacity-95`}
+        />
 
-      <div
-        ref={experienceRef}
-        className="absolute left-1/2 -translate-y-1/2 top-[10%] z-20 flex items-baseline leading-[0.8] text-secondary-950"
-      >
-        <span className="jersey-font text-[clamp(4rem,6vw,6.25rem)] font-normal">Experience</span>
-      </div>
+        <div ref={nameRef} className="absolute left-[6.6%] top-[21.5%] z-20 text-secondary-950">
+          <span
+            className={`inter-font text-left text-[4vh] ${isMobile ? "leading-5" : "leading-[1.06]"} font-normal`}
+          >
+            Amalia
+            <br />
+            Latifah
+            <br />
+            Putri
+          </span>
+        </div>
 
-      <div ref={introWindowRef} className="absolute left-[calc(5%+22rem)] top-[20%] z-9">
-        <Window
-          variant="light"
-          size="custom"
-          bodyClassName="ps-70 pe-15 pb-13 pt-8"
-          closeButtonClassName="text-primary-500"
+        <div
+          ref={photoRef}
+          className={`absolute ${isMobile ? "bottom-[-40%] left-[5%]" : "bottom-[-1%] left-[7%]"} top-[10%] z-10`}
         >
-          <div className="grid grid-cols-2 gap-x-10 gap-y-9 w-[calc(75vw-5vw-22rem)]">
-            {experienceItems.map((item) => (
-              <article key={`${item.title}-${item.period}`} className="flex gap-x-6">
-                <div className="inter-font text-secondary-950 w-[100px]">
-                  <h3 className="text-[0.68rem] leading-[1.05] tracking-[-0.03em]">{item.title}</h3>
-                  <p className="mt-4 text-[0.62rem] leading-none">{item.period}</p>
-                </div>
+          <img
+            src={photoImage}
+            alt="Portrait of Amalia Latifah Putri"
+            className="block h-full w-full object-contain drop-shadow-[0_14px_30px_rgba(0,0,0,0.32)]"
+          />
+        </div>
 
-                <div className="flex-1">
-                  <ul className="inter-font list-disc space-y-1.5 pl-4 text-[0.56rem] leading-[1.05] tracking-[-0.02em] text-secondary-950 marker:text-secondary-950">
-                    {item.bullets.map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            ))}
-          </div>
-        </Window>
+        <div
+          ref={experienceRef}
+          className="absolute left-1/2 -translate-y-1/2 top-[10%] z-20 flex items-baseline leading-[0.8] text-secondary-950"
+        >
+          <span className="jersey-font text-[10svh] font-normal">Experience</span>
+        </div>
+
+        <div
+          ref={introWindowRef}
+          className={`absolute ${isMobile ? "left-[20%]" : "left-[calc(5%+22rem)]"} top-[20%] z-9`}
+        >
+          <Window
+            variant="light"
+            size="custom"
+            isMobile={isMobile}
+            bodyClassName={isMobile ? "ps-30 pe-5 pb-0 pt-0" : "ps-72 pe-10 pb-10 pt-8"}
+            closeButtonClassName="text-primary-500"
+          >
+            <div
+              className={`grid grid-cols-2 ${isMobile ? "gap-x-3 gap-y-3 w-[calc(40vw)]" : "gap-x-10 gap-y-9 w-[calc(75vw-5vw-22rem)]"}`}
+            >
+              {experienceItems.map((item) => (
+                <article
+                  key={`${item.title}-${item.period}`}
+                  className={`flex ${isMobile ? "gap-x-2" : "gap-x-6"}`}
+                >
+                  <div
+                    className={`inter-font text-secondary-950 ${isMobile ? "w-[30px]" : "w-[100px]"}`}
+                  >
+                    <h3
+                      className={`${isMobile ? "text-[0.2rem] leading-[1.2]" : "text-[0.68rem] leading-[1.05]"} tracking-[-0.03em]`}
+                    >
+                      {item.title}
+                    </h3>
+                    <p
+                      className={`${isMobile ? "mt-1 text-[0.2rem]" : "mt-4 text-[0.62rem]"} leading-none`}
+                    >
+                      {item.period}
+                    </p>
+                  </div>
+
+                  <div className="flex-1">
+                    <ul
+                      className={`inter-font list-disc ${isMobile ? "space-y-0.5 pl-2 text-[0.2rem] leading-[1.2]" : "space-y-1.5 pl-4 text-[0.56rem] leading-[1.05]"} tracking-[-0.02em] text-secondary-950 marker:text-secondary-950`}
+                    >
+                      {item.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Window>
+        </div>
       </div>
     </section>
   );
