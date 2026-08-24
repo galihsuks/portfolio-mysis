@@ -275,10 +275,10 @@ const sizeClasses = {
     label: "mt-2 text-[10svh]",
   },
   lg: {
-    wrapper: "w-[28svh]",
-    stage: "h-[20svh] w-[27svh]",
-    back: "h-auto w-[21svh]",
-    label: "mt-[1svh] text-[3.5svh]",
+    wrapper: "w-[28%]",
+    stage: "h-[20%] w-[27%]",
+    back: "h-auto w-[21%]",
+    label: "mt-[1%] text-[3.5cqh]",
   },
 } as const;
 

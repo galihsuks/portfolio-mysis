@@ -24,6 +24,7 @@ export default function PortfolioExperience() {
   const shellRef = useRef<HTMLDivElement | null>(null);
   const [backAction, setBackAction] = useState<(() => void) | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [fitClassName, setFitClassName] = useState("w-full h-auto [container-type:size]");
   const [activePage, setActivePage] = useState({
     current: "welcome",
     before: "",
@@ -35,6 +36,19 @@ export default function PortfolioExperience() {
     const ctx = gsap.context(() => {}, shellRef);
     return () => ctx.revert();
   }, []);
+
+  useEffect(() => {
+    const element = shellRef.current;
+    if (!element) return;
+    const { width, height } = element.getBoundingClientRect();
+    if (!width || !height) return;
+    const containerRatio = width / height;
+    setFitClassName(
+      containerRatio > 16 / 9
+        ? "h-full w-auto [container-type:size]"
+        : "w-full h-auto [container-type:size]",
+    );
+  }, [shellRef.current]);
 
   if (!isLandscape) {
     return (
@@ -48,7 +62,7 @@ export default function PortfolioExperience() {
   }
 
   return (
-    <main className="h-[100svh] w-full overflow-hidden text-secondary-950">
+    <main className="block h-[100svh] w-full overflow-hidden text-secondary-950">
       <Background variant={background} />
       <div ref={shellRef} className={`relative h-full w-full overflow-hidden`}>
         {activePage.current !== "welcome" && backAction ? (
@@ -204,6 +218,8 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
+          aspectFitClassName={fitClassName}
         />
 
         <BrandingSWKSection
