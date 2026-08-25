@@ -20,6 +20,7 @@ import BrandingSection from "../../pages/BrandingSection";
 import BrandingSWKSection from "../../pages/BrandingSWKSection";
 import { useDeviceDetect } from "../../hooks/UseDeviceDetect";
 import BrandingPlazaSection from "../../pages/BrandingPlazaSection";
+import BrandingAssignmentSection from "../../pages/BrandingAssignmentSection";
 
 export default function PortfolioExperience() {
   const shellRef = useRef<HTMLDivElement | null>(null);
@@ -235,6 +236,17 @@ export default function PortfolioExperience() {
         />
 
         <BrandingPlazaSection
+          isTransitioning={isTransitioning}
+          setIsTransitioning={setIsTransitioning}
+          activePage={activePage}
+          setActivePage={setActivePage}
+          setBackground={setBackground}
+          registerBackAction={setBackAction}
+          isMobile={isMobile}
+          aspectFitClassName={fitClassName}
+        />
+
+        <BrandingAssignmentSection
           isTransitioning={isTransitioning}
           setIsTransitioning={setIsTransitioning}
           activePage={activePage}

@@ -1,17 +1,13 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import scrollImage from "../assets/branding/plaza/bg-scroll.png";
-import logoPlazaKuning from "../assets/branding/plaza/logo-plaza-kuning.png";
-import logoPlazaMerahKuning from "../assets/branding/plaza/logo-plaza-merah-kuning.png";
-import overlayImage from "../assets/branding/plaza/overlay.svg";
-import shapeBottomLeft from "../assets/elements/14 3.png";
+import thumbImage from "../assets/branding/affreda/thumb.png";
+import shapeBottomLeft from "../assets/elements/14 1.png";
 import { TRANSITION_DURATION } from "../constant";
 import type { VariantBackgroundType } from "../components/ui/Background";
 import Window from "../components/ui/Window";
 import { ChevronRight } from "lucide-react";
-import Carousel from "../components/ui/Carousel";
 
-type BrandingPlazaSectionProps = {
+type BrandingAssignmentSectionProps = {
   setBackground: (value: VariantBackgroundType) => void;
   isTransitioning: boolean;
   setIsTransitioning: (value: boolean) => void;
@@ -39,7 +35,7 @@ const layerMotion = {
   shapeBottom: 4,
 } as const;
 
-export default function BrandingPlazaSection({
+export default function BrandingAssignmentSection({
   isTransitioning,
   setIsTransitioning,
   activePage,
@@ -48,7 +44,7 @@ export default function BrandingPlazaSection({
   registerBackAction,
   isMobile,
   aspectFitClassName,
-}: BrandingPlazaSectionProps) {
+}: BrandingAssignmentSectionProps) {
   const containerRef = useRef<HTMLElement | null>(null);
   const curriculumRef = useRef<HTMLDivElement | null>(null);
   const vitaeRef = useRef<HTMLDivElement | null>(null);
@@ -162,8 +158,8 @@ export default function BrandingPlazaSection({
       });
       return;
     }
-    if (activePage.current == "br-plaza") {
-      setBackground("white");
+    if (activePage.current == "br-aafreeda") {
+      setBackground("pink");
       registerBackAction(() => handleBackToWelcome);
       gsap.set(containerRef.current, {
         xPercent: 100,
@@ -246,7 +242,7 @@ export default function BrandingPlazaSection({
     isThisPageActive.current = false;
     containerRef.current?.removeEventListener("mousemove", handleMouseMove);
     containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
-    setActivePage({ current: "welcome", before: "br-plaza" });
+    setActivePage({ current: "welcome", before: "br-aafreeda" });
     setIsTransitioning(true);
     setBackground("light");
 
@@ -278,7 +274,7 @@ export default function BrandingPlazaSection({
     isThisPageActive.current = false;
     containerRef.current?.removeEventListener("mousemove", handleMouseMove);
     containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
-    setActivePage({ current: "branding", before: "br-plaza" });
+    setActivePage({ current: "branding", before: "br-aafreeda" });
     setIsTransitioning(true);
     setBackground("dark-glow");
 
@@ -307,18 +303,9 @@ export default function BrandingPlazaSection({
     <section
       ref={containerRef}
       className={`absolute [container-type:size] flex justify-center items-center inset-0 transition-colors duration-500 ${
-        activePage.current !== "br-plaza" ? "pointer-events-none" : ""
+        activePage.current !== "br-aafreeda" ? "pointer-events-none" : ""
       }`}
     >
-      <div className="absolute inset-0 overflow-hidden z-9">
-        <Carousel
-          images={[scrollImage]}
-          autoScroll="right"
-          className="h-full"
-          imageClassName="rounded-none"
-        />
-      </div>
-
       <button
         type="button"
         onClick={handleBackToBranding}
@@ -328,12 +315,6 @@ export default function BrandingPlazaSection({
         <p className="text-[2svh]">Back</p>
         <ChevronRight strokeWidth={2.75} className={"h-[2svh] w-[2svh]"} />
       </button>
-
-      <img
-        src={overlayImage}
-        alt=""
-        className="pointer-events-none absolute left-0 top-0 z-10 h-full w-full object-cover"
-      />
 
       {/* menjaga rasio 16:9 */}
       <div className={`relative aspect-video ${aspectFitClassName}`}>
@@ -351,16 +332,10 @@ export default function BrandingPlazaSection({
         />
 
         <img
-          ref={logo1Ref}
-          src={logoPlazaKuning}
-          alt="Logo SWK Red"
-          className="absolute bottom-[16%] right-[10%] z-30 h-[26%]"
-        />
-        <img
-          ref={logo2Ref}
-          src={logoPlazaMerahKuning}
-          alt="Logo SWK Red"
-          className="absolute bottom-[5%] right-[22%] z-30 h-[26%]"
+          ref={mockup1Ref}
+          src={thumbImage}
+          alt="Affredaa Assigment"
+          className="absolute top-[10%] left-[5%] z-31 h-[80%]"
         />
 
         <div
@@ -368,7 +343,7 @@ export default function BrandingPlazaSection({
           className="absolute right-[11.2%] top-[8.5%] z-40 flex items-baseline leading-[0.82] text-white"
         >
           <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">
-            Plaza Utara
+            Assignment
           </span>
         </div>
 
@@ -380,7 +355,7 @@ export default function BrandingPlazaSection({
           <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">randing</span>
         </div>
 
-        <div ref={introWindowRef} className="absolute right-[6%] top-[30%] z-40 w-[40%]">
+        <div ref={introWindowRef} className="absolute right-[6%] top-[30%] z-40 w-[30%]">
           <Window
             size="custom"
             bodyClassName={isMobile ? "px-1 pb-1 pt-1" : "px-10 pb-10"}
@@ -389,10 +364,14 @@ export default function BrandingPlazaSection({
           >
             <div>
               <p className="inter-font text-[2cqh] leading-[1.27] tracking-[-0.02em] text-secondary-950/92">
-                This project was commissioned by PT. Krearture to design a logo and supporting
-                supergraphics as part of a brand identity development. I created both visual assets
-                based on the project brief, ensuring a cohesive and adaptable visual identity. The
-                project was completed using Adobe Illustrator and Adobe Photoshop.
+                This academic branding project was developed for “Aafreeda”, a conceptual maternal
+                and child hospital, as part of my undergraduate studies, where it received an “A”
+                grade. The project involved creating a complete brand identity system and a
+                comprehensive Graphic Standards Manual (GSM), including the logo concept,
+                supergraphics, brand guidelines, visual identity rules, and applications across
+                various hospital environments. The project was designed using Adobe Illustrator and
+                Adobe Photoshop, with a strong focus on consistency, functionality, and professional
+                brand implementation.
               </p>
               <button
                 type="button"
