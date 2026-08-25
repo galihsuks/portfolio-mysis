@@ -22,6 +22,7 @@ import { useDeviceDetect } from "../../hooks/UseDeviceDetect";
 import BrandingPlazaSection from "../../pages/BrandingPlazaSection";
 import BrandingAssignmentSection from "../../pages/BrandingAssignmentSection";
 import BrandingRagamRasaSection from "../../pages/BrandingRagamRasaSection";
+import BrandingGSMSection from "../../pages/BrandingGSMSection";
 
 export default function PortfolioExperience() {
   const shellRef = useRef<HTMLDivElement | null>(null);
@@ -259,6 +260,17 @@ export default function PortfolioExperience() {
         />
 
         <BrandingRagamRasaSection
+          isTransitioning={isTransitioning}
+          setIsTransitioning={setIsTransitioning}
+          activePage={activePage}
+          setActivePage={setActivePage}
+          setBackground={setBackground}
+          registerBackAction={setBackAction}
+          isMobile={isMobile}
+          aspectFitClassName={fitClassName}
+        />
+
+        <BrandingGSMSection
           isTransitioning={isTransitioning}
           setIsTransitioning={setIsTransitioning}
           activePage={activePage}

@@ -1,4 +1,12 @@
-export type VariantBackgroundType = "light" | "dark-solid" | "dark-glow" | "white" | "pink";
+import { useEffect } from "react";
+
+export type VariantBackgroundType =
+  | "light"
+  | "dark-solid"
+  | "dark-glow"
+  | "white"
+  | "pink"
+  | "white-navy";
 
 interface BackgroundProps {
   variant: VariantBackgroundType;
@@ -6,9 +14,15 @@ interface BackgroundProps {
 
 function Background({ variant }: BackgroundProps) {
   const isLight = variant === "light";
+  const isDark = variant === "dark-glow" || variant === "dark-solid";
   const isDarkGlow = variant === "dark-glow";
   const isWhite = variant === "white";
   const isPink = variant === "pink";
+  const isWhiteNavy = variant === "white-navy";
+
+  useEffect(() => {
+    console.log(variant);
+  }, [variant]);
 
   return (
     <div className="fixed inset-0 overflow-hidden -z-20 pointer-events-none">
@@ -26,7 +40,7 @@ function Background({ variant }: BackgroundProps) {
         className={`
           absolute inset-0 transition-opacity duration-500 ease-in-out
           bg-gradient-to-b from-secondary-950 via-secondary-950 to-secondary-950
-          ${isLight && !isPink ? "opacity-0" : "opacity-100"}
+          ${isDark ? "opacity-100" : "opacity-0"}
         `}
       />
 
@@ -88,6 +102,30 @@ function Background({ variant }: BackgroundProps) {
           className={`
           absolute rounded-full top-0 left-1/2 -translate-x-1/2
           size-130 bg-pink-200 blur-[100px] hidden md:block
+          transition-opacity duration-700 ease-in-out opacity-40
+        `}
+        />
+      </div>
+
+      {/* white navy */}
+      <div
+        className={`
+          absolute inset-0 transition-opacity duration-500 ease-in-out
+          bg-gradient-to-r from-indigo-200 via-indigo-900 to-indigo-900
+          ${isWhiteNavy ? "opacity-100" : "opacity-0"}
+        `}
+      >
+        <div
+          className={`
+          absolute rounded-full top-80 left-2/5 -translate-x-0 md:-translate-x-1/2
+          size-300 md:size-130 bg-indigo-200 blur-[150px]
+          transition-opacity duration-700 ease-in-out opacity-60
+        `}
+        />
+        <div
+          className={`
+          absolute rounded-full top-0 left-1/2 -translate-x-1/2
+          size-130 bg-indigo-200 blur-[100px] hidden md:block
           transition-opacity duration-700 ease-in-out opacity-40
         `}
         />
