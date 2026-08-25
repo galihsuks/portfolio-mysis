@@ -10,7 +10,7 @@ import shapeBottomLeft from "../assets/elements/14 3.png";
 import { TRANSITION_DURATION } from "../constant";
 import type { VariantBackgroundType } from "../components/ui/Background";
 import Window from "../components/ui/Window";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronRight } from "lucide-react";
 
 type BrandingSWKSectionProps = {
   setBackground: (value: VariantBackgroundType) => void;
@@ -22,6 +22,8 @@ type BrandingSWKSectionProps = {
   };
   setActivePage: ({ current, before }: { current: string; before: string }) => void;
   registerBackAction: (handler: (() => void) | null) => void;
+  isMobile: boolean;
+  aspectFitClassName: string;
 };
 
 const layerMotion = {
@@ -45,6 +47,8 @@ export default function BrandingSWKSection({
   setActivePage,
   setBackground,
   registerBackAction,
+  isMobile,
+  aspectFitClassName,
 }: BrandingSWKSectionProps) {
   const containerRef = useRef<HTMLElement | null>(null);
   const curriculumRef = useRef<HTMLDivElement | null>(null);
@@ -303,22 +307,19 @@ export default function BrandingSWKSection({
   return (
     <section
       ref={containerRef}
-      className={`absolute inset-0 transition-colors duration-500 ${
+      className={`absolute [container-type:size] flex justify-center items-center inset-0 transition-colors duration-500 ${
         activePage.current !== "br-swk" ? "pointer-events-none" : ""
       }`}
     >
-      <img
-        ref={topShapeRef}
-        src={shapeBottomLeft}
-        alt=""
-        className="pointer-events-none absolute left-[10%] top-[-7%] z-11 w-[26rem] max-w-[25vw]"
-      />
-      <img
-        ref={bottomShapeRef}
-        src={shapeBottomLeft}
-        alt=""
-        className="pointer-events-none absolute top-[10%] left-[40%] z-11 w-[30rem]"
-      />
+      <button
+        type="button"
+        onClick={handleBackToBranding}
+        className={`absolute right-[4%] bottom-[5%] z-50 flex h-[5svh] aspect-[28/9] items-center justify-center rounded-[1svh] border border-white bg-gradient-to-b from-transparent to-white text-white shadow-lg transition-transform duration-300 ${isMobile ? "gap-1" : "gap-3"}`}
+        aria-label="Back to curriculum section"
+      >
+        <p className="text-[2svh]">Back</p>
+        <ChevronRight strokeWidth={2.75} className={"h-[2svh] w-[2svh]"} />
+      </button>
 
       <img
         src={overlayImage}
@@ -326,94 +327,93 @@ export default function BrandingSWKSection({
         className="pointer-events-none absolute left-0 top-0 z-10 h-full w-full object-cover"
       />
 
-      <img
-        ref={mockSmallRef}
-        src={mockSmallImage}
-        alt="Mockup Small"
-        className="absolute left-[25%] bottom-[-50%] z-40 h-[120svh]"
-      />
+      {/* menjaga rasio 16:9 */}
+      <div className={`relative aspect-video ${aspectFitClassName}`}>
+        <img
+          ref={topShapeRef}
+          src={shapeBottomLeft}
+          alt=""
+          className="pointer-events-none absolute left-[5%] top-[-7%] z-11 w-[20%]"
+        />
+        <img
+          ref={bottomShapeRef}
+          src={shapeBottomLeft}
+          alt=""
+          className="pointer-events-none absolute top-[15%] left-[30%] z-11 w-[35%]"
+        />
 
-      <img
-        ref={mockup1Ref}
-        src={mockupImage1}
-        alt="Mockup SWK 1"
-        className="absolute top-[10%] left-[10%] z-31 h-[120svh]"
-      />
+        <img
+          ref={mockSmallRef}
+          src={mockSmallImage}
+          alt="Mockup Small"
+          className="absolute left-[15%] bottom-[-46%] z-40 h-[110%]"
+        />
 
-      <img
-        ref={mockup2Ref}
-        src={mockupImage2}
-        alt="Mockup SWK 2"
-        className="absolute top-[13%] left-[20%] z-30 h-[120svh]"
-      />
+        <img
+          ref={mockup1Ref}
+          src={mockupImage1}
+          alt="Mockup SWK 1"
+          className="absolute top-[7%] left-[-1%] z-31 h-[150%]"
+        />
 
-      <img
-        ref={logo1Ref}
-        src={logoSWKRed}
-        alt="Logo SWK Red"
-        className="absolute bottom-[5%] right-[20%] z-30 h-[20svh]"
-      />
-      <img
-        ref={logo2Ref}
-        src={logoSWKWhite}
-        alt="Logo SWK Red"
-        className="absolute bottom-[13%] right-[10%] z-30 h-[20svh]"
-      />
+        <img
+          ref={mockup2Ref}
+          src={mockupImage2}
+          alt="Mockup SWK 2"
+          className="absolute top-[13%] left-[20%] z-30 h-[130%]"
+        />
 
-      <div
-        ref={curriculumRef}
-        className="absolute right-[11.2%] top-[8.5%] z-40 flex items-baseline leading-[0.82] text-white"
-      >
-        <span className="inter-font text-[clamp(4rem,5.7vw,6.15rem)] font-normal tracking-[-0.055em]">
-          SWK
-        </span>
-      </div>
+        <img
+          ref={logo1Ref}
+          src={logoSWKRed}
+          alt="Logo SWK Red"
+          className="absolute bottom-[5%] right-[22%] z-30 h-[23%]"
+        />
+        <img
+          ref={logo2Ref}
+          src={logoSWKWhite}
+          alt="Logo SWK Red"
+          className="absolute bottom-[16%] right-[10%] z-30 h-[23%]"
+        />
 
-      <div
-        ref={vitaeRef}
-        className="absolute right-[11.2%] top-[18.2%] z-40 flex items-baseline leading-[0.8] text-white"
-      >
-        <span className="kapakana-font text-[clamp(8rem,12vw,13rem)] leading-[0.72]">P</span>
-        <span className="inter-font text-[clamp(4rem,5.7vw,6.15rem)] font-normal tracking-[-0.055em]">
-          roject
-        </span>
-      </div>
-
-      <button
-        type="button"
-        onClick={handleBackToBranding}
-        className="absolute left-[2.15%] top-[3.4%] z-50 flex h-[4.2rem] w-[4.2rem] items-center justify-center rounded-2xl border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
-        aria-label="Back to curriculum section"
-      >
-        <ArrowLeft strokeWidth={2.75} className="h-8 w-8" />
-      </button>
-
-      <div
-        ref={introWindowRef}
-        className="absolute right-[6%] top-[37.7%] z-40 w-[31rem] max-w-[31vw]"
-      >
-        <Window
-          size="custom"
-          variant="light"
-          bodyClassName="px-12 pb-7 pt-2"
-          panelClassName="bg-[linear-gradient(135deg,rgba(255,255,255,0.95)_0%,rgba(247,255,244,0.92)_52%,rgba(214,255,200,0.88)_100%)]"
+        <div
+          ref={curriculumRef}
+          className="absolute right-[11.2%] top-[8.5%] z-40 flex items-baseline leading-[0.82] text-white"
         >
-          <div className="space-y-5">
-            <p className="inter-font max-w-[25rem] text-[0.9rem] leading-[1.2] tracking-[-0.02em] text-secondary-950/92">
-              In this project, I successfully designed and created a mural for the tunnel wall
-              connecting the parking lot and the entrance to the Surabaya Zoo, with an average
-              tunnel wall size of 3x100 meters. I worked on the design requirements using Photoshop
-              and Adobe Illustrator.
-            </p>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">SWK</span>
+        </div>
 
-            <button
-              type="button"
-              className="jersey-font inline-flex min-w-[8.7rem] items-center justify-center rounded-full border-[3px] border-secondary-950/60 bg-white/70 px-6 py-2 text-[1.12rem] leading-none text-secondary-950 shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:scale-[1.02]"
-            >
-              Full Result
-            </button>
-          </div>
-        </Window>
+        <div
+          ref={vitaeRef}
+          className="absolute right-[10.6%] top-[14.2%] z-20 flex items-baseline leading-[0.8] text-white h-[20%]"
+        >
+          <span className="kapakana-font text-[20cqh] leading-[0.72]">B</span>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">randing</span>
+        </div>
+
+        <div ref={introWindowRef} className="absolute right-[6%] top-[30%] z-40 w-[31%]">
+          <Window
+            size="custom"
+            bodyClassName={isMobile ? "px-1 pb-1 pt-1" : "px-10 pb-10"}
+            isMobile={isMobile}
+            panelClassName="bg-[linear-gradient(135deg,rgba(255,255,255,0.95)_0%,rgba(247,255,244,0.92)_52%,rgba(214,255,200,0.88)_100%)]"
+          >
+            <div>
+              <p className="inter-font text-[2cqh] leading-[1.27] tracking-[-0.02em] text-secondary-950/92">
+                In this project, I successfully designed and created a mural for the tunnel wall
+                connecting the parking lot and the entrance to the Surabaya Zoo, with an average
+                tunnel wall size of 3x100 meters. I worked on the design requirements using
+                Photoshop and Adobe Illustrator.
+              </p>
+              <button
+                type="button"
+                className={`mx-auto jersey-font block rounded-full border-[0.1cqh] border-secondary-950/60 bg-white/70 text-[1.12cqw] leading-none text-secondary-950 shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-transform duration-300 ${isMobile ? "px-2 py-1" : "px-6 py-2 mt-3"}`}
+              >
+                Full Result
+              </button>
+            </div>
+          </Window>
+        </div>
       </div>
     </section>
   );

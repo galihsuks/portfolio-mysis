@@ -283,7 +283,7 @@ export default function BrandingSection({
       }`}
     >
       {/* menjaga rasio 16:9 */}
-      <div className={`relative aspect-video ${aspectFitClassName} bg-amber-400`}>
+      <div className={`relative aspect-video ${aspectFitClassName}`}>
         <img
           ref={topShapeRef}
           src={shapeBottomLeft}
@@ -320,60 +320,33 @@ export default function BrandingSection({
         </div>
 
         <div ref={swkRef} className="absolute left-[15%] top-[23%] z-30">
-          <Folder
-            label="Branding for SWK"
-            size="lg"
-            icons={["swk"]}
-            folderClassName="h-[12.1rem] w-[12.5rem]"
-            labelClassName="mt-1 text-[1.1rem]"
-            onClick={() => handleToFolder("br-swk")}
-          />
+          <Folder label="SWK" icons={["swk"]} onClick={() => handleToFolder("br-swk")} />
         </div>
 
         <div ref={plazaRef} className="absolute left-[35%] top-[23%] z-30">
           <Folder
-            label="Plaza Utara Branding"
-            size="lg"
+            label="Plaza Utara"
             icons={["plaza"]}
-            className="w-[15.2rem]"
-            folderClassName="h-[12.4rem] w-[13rem]"
-            labelClassName="mt-0.5 text-[1.1rem]"
             onClick={() => handleToFolder("br-plaza")}
           />
         </div>
 
         <div ref={ragamRef} className="absolute left-[15%] top-[63%] z-30">
-          <Folder
-            label="Ragam Rasa Branding"
-            size="lg"
-            icons={["ragam"]}
-            className="w-[14.5rem]"
-            folderClassName="h-[12.2rem] w-[12.4rem]"
-            labelClassName="mt-0.5 text-[1.1rem]"
-            onClick={() => handleToFolder("br-ragam")}
-          />
+          <Folder label="Ragam Rasa" icons={["ragam"]} onClick={() => handleToFolder("br-ragam")} />
         </div>
 
         <div ref={curriculumRef} className="absolute left-[35%] top-[63%] z-30">
           <Folder
-            label="Aafreeda Branding"
-            size="lg"
+            label="Aafreeda (Assignment GSM)"
             icons={["aafreeda"]}
-            className="w-[14.5rem]"
-            folderClassName="h-[12.2rem] w-[12.4rem]"
-            labelClassName="mt-0.5 text-[1.1rem]"
             onClick={() => handleToFolder("br-aafreeda")}
           />
         </div>
 
         <div ref={vitaeRef} className="absolute left-[55%] top-[63%] z-30">
           <Folder
-            label="Sosmed ITS Branding"
-            size="lg"
+            label="Alternative GSM for ITS Sosmed"
             icons={["sosmedITS"]}
-            className="w-[14.5rem]"
-            folderClassName="h-[12.2rem] w-[12.4rem]"
-            labelClassName="mt-0.5 text-[1.1rem]"
             onClick={() => handleToFolder("br-sosmed")}
           />
         </div>
