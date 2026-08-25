@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 export type VariantBackgroundType =
   | "light"
   | "dark-solid"
@@ -19,10 +17,6 @@ function Background({ variant }: BackgroundProps) {
   const isWhite = variant === "white";
   const isPink = variant === "pink";
   const isWhiteNavy = variant === "white-navy";
-
-  useEffect(() => {
-    console.log(variant);
-  }, [variant]);
 
   return (
     <div className="fixed inset-0 overflow-hidden -z-20 pointer-events-none">

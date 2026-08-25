@@ -354,13 +354,13 @@ export default function BrandingPlazaSection({
           ref={logo1Ref}
           src={logoPlazaKuning}
           alt="Logo SWK Red"
-          className="absolute bottom-[16%] right-[10%] z-30 h-[26%]"
+          className="absolute bottom-[5%] right-[10%] z-30 h-[30%]"
         />
         <img
           ref={logo2Ref}
           src={logoPlazaMerahKuning}
           alt="Logo SWK Red"
-          className="absolute bottom-[5%] right-[22%] z-30 h-[26%]"
+          className="absolute bottom-[-2%] right-[23%] z-30 h-[30%]"
         />
 
         <div
@@ -381,12 +381,7 @@ export default function BrandingPlazaSection({
         </div>
 
         <div ref={introWindowRef} className="absolute right-[6%] top-[30%] z-40 w-[40%]">
-          <Window
-            size="custom"
-            bodyClassName={isMobile ? "px-1 pb-1 pt-1" : "px-10 pb-10"}
-            isMobile={isMobile}
-            variant="lightBw"
-          >
+          <Window size="custom" isMobile={isMobile} variant="lightBw">
             <div>
               <p className="inter-font text-[2cqh] leading-[1.27] tracking-[-0.02em] text-secondary-950/92">
                 This project was commissioned by PT. Krearture to design a logo and supporting
@@ -396,7 +391,7 @@ export default function BrandingPlazaSection({
               </p>
               <button
                 type="button"
-                className={`mx-auto jersey-font block rounded-full border-[0.1cqh] border-secondary-950/60 bg-white/70 text-[1.12cqw] leading-none text-secondary-950 shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-transform duration-300 ${isMobile ? "px-2 py-1 mt-1" : "px-6 py-2 mt-3"}`}
+                className={`mx-auto jersey-font block rounded-full border-[0.1cqh] border-secondary-950/60 bg-white/70 text-[1.12cqw] leading-none text-secondary-950 shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-transform duration-300 px-[3cqh] py-[1cqh] mt-[2cqh]`}
               >
                 Full Result
               </button>

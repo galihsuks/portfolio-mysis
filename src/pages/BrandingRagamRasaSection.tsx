@@ -130,37 +130,37 @@ export default function BrandingRagamRasaSection({
     if (firstRender.current) {
       firstRender.current = false;
       gsap.set(containerRef.current, {
-        yPercent: 100,
+        xPercent: 100,
       });
       gsap.set(curriculumRef.current, {
-        yPercent: 120,
+        xPercent: 120,
       });
       gsap.set(vitaeRef.current, {
-        yPercent: 165,
+        xPercent: 165,
       });
       gsap.set(introWindowRef.current, {
-        yPercent: 40,
+        xPercent: 40,
       });
       gsap.set(mockup2Ref.current, {
-        yPercent: 100,
+        xPercent: 100,
       });
       gsap.set(mockup1Ref.current, {
-        yPercent: 70,
+        xPercent: 70,
       });
       gsap.set(logo2Ref.current, {
-        yPercent: 100,
+        xPercent: 100,
       });
       gsap.set(logo1Ref.current, {
-        yPercent: 70,
+        xPercent: 70,
       });
       gsap.set(mockSmallRef.current, {
-        yPercent: 55,
+        xPercent: 55,
       });
       gsap.set(topShapeRef.current, {
-        yPercent: 22,
+        xPercent: 22,
       });
       gsap.set(bottomShapeRef.current, {
-        yPercent: 34,
+        xPercent: 34,
       });
       return;
     }
@@ -376,7 +376,7 @@ export default function BrandingRagamRasaSection({
           ref={logo1Ref}
           src={logoRagam}
           alt="Logo SWK Red"
-          className={`absolute right-[10%] z-30 h-[26%] ${isMobile ? "bottom-[5%]" : "bottom-[10%]"}`}
+          className={`absolute right-[10%] z-30 h-[26%] bottom-[2%]`}
         />
 
         <div
@@ -397,12 +397,7 @@ export default function BrandingRagamRasaSection({
         </div>
 
         <div ref={introWindowRef} className="absolute right-[6%] top-[30%] z-40 w-[30%]">
-          <Window
-            size="custom"
-            bodyClassName={isMobile ? "px-1 pb-1 pt-1" : "px-10 pb-10"}
-            isMobile={isMobile}
-            variant="lightBw"
-          >
+          <Window size="custom" isMobile={isMobile} variant="lightBw">
             <div>
               <p className="inter-font text-[2cqh] leading-[1.27] tracking-[-0.02em] text-secondary-950/92">
                 This project involved creating an alternative branding concept for “Ragam Rasa”, a
@@ -413,7 +408,7 @@ export default function BrandingRagamRasaSection({
               </p>
               <button
                 type="button"
-                className={`mx-auto jersey-font block rounded-full border-[0.1cqh] border-secondary-950/60 bg-white/70 text-[1.12cqw] leading-none text-secondary-950 shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-transform duration-300 ${isMobile ? "px-2 py-1 mt-1" : "px-6 py-2 mt-3"}`}
+                className={`mx-auto jersey-font block rounded-full border-[0.1cqh] border-secondary-950/60 bg-white/70 text-[1.12cqw] leading-none text-secondary-950 shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-transform duration-300 px-[3cqh] py-[1cqh] mt-[2cqh]`}
               >
                 Full Result
               </button>

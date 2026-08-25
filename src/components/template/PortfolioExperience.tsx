@@ -73,10 +73,10 @@ export default function PortfolioExperience() {
           <button
             type="button"
             onClick={backAction}
-            className="absolute p-2 right-[2.15%] top-[3.4%] z-50 flex h-[10svh] w-[10svh] max-h-[4.2rem] max-w-[4.2rem] items-center justify-center rounded-[10px] border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
+            className="absolute right-[2.15%] top-[3.4%] z-50 flex h-[6svh] w-[6svh] items-center justify-center rounded-[1cqh] border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
             aria-label="Back to welcome section"
           >
-            <Menu strokeWidth={2.75} className={isMobile ? "h-4 w-4" : "h-8 w-8"} />
+            <Menu strokeWidth={2.75} className={"h-[4svh] w-[4svh]"} />
           </button>
         ) : null}
 
@@ -97,6 +97,7 @@ export default function PortfolioExperience() {
           setBackground={setBackground}
           registerBackAction={setBackAction}
           isMobile={isMobile}
+          aspectFitClassName={fitClassName}
         />
 
         <ExperienceSection
@@ -117,6 +118,7 @@ export default function PortfolioExperience() {
           setBackground={setBackground}
           registerBackAction={setBackAction}
           isMobile={isMobile}
+          aspectFitClassName={fitClassName}
         />
 
         <SkillSection

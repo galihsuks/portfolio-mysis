@@ -306,11 +306,7 @@ export default function BrandingSection({
         </div>
 
         <div ref={introWindowRef} className="absolute right-[10%] top-[30%] z-9 w-[30%]">
-          <Window
-            size="custom"
-            bodyClassName={isMobile ? "px-1 pb-1 pt-1" : "px-10 pb-10"}
-            isMobile={isMobile}
-          >
+          <Window size="custom" isMobile={isMobile}>
             <p className="inter-font text-[2cqh] leading-[1.27] tracking-[-0.02em] text-primary-400/95">
               This branding is a project related to the formation of a Graphic Standard Manual (GSM)
               which is usually used as a visual reference for a brand, such as starting from the
