@@ -306,7 +306,7 @@ export default function EducationSection({
       </button>
 
       {/* menjaga rasio 16:9 */}
-      <div className={`relative aspect-video ${aspectFitClassName} border border-rose-500`}>
+      <div className={`relative aspect-video ${aspectFitClassName}`}>
         <img
           ref={topShapeRef}
           src={shapeBottomLeft}

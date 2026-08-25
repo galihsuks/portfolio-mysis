@@ -157,7 +157,7 @@ export default function CurriculumSection({
         yPercent: 70,
       });
       gsap.set(topShapeRef.current, {
-        yPercent: 22,
+        yPercent: 30,
       });
       gsap.set(bottomShapeRef.current, {
         yPercent: 34,
@@ -210,7 +210,7 @@ export default function CurriculumSection({
         [directionOpposite]: 0,
       });
       gsap.set(topShapeRef.current, {
-        [direction]: fromWelcome ? 22 : -22,
+        [direction]: fromWelcome ? 30 : -30,
         [directionOpposite]: 0,
       });
       gsap.set(bottomShapeRef.current, {

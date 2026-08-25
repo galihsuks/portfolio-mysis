@@ -166,7 +166,6 @@ export default function SkillSection({
   setActivePage,
   setBackground,
   registerBackAction,
-  isMobile,
 }: SkillSectionProps) {
   const [activeSkillIndex, setActiveSkillIndex] = useState(0);
   const containerRef = useRef<HTMLElement | null>(null);
@@ -451,50 +450,36 @@ export default function SkillSection({
       <button
         type="button"
         onClick={backToCurriculum}
-        className="absolute left-[2.15%] top-[3.4%] z-50 flex h-[10svh] w-[10svh] max-h-[4.2rem] max-w-[4.2rem] items-center justify-center rounded-[10px] border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
+        className="absolute left-[2.15%] top-[3.4%] z-50 flex h-[6svh] w-[6svh] items-center justify-center rounded-[1cqh] border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
         aria-label="Back to welcome section"
       >
-        <ArrowLeft strokeWidth={2.75} className={isMobile ? "h-4 w-4" : "h-8 w-8"} />
+        <ArrowLeft strokeWidth={2.75} className={"h-[4svh] w-[4svh]"} />
       </button>
       <img
         ref={topShapeRef}
         src={shapeBottomLeft}
         alt=""
-        className="pointer-events-none absolute left-[14.5%] top-[-10%] z-0 w-[40rem] max-w-[36vw]"
+        className={`pointer-events-none absolute left-[14.5%] top-[-18%] z-0 h-[60%]`}
       />
       <img
         ref={bottomShapeRef}
         src={shapeBottomLeft}
         alt=""
-        className="pointer-events-none absolute bottom-[5%] left-[-1.5%] z-11 h-[40svh]"
+        className={`pointer-events-none absolute bottom-[5%] left-[-7%] z-5 h-[40%]`}
       />
 
-      <div
-        ref={titleRef}
-        className="absolute left-[47%] top-[12%] z-20 flex -translate-y-1/2 items-baseline leading-[0.8] text-secondary-950"
-      >
-        <span className="jersey-font text-[10svh] font-normal">Skill</span>
+      <div ref={titleRef} className="absolute left-[48%] top-[5%] z-20 text-secondary-950">
+        <span className="jersey-font text-[10cqh] font-normal">Skill</span>
       </div>
 
-      <div ref={introWindowRef} className="absolute inset-x-[5%] top-[10%] z-9">
-        <Window
-          isMobile={isMobile}
-          variant="light"
-          size="custom"
-          panelClassName="mx-auto max-w-[104rem]"
-          bodyClassName="px-0 pt-0"
-          closeButtonClassName="text-primary-500"
-        >
-          <div
-            className={`flex flex-col items-center px-8 ${isMobile ? "pb-2 pt-5" : "pb-8 pt-12"}`}
-          >
+      <div ref={introWindowRef} className="absolute inset-x-[5%] top-[20%] z-9">
+        <Window variant="light" size="custom" showCloseButton={false}>
+          <div className={`flex flex-col items-center`}>
             <div
               ref={carouselRef}
               className="w-full overflow-x-auto overflow-y-hidden scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
-              <div
-                className={`flex w-max items-center px-[2%] ${isMobile ? "gap-1 h-[50svh]" : "gap-4 h-[31.5rem]"}`}
-              >
+              <div className={`flex w-max items-center px-[2%] gap-[1svh] h-[50svh]`}>
                 {loopedShowcaseItems.map((item, index) => {
                   const isActive = skillShowcaseItems[activeSkillIndex]?.id === item.id;
 
@@ -502,10 +487,8 @@ export default function SkillSection({
                     <article
                       key={`${item.id}-${index}`}
                       data-skill-card
-                      className={`shrink-0 overflow-hidden ${isMobile ? "rounded-[10px]" : "rounded-[1.35rem]"} bg-white/32 shadow-[0_14px_28px_rgba(34,119,24,0.14)] transition-all duration-500 ease-out ${
-                        isActive
-                          ? `mt-0 ${isMobile ? "h-[45svh]" : "h-[31.5rem]"}`
-                          : `${isMobile ? "h-[40svh]" : "mt-8 h-[28rem]"}`
+                      className={`shrink-0 overflow-hidden rounded-[3svh] bg-white/32 transition-all duration-500 ease-out ${
+                        isActive ? `mt-0 h-[40svh]` : `mt-[2svh] h-[35svh]`
                       }`}
                     >
                       <img
@@ -520,28 +503,18 @@ export default function SkillSection({
             </div>
 
             <div
-              className={`${isMobile ? "mt-2 gap-2 px-5 py-2" : "mt-8 gap-5 px-10 py-4"} flex w-fit max-w-full flex-wrap items-center justify-center rounded-full border border-white/80 bg-white/88 shadow-[0_14px_36px_rgba(49,136,26,0.24)]`}
+              className={`mt-[2svh] gap-[2svh] px-[5svh] py-[2svh] flex w-fit max-w-full flex-wrap items-center justify-center rounded-full border border-white/80 bg-white/88 shadow-[0_14px_36px_rgba(49,136,26,0.24)]`}
             >
               {dockIcons.map((icon) => {
                 const isActive = skillShowcaseItems[activeSkillIndex]?.tools.includes(icon);
-                const isCamera = icon === "camera";
-                const isBlender = icon === "blender";
 
                 return (
                   <Icon
                     key={icon}
                     className={`transition-all duration-500 ease-out ${dockIconRotations[icon]} ${
-                      isCamera
-                        ? isActive
-                          ? `${isMobile ? "h-5" : "h-18"} w-auto scale-110 opacity-100`
-                          : `${isMobile ? "h-4" : "h-15"} w-auto scale-90 opacity-35`
-                        : isBlender
-                          ? isActive
-                            ? `${isMobile ? "h-5" : "h-17"} w-auto scale-110 opacity-100`
-                            : `${isMobile ? "h-4" : "h-14"} w-auto scale-90 opacity-35`
-                          : isActive
-                            ? `${isMobile ? "h-5" : "h-15"} w-auto scale-110 opacity-100`
-                            : `${isMobile ? "h-4" : "h-13"} w-auto scale-90 opacity-35`
+                      isActive
+                        ? `h-[5svh] w-auto scale-110 opacity-100`
+                        : `h-[5svh] w-auto scale-90 opacity-35`
                     }`}
                     imgClassName="drop-shadow-[0_8px_14px_rgba(0,0,0,0.16)]"
                   >

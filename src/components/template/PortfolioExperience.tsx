@@ -108,6 +108,7 @@ export default function PortfolioExperience() {
           setBackground={setBackground}
           registerBackAction={setBackAction}
           isMobile={isMobile}
+          aspectFitClassName={fitClassName}
         />
 
         <EducationSection
