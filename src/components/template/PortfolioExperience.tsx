@@ -19,6 +19,7 @@ import BPMuhiSection from "../../pages/BPMuhiSection";
 import BrandingSection from "../../pages/BrandingSection";
 import BrandingSWKSection from "../../pages/BrandingSWKSection";
 import { useDeviceDetect } from "../../hooks/UseDeviceDetect";
+import BrandingPlazaSection from "../../pages/BrandingPlazaSection";
 
 export default function PortfolioExperience() {
   const shellRef = useRef<HTMLDivElement | null>(null);
@@ -223,6 +224,17 @@ export default function PortfolioExperience() {
         />
 
         <BrandingSWKSection
+          isTransitioning={isTransitioning}
+          setIsTransitioning={setIsTransitioning}
+          activePage={activePage}
+          setActivePage={setActivePage}
+          setBackground={setBackground}
+          registerBackAction={setBackAction}
+          isMobile={isMobile}
+          aspectFitClassName={fitClassName}
+        />
+
+        <BrandingPlazaSection
           isTransitioning={isTransitioning}
           setIsTransitioning={setIsTransitioning}
           activePage={activePage}

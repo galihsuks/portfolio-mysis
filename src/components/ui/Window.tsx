@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { X } from "lucide-react";
 
 type WindowSize = "sm" | "md" | "lg" | "xl" | "custom";
-type WindowVariant = "dark" | "light";
+type WindowVariant = "dark" | "light" | "lightBw";
 
 type WindowProps = {
   children: ReactNode;
@@ -71,6 +71,18 @@ const variantClasses: Record<
     bottomGlow: "bg-primary-200/90",
     title: "text-primary-600",
     close: "text-primary-500",
+  },
+  lightBw: {
+    panel: "bg-white/80 text-black backdrop-blur-[10px]",
+    outerBorder: "border-transparent",
+    innerBorder: "border-white/24",
+    overlay: "bg-white/0",
+    topGlow: "bg-white/90",
+    leftGlow: "bg-white/55",
+    rightGlow: "bg-black/18",
+    bottomGlow: "bg-black/48",
+    title: "text-black",
+    close: "text-black",
   },
 };
 

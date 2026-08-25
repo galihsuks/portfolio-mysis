@@ -1,18 +1,20 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import scrollImage from "../assets/branding/plaza/bg-scroll.png";
 import mockupImage1 from "../assets/branding/swk/mock-big-1.png";
 import mockupImage2 from "../assets/branding/swk/mock-big-2.png";
-import logoSWKRed from "../assets/branding/swk/logo-swk-bg-red.png";
-import logoSWKWhite from "../assets/branding/swk/logo-swk-bg-white.png";
-import overlayImage from "../assets/branding/swk/overlay.svg";
+import logoPlazaKuning from "../assets/branding/plaza/logo-plaza-kuning.png";
+import logoPlazaMerahKuning from "../assets/branding/plaza/logo-plaza-merah-kuning.png";
+import overlayImage from "../assets/branding/plaza/overlay.svg";
 import mockSmallImage from "../assets/branding/swk/mock-small.png";
 import shapeBottomLeft from "../assets/elements/14 3.png";
 import { TRANSITION_DURATION } from "../constant";
 import type { VariantBackgroundType } from "../components/ui/Background";
 import Window from "../components/ui/Window";
 import { ChevronRight } from "lucide-react";
+import Carousel from "../components/ui/Carousel";
 
-type BrandingSWKSectionProps = {
+type BrandingPlazaSectionProps = {
   setBackground: (value: VariantBackgroundType) => void;
   isTransitioning: boolean;
   setIsTransitioning: (value: boolean) => void;
@@ -40,7 +42,7 @@ const layerMotion = {
   shapeBottom: 4,
 } as const;
 
-export default function BrandingSWKSection({
+export default function BrandingPlazaSection({
   isTransitioning,
   setIsTransitioning,
   activePage,
@@ -49,7 +51,7 @@ export default function BrandingSWKSection({
   registerBackAction,
   isMobile,
   aspectFitClassName,
-}: BrandingSWKSectionProps) {
+}: BrandingPlazaSectionProps) {
   const containerRef = useRef<HTMLElement | null>(null);
   const curriculumRef = useRef<HTMLDivElement | null>(null);
   const vitaeRef = useRef<HTMLDivElement | null>(null);
@@ -163,8 +165,8 @@ export default function BrandingSWKSection({
       });
       return;
     }
-    if (activePage.current == "br-swk") {
-      setBackground("dark-glow");
+    if (activePage.current == "br-plaza") {
+      setBackground("white");
       registerBackAction(() => handleBackToWelcome);
       gsap.set(containerRef.current, {
         xPercent: 100,
@@ -247,7 +249,7 @@ export default function BrandingSWKSection({
     isThisPageActive.current = false;
     containerRef.current?.removeEventListener("mousemove", handleMouseMove);
     containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
-    setActivePage({ current: "welcome", before: "br-swk" });
+    setActivePage({ current: "welcome", before: "br-plaza" });
     setIsTransitioning(true);
     setBackground("light");
 
@@ -279,7 +281,7 @@ export default function BrandingSWKSection({
     isThisPageActive.current = false;
     containerRef.current?.removeEventListener("mousemove", handleMouseMove);
     containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
-    setActivePage({ current: "branding", before: "br-swk" });
+    setActivePage({ current: "branding", before: "br-plaza" });
     setIsTransitioning(true);
     setBackground("dark-glow");
 
@@ -308,9 +310,18 @@ export default function BrandingSWKSection({
     <section
       ref={containerRef}
       className={`absolute [container-type:size] flex justify-center items-center inset-0 transition-colors duration-500 ${
-        activePage.current !== "br-swk" ? "pointer-events-none" : ""
+        activePage.current !== "br-plaza" ? "pointer-events-none" : ""
       }`}
     >
+      <div className="absolute inset-0 overflow-hidden z-9">
+        <Carousel
+          images={[scrollImage]}
+          autoScroll="right"
+          className="h-full"
+          imageClassName="rounded-none"
+        />
+      </div>
+
       <button
         type="button"
         onClick={handleBackToBranding}
@@ -339,59 +350,40 @@ export default function BrandingSWKSection({
           ref={bottomShapeRef}
           src={shapeBottomLeft}
           alt=""
-          className="pointer-events-none absolute top-[15%] left-[30%] z-11 w-[35%]"
-        />
-
-        <img
-          ref={mockSmallRef}
-          src={mockSmallImage}
-          alt="Mockup Small"
-          className="absolute left-[15%] bottom-[-46%] z-40 h-[110%]"
-        />
-
-        <img
-          ref={mockup1Ref}
-          src={mockupImage1}
-          alt="Mockup SWK 1"
-          className="absolute top-[7%] left-[-1%] z-31 h-[150%]"
-        />
-
-        <img
-          ref={mockup2Ref}
-          src={mockupImage2}
-          alt="Mockup SWK 2"
-          className="absolute top-[13%] left-[20%] z-30 h-[130%]"
+          className="pointer-events-none absolute bottom-[-20%] left-[30%] z-11 w-[35%]"
         />
 
         <img
           ref={logo1Ref}
-          src={logoSWKRed}
+          src={logoPlazaKuning}
           alt="Logo SWK Red"
-          className="absolute bottom-[5%] right-[22%] z-30 h-[23%]"
+          className="absolute bottom-[16%] right-[10%] z-30 h-[26%]"
         />
         <img
           ref={logo2Ref}
-          src={logoSWKWhite}
+          src={logoPlazaMerahKuning}
           alt="Logo SWK Red"
-          className="absolute bottom-[16%] right-[10%] z-30 h-[23%]"
+          className="absolute bottom-[5%] right-[22%] z-30 h-[26%]"
         />
 
         <div
           ref={curriculumRef}
           className="absolute right-[11.2%] top-[8.5%] z-40 flex items-baseline leading-[0.82] text-white"
         >
-          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">SWK</span>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">
+            Plaza Utara
+          </span>
         </div>
 
         <div
           ref={vitaeRef}
-          className="absolute right-[10.6%] top-[14.2%] z-20 flex items-baseline leading-[0.8] text-white h-[20%]"
+          className="absolute right-[23%] top-[14.2%] z-20 flex items-baseline leading-[0.8] text-white h-[20%]"
         >
           <span className="kapakana-font text-[20cqh] leading-[0.72]">B</span>
           <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">randing</span>
         </div>
 
-        <div ref={introWindowRef} className="absolute right-[6%] top-[30%] z-40 w-[31%]">
+        <div ref={introWindowRef} className="absolute right-[6%] top-[30%] z-40 w-[40%]">
           <Window
             size="custom"
             bodyClassName={isMobile ? "px-1 pb-1 pt-1" : "px-10 pb-10"}
@@ -400,14 +392,14 @@ export default function BrandingSWKSection({
           >
             <div>
               <p className="inter-font text-[2cqh] leading-[1.27] tracking-[-0.02em] text-secondary-950/92">
-                In this project, I successfully designed and created a mural for the tunnel wall
-                connecting the parking lot and the entrance to the Surabaya Zoo, with an average
-                tunnel wall size of 3x100 meters. I worked on the design requirements using
-                Photoshop and Adobe Illustrator.
+                This project was commissioned by PT. Krearture to design a logo and supporting
+                supergraphics as part of a brand identity development. I created both visual assets
+                based on the project brief, ensuring a cohesive and adaptable visual identity. The
+                project was completed using Adobe Illustrator and Adobe Photoshop.
               </p>
               <button
                 type="button"
-                className={`mx-auto jersey-font block rounded-full border-[0.1cqh] border-secondary-950/60 bg-white/70 text-[1.12cqw] leading-none text-secondary-950 shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-transform duration-300 ${isMobile ? "px-2 py-1" : "px-6 py-2 mt-3"}`}
+                className={`mx-auto jersey-font block rounded-full border-[0.1cqh] border-secondary-950/60 bg-white/70 text-[1.12cqw] leading-none text-secondary-950 shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-transform duration-300 ${isMobile ? "px-2 py-1 mt-1" : "px-6 py-2 mt-3"}`}
               >
                 Full Result
               </button>
