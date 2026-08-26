@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { X } from "lucide-react";
 
 type WindowSize = "sm" | "md" | "lg" | "xl" | "custom";
-type WindowVariant = "dark" | "light";
+type WindowVariant = "dark" | "light" | "lightBw";
 
 type WindowProps = {
   children: ReactNode;
@@ -72,6 +72,18 @@ const variantClasses: Record<
     title: "text-primary-600",
     close: "text-primary-500",
   },
+  lightBw: {
+    panel: "bg-white/80 text-black backdrop-blur-[10px]",
+    outerBorder: "border-transparent",
+    innerBorder: "border-white/24",
+    overlay: "bg-white/0",
+    topGlow: "bg-white/90",
+    leftGlow: "bg-white/55",
+    rightGlow: "bg-black/18",
+    bottomGlow: "bg-black/48",
+    title: "text-black",
+    close: "text-black",
+  },
 };
 
 function Window({
@@ -88,7 +100,6 @@ function Window({
   showCloseButton = true,
   onClose,
   closeLabel = "Close window",
-  isMobile = false,
 }: WindowProps) {
   const CloseElement = onClose ? "button" : "span";
   const variantConfig = variantClasses[variant];
@@ -96,36 +107,36 @@ function Window({
   return (
     <section className={`relative w-full ${sizeClasses[size]} ${className}`}>
       <div
-        className={`relative overflow-hidden ${isMobile ? "rounded-[10px]" : "rounded-[1.9rem]"} ${variantConfig.panel} ${panelClassName}`}
+        className={`relative overflow-hidden rounded-[3cqh] ${variantConfig.panel} ${panelClassName}`}
       >
         <div
-          className={`pointer-events-none absolute inset-0 rounded-[inherit] border-[1.6px] ${variantConfig.outerBorder}`}
+          className={`pointer-events-none absolute inset-0 rounded-[inherit] border-[0.3cqh] ${variantConfig.outerBorder}`}
         />
         <div
-          className={`pointer-events-none absolute inset-[3px] ${isMobile ? "rounded-[10px]" : "rounded-[calc(1.9rem-3px)]"} border ${variantConfig.innerBorder}`}
+          className={`pointer-events-none absolute inset-[0.3cqh] rounded-[3cqh] border ${variantConfig.innerBorder}`}
         />
         <div className={`pointer-events-none absolute inset-0 ${variantConfig.overlay}`} />
         <div
-          className={`pointer-events-none absolute inset-x-[1.2rem] top-0 ${isMobile ? "h-[1px]" : "h-[1.5px]"} rounded-full blur-[0.4px] ${variantConfig.topGlow}`}
+          className={`pointer-events-none absolute inset-x-[0.3cqh] top-0 h-[0.3cqh] rounded-full blur-[0.4px] ${variantConfig.topGlow}`}
         />
         <div
-          className={`pointer-events-none absolute inset-y-[1.25rem] left-0 ${isMobile ? "w-[1px]" : "w-[1.5px]"} rounded-full blur-[0.4px] ${variantConfig.leftGlow}`}
+          className={`pointer-events-none absolute inset-y-[0.3cqh] left-0 w-[0.3cqh] rounded-full blur-[0.4px] ${variantConfig.leftGlow}`}
         />
         <div
-          className={`pointer-events-none absolute inset-y-[1.25rem] right-0 ${isMobile ? "w-[1px]" : "w-[1.5px]"} rounded-full blur-[0.2px] ${variantConfig.rightGlow}`}
+          className={`pointer-events-none absolute inset-y-[0.3cqh] right-0 w-[0.3cqh] rounded-full blur-[0.2px] ${variantConfig.rightGlow}`}
         />
         <div
-          className={`pointer-events-none absolute inset-x-[1.2rem] bottom-0 ${isMobile ? "h-[1px]" : "h-[2px]"} rounded-full ${variantConfig.bottomGlow}`}
+          className={`pointer-events-none absolute inset-x-[0.3cqh] bottom-0 h-[0.3cqh] rounded-full ${variantConfig.bottomGlow}`}
         />
 
         {(title || showCloseButton) && (
           <div
-            className={`relative z-10 flex items-start justify-between gap-4 ${isMobile ? "px-3 pt-2" : "px-6 pt-5"} ${headerClassName}`}
+            className={`relative z-10 flex items-start justify-between gap-[6cqh] px-[2cqh] pt-[2cqh] ${headerClassName}`}
           >
             <div className="min-w-0 flex-1">
               {title ? (
                 <div
-                  className={`jersey-font ${isMobile ? "text-[1.4rem]" : "text-[2.4rem] tracking-[0.01em]"} leading-none ${variantConfig.title} ${titleClassName}`}
+                  className={`pl-[2cqh] jersey-font text-[4cqh] tracking-[0.01em] leading-none ${variantConfig.title} ${titleClassName}`}
                 >
                   {title}
                 </div>
@@ -141,16 +152,16 @@ function Window({
                       "aria-label": closeLabel,
                     }
                   : { "aria-hidden": true })}
-                className={`relative z-10 inline-flex ${isMobile ? "h-3 w-3" : "h-8 w-8"} shrink-0 items-center justify-center rounded-full transition-transform duration-300 ${variantConfig.close} ${onClose ? "cursor-pointer hover:scale-105" : ""} ${closeButtonClassName}`}
+                className={`relative z-10 inline-flex h-[4cqh] w-[4cqh] shrink-0 items-center justify-center rounded-full transition-transform duration-300 ${variantConfig.close} ${onClose ? "cursor-pointer hover:scale-105" : ""} ${closeButtonClassName}`}
               >
-                <X strokeWidth={3} className={isMobile ? "h-3 w-3" : "h-10 w-10"} />
+                <X strokeWidth={3} className={"h-[4cqh] w-[4cqh]"} />
               </CloseElement>
             ) : null}
           </div>
         )}
 
         <div
-          className={`relative z-10 ${isMobile ? "px-3 pb-3" : "px-6 pb-6"} ${title || showCloseButton ? (isMobile ? "pt-0" : "pt-3") : isMobile ? "pt-2" : "pt-6"} ${bodyClassName}`}
+          className={`relative z-10 px-[6cqh] pb-[5cqh] ${title || showCloseButton ? "pt-[1cqh]" : "pt-[2cqh]"} ${bodyClassName}`}
         >
           {children}
         </div>

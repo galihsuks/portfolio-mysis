@@ -18,6 +18,7 @@ type CurriculumSectionProps = {
   setActivePage: ({ current, before }: { current: string; before: string }) => void;
   registerBackAction: (handler: (() => void) | null) => void;
   isMobile: boolean;
+  aspectFitClassName: string;
 };
 
 const layerMotion = {
@@ -42,6 +43,7 @@ export default function CurriculumSection({
   setBackground,
   registerBackAction,
   isMobile,
+  aspectFitClassName,
 }: CurriculumSectionProps) {
   const [isLanguageWindowOpen, setIsLanguageWindowOpen] = useState(false);
   const containerRef = useRef<HTMLElement | null>(null);
@@ -125,7 +127,7 @@ export default function CurriculumSection({
     if (firstRender.current) {
       firstRender.current = false;
       gsap.set(containerRef.current, {
-        yPercent: 100,
+        yPercent: 200,
       });
       gsap.set(curriculumRef.current, {
         yPercent: 120,
@@ -155,7 +157,7 @@ export default function CurriculumSection({
         yPercent: 70,
       });
       gsap.set(topShapeRef.current, {
-        yPercent: 22,
+        yPercent: 30,
       });
       gsap.set(bottomShapeRef.current, {
         yPercent: 34,
@@ -208,7 +210,7 @@ export default function CurriculumSection({
         [directionOpposite]: 0,
       });
       gsap.set(topShapeRef.current, {
-        [direction]: fromWelcome ? 22 : -22,
+        [direction]: fromWelcome ? 30 : -30,
         [directionOpposite]: 0,
       });
       gsap.set(bottomShapeRef.current, {
@@ -317,75 +319,62 @@ export default function CurriculumSection({
   return (
     <section
       ref={containerRef}
-      className={`absolute inset-0 transition-colors duration-500 ${
+      className={`absolute flex justify-center items-center inset-0 transition-colors duration-500 ${
         activePage.current !== "curriculum-vitae" ? "pointer-events-none" : ""
       }`}
     >
       {/* menjaga rasio 16:9 */}
-      <div className="h-full relative aspect-video mx-auto">
+      <div className={`relative aspect-video ${aspectFitClassName}`}>
         <img
           ref={topShapeRef}
           src={shapeBottomLeft}
           alt=""
-          className={`pointer-events-none absolute ${isMobile ? "left-[20%]" : "left-[14.5%]"} top-[-10%] z-0 h-[60svh] blur-[16px] opacity-95`}
+          className={`pointer-events-none absolute left-[14.5%] top-[-18%] z-0 h-[60%]`}
         />
         <img
           ref={bottomShapeRef}
           src={shapeBottomLeft}
           alt=""
-          className={`pointer-events-none absolute bottom-[5%] ${isMobile ? "left-[5%]" : "left-[-1.5%]"} z-11 h-[40svh] opacity-95`}
+          className={`pointer-events-none absolute bottom-[5%] left-[-7%] z-11 h-[40%]`}
         />
 
-        <div ref={nameRef} className="absolute left-[6.6%] top-[21.5%] z-20 text-primary-400">
-          <span
-            className={`inter-font text-left text-[4vh] ${isMobile ? "leading-5" : "leading-[1.06]"} font-normal`}
-          >
-            Amalia
-            <br />
-            Latifah
-            <br />
-            Putri
-          </span>
+        <div
+          ref={nameRef}
+          className="absolute flex flex-col left-[6.6%] top-[19%] z-20 text-primary-400 text-[3cqh] font-normal"
+        >
+          <p>Amalia</p>
+          <p>Latifah</p>
+          <p>Putri</p>
         </div>
 
-        <div
-          ref={photoRef}
-          className={`absolute ${isMobile ? "bottom-[-40%] left-[10%]" : "bottom-[-1%] left-[7%]"} top-[10%] z-10`}
-        >
+        <div ref={photoRef} className={`absolute bottom-[-45%] left-[4%] h-[130%] z-10`}>
           <img
             src={photoImage}
             alt="Portrait of Amalia Latifah Putri"
-            className="block h-full w-full object-contain drop-shadow-[0_14px_30px_rgba(0,0,0,0.32)]"
+            className="block h-full w-auto object-contain drop-shadow-[0_14px_30px_rgba(0,0,0,0.32)]"
           />
         </div>
 
         <div
           ref={curriculumRef}
-          className="absolute right-[8.4%] top-[4.5%] z-20 flex items-baseline leading-[0.82] text-primary-500"
+          className="absolute right-[10.6%] top-[10%] z-20 flex items-baseline leading-[0.8] text-primary-500 h-[20%]"
         >
-          <span className="kapakana-font text-[20svh] leading-[0.72]">C</span>
-          <span className="inter-font text-[10svh] font-normal tracking-[-0.055em]">urriculum</span>
+          <span className="kapakana-font text-[20cqh] leading-[0.72]">C</span>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">urriculum</span>
         </div>
 
         <div
           ref={vitaeRef}
-          className="absolute right-[10.6%] top-[14.2%] z-20 flex items-baseline leading-[0.8] text-primary-500"
+          className="absolute right-[10.6%] top-[20%] z-20 flex items-baseline leading-[0.8] text-primary-500 h-[20%]"
         >
-          <span className="kapakana-font text-[20svh] leading-[0.72]">V</span>
-          <span className="inter-font text-[10svh] font-normal tracking-[-0.055em]">itae</span>
+          <span className="kapakana-font text-[20cqh] leading-[0.72]">V</span>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">itae</span>
         </div>
 
-        <div
-          ref={introWindowRef}
-          className={`absolute ${isMobile ? "left-[42%]" : "left-[calc(5%+34rem)]"} top-[25%] z-9`}
-        >
-          <Window
-            isMobile={isMobile}
-            size="md"
-            bodyClassName={isMobile ? "px-5 pb-3" : `px-15 pb-13`}
-          >
+        <div ref={introWindowRef} className={`absolute left-[32%] top-[25%] w-[40%] z-9`}>
+          <Window isMobile={isMobile} size="custom">
             <p
-              className={`inter-font text-[1.5svh] leading-[1.27] tracking-[-0.02em] text-primary-400/95 ${isMobile ? "max-w-[120px]" : ""}`}
+              className={`inter-font text-[2cqh] text-justify leading-[1.27] tracking-[-0.02em] text-primary-400/95`}
             >
               As a Bachelor of Design graduate who is currently studying Postgraduate education in
               Videography, I have abilities in the field of visual design concepts, such as graphic
@@ -398,7 +387,7 @@ export default function CurriculumSection({
           </Window>
         </div>
 
-        <div ref={educationRef} className="absolute right-[6%] top-[33.6%] z-30">
+        <div ref={educationRef} className="absolute right-[10%] top-[37%] z-30">
           <Folder
             label="Education"
             icons={["univIsi", "univIts"]}
@@ -406,10 +395,9 @@ export default function CurriculumSection({
           />
         </div>
 
-        <div ref={skillRef} className="absolute right-[25%] top-[66%] z-30">
+        <div ref={skillRef} className="absolute right-[27%] top-[66%] z-30">
           <Folder
             label="Skill"
-            size="lg"
             icons={[
               "canva",
               "premier",
@@ -425,7 +413,7 @@ export default function CurriculumSection({
           />
         </div>
 
-        <div ref={languageRef} className="absolute right-[6%] top-[66%] z-30">
+        <div ref={languageRef} className="absolute right-[10%] top-[66%] z-30">
           <Folder
             label="Language"
             icons={["figma", "canva", "blender"]}
@@ -441,10 +429,9 @@ export default function CurriculumSection({
               title="Language"
               onClose={() => setIsLanguageWindowOpen(false)}
               closeButtonClassName="text-primary-500"
-              bodyClassName={isMobile ? "px-5 pb-5 pt-2" : `ps-10 pe-20 pb-10 pt-7`}
             >
               <ul
-                className={`inter-font list-disc space-y-2.5 text-[3svh] ${isMobile ? "pl-2 leading-[0]" : "pl-8 leading-[1.1]"} text-primary-400/95 marker:text-primary-400`}
+                className={`inter-font list-disc text-[2.4cqh] pt-[1cqh] pl-[4cqh] text-primary-400/95 marker:text-primary-400`}
               >
                 <li>Javanese</li>
                 <li>Indonesia</li>

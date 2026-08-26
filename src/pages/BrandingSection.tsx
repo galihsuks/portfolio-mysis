@@ -16,6 +16,8 @@ type BrandingSectionProps = {
   };
   setActivePage: ({ current, before }: { current: string; before: string }) => void;
   registerBackAction: (handler: (() => void) | null) => void;
+  isMobile: boolean;
+  aspectFitClassName: string;
 };
 
 const layerMotion = {
@@ -39,6 +41,8 @@ export default function BrandingSection({
   setActivePage,
   setBackground,
   registerBackAction,
+  isMobile,
+  aspectFitClassName,
 }: BrandingSectionProps) {
   const containerRef = useRef<HTMLElement | null>(null);
   const curriculumRef = useRef<HTMLDivElement | null>(null);
@@ -274,104 +278,74 @@ export default function BrandingSection({
   return (
     <section
       ref={containerRef}
-      className={`absolute inset-0 transition-colors duration-500 ${
+      className={`absolute flex justify-center items-center inset-0 transition-colors duration-500 ${
         activePage.current !== "branding" ? "pointer-events-none" : ""
       }`}
     >
-      <img
-        ref={topShapeRef}
-        src={shapeBottomLeft}
-        alt=""
-        className="pointer-events-none absolute right-[-10%] bottom-[0%] z-0 w-[40rem] max-w-[36vw] blur-[16px] opacity-95"
-      />
-      <img
-        ref={bottomShapeRef}
-        src={shapeBottomLeft}
-        alt=""
-        className="pointer-events-none absolute top-[10%] left-[10%] z-11 w-[20rem] max-w-[22vw] opacity-95"
-      />
-
-      <div
-        ref={vitaeRef}
-        className="absolute right-[10.6%] top-[14.2%] z-20 flex items-baseline leading-[0.8] text-primary-500"
-      >
-        <span className="kapakana-font text-[clamp(7.8rem,12.4vw,13rem)] leading-[0.72]">B</span>
-        <span className="inter-font text-[clamp(4rem,6vw,6.25rem)] font-normal tracking-[-0.055em]">
-          randing
-        </span>
-      </div>
-
-      <div
-        ref={introWindowRef}
-        className="absolute right-[20%] top-[30%] z-9 w-[27.7rem] max-w-[27vw]"
-      >
-        <Window size="md" bodyClassName="px-15 pb-13">
-          <p className="inter-font text-[0.9rem] leading-[1.27] tracking-[-0.02em] text-primary-400/95">
-            This branding is a project related to the formation of a Graphic Standard Manual (GSM)
-            which is usually used as a visual reference for a brand, such as starting from the logo
-            to mockups and supergraphics.
-          </p>
-        </Window>
-      </div>
-
-      <div ref={swkRef} className="absolute left-[15%] top-[26%] z-30">
-        <Folder
-          label="Branding for SWK"
-          size="lg"
-          icons={["swk"]}
-          className="w-[14.5rem]"
-          folderClassName="h-[12.1rem] w-[12.5rem]"
-          labelClassName="mt-1 text-[1.1rem]"
-          onClick={() => handleToFolder("br-swk")}
+      {/* menjaga rasio 16:9 */}
+      <div className={`relative aspect-video ${aspectFitClassName}`}>
+        <img
+          ref={topShapeRef}
+          src={shapeBottomLeft}
+          alt=""
+          className="pointer-events-none absolute right-[-10%] bottom-[0%] z-0 w-[40%] opacity-95"
         />
-      </div>
-
-      <div ref={plazaRef} className="absolute left-[35%] top-[26%] z-30">
-        <Folder
-          label="Plaza Utara Branding"
-          size="lg"
-          icons={["plaza"]}
-          className="w-[15.2rem]"
-          folderClassName="h-[12.4rem] w-[13rem]"
-          labelClassName="mt-0.5 text-[1.1rem]"
-          onClick={() => handleToFolder("br-plaza")}
+        <img
+          ref={bottomShapeRef}
+          src={shapeBottomLeft}
+          alt=""
+          className="pointer-events-none absolute top-[10%] left-[5%] z-11 w-[20%] opacity-95"
         />
-      </div>
 
-      <div ref={ragamRef} className="absolute left-[15%] top-[60%] z-30">
-        <Folder
-          label="Ragam Rasa Branding"
-          size="lg"
-          icons={["ragam"]}
-          className="w-[14.5rem]"
-          folderClassName="h-[12.2rem] w-[12.4rem]"
-          labelClassName="mt-0.5 text-[1.1rem]"
-          onClick={() => handleToFolder("br-ragam")}
-        />
-      </div>
+        <div
+          ref={vitaeRef}
+          className="absolute right-[10.6%] top-[14.2%] z-20 flex items-baseline leading-[0.8] text-primary-500 h-[20%]"
+        >
+          <span className="kapakana-font text-[20cqh] leading-[0.72]">B</span>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">randing</span>
+        </div>
 
-      <div ref={curriculumRef} className="absolute left-[35%] top-[60%] z-30">
-        <Folder
-          label="Aafreeda Branding"
-          size="lg"
-          icons={["aafreeda"]}
-          className="w-[14.5rem]"
-          folderClassName="h-[12.2rem] w-[12.4rem]"
-          labelClassName="mt-0.5 text-[1.1rem]"
-          onClick={() => handleToFolder("br-aafreeda")}
-        />
-      </div>
+        <div ref={introWindowRef} className="absolute right-[10%] top-[30%] z-9 w-[30%]">
+          <Window size="custom" isMobile={isMobile}>
+            <p className="inter-font text-[2cqh] leading-[1.27] tracking-[-0.02em] text-primary-400/95">
+              This branding is a project related to the formation of a Graphic Standard Manual (GSM)
+              which is usually used as a visual reference for a brand, such as starting from the
+              logo to mockups and supergraphics.
+            </p>
+          </Window>
+        </div>
 
-      <div ref={vitaeRef} className="absolute left-[55%] top-[60%] z-30">
-        <Folder
-          label="Sosmed ITS Branding"
-          size="lg"
-          icons={["sosmedITS"]}
-          className="w-[14.5rem]"
-          folderClassName="h-[12.2rem] w-[12.4rem]"
-          labelClassName="mt-0.5 text-[1.1rem]"
-          onClick={() => handleToFolder("br-sosmed")}
-        />
+        <div ref={swkRef} className="absolute left-[15%] top-[23%] z-30">
+          <Folder label="SWK" icons={["swk"]} onClick={() => handleToFolder("br-swk")} />
+        </div>
+
+        <div ref={plazaRef} className="absolute left-[35%] top-[23%] z-30">
+          <Folder
+            label="Plaza Utara"
+            icons={["plaza"]}
+            onClick={() => handleToFolder("br-plaza")}
+          />
+        </div>
+
+        <div ref={ragamRef} className="absolute left-[15%] top-[63%] z-30">
+          <Folder label="Ragam Rasa" icons={["ragam"]} onClick={() => handleToFolder("br-ragam")} />
+        </div>
+
+        <div ref={curriculumRef} className="absolute left-[35%] top-[63%] z-30">
+          <Folder
+            label="Aafreeda (Assignment GSM)"
+            icons={["aafreeda"]}
+            onClick={() => handleToFolder("br-aafreeda")}
+          />
+        </div>
+
+        <div ref={vitaeRef} className="absolute left-[55%] top-[63%] z-30">
+          <Folder
+            label="Alternative GSM for ITS Sosmed"
+            icons={["sosmedITS"]}
+            onClick={() => handleToFolder("br-sosmed")}
+          />
+        </div>
       </div>
     </section>
   );

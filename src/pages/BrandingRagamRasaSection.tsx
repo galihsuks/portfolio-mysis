@@ -1,17 +1,19 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import scroll1Image from "../assets/big-project/jtv/jtv-scroll-1.png";
-import scroll2Image from "../assets/big-project/jtv/jtv-scroll-2.png";
-import scroll3Image from "../assets/big-project/jtv/jtv-scroll-3.png";
-import overlayImage from "../assets/big-project/overlay.svg";
-import tunnelThumbImage from "../assets/big-project/jtv_thumb.png";
-import shapeBottomLeft from "../assets/elements/14 2.png";
+import scrollImage from "../assets/branding/ragam/bg_scroll.png";
+import logoRagam from "../assets/branding/ragam/logo_ragam.png";
+import idCard from "../assets/branding/ragam/id_card.png";
+import bannerImage from "../assets/branding/ragam/banner.png";
+import cupImage from "../assets/branding/ragam/cup.png";
+import overlayImage from "../assets/branding/ragam/overlay.svg";
+import shapeBottomLeft from "../assets/elements/14 1.png";
 import { TRANSITION_DURATION } from "../constant";
 import type { VariantBackgroundType } from "../components/ui/Background";
 import Window from "../components/ui/Window";
+import { ChevronRight } from "lucide-react";
 import Carousel from "../components/ui/Carousel";
 
-type BPJtvSectionProps = {
+type BrandingRagamRasaSectionProps = {
   setBackground: (value: VariantBackgroundType) => void;
   isTransitioning: boolean;
   setIsTransitioning: (value: boolean) => void;
@@ -39,7 +41,7 @@ const layerMotion = {
   shapeBottom: 4,
 } as const;
 
-export default function BPJtvSection({
+export default function BrandingRagamRasaSection({
   isTransitioning,
   setIsTransitioning,
   activePage,
@@ -48,12 +50,16 @@ export default function BPJtvSection({
   registerBackAction,
   isMobile,
   aspectFitClassName,
-}: BPJtvSectionProps) {
+}: BrandingRagamRasaSectionProps) {
   const containerRef = useRef<HTMLElement | null>(null);
   const curriculumRef = useRef<HTMLDivElement | null>(null);
   const vitaeRef = useRef<HTMLDivElement | null>(null);
   const introWindowRef = useRef<HTMLDivElement | null>(null);
-  const thumbRef = useRef<HTMLImageElement | null>(null);
+  const mockup2Ref = useRef<HTMLImageElement | null>(null);
+  const mockup1Ref = useRef<HTMLImageElement | null>(null);
+  const logo2Ref = useRef<HTMLImageElement | null>(null);
+  const logo1Ref = useRef<HTMLImageElement | null>(null);
+  const mockSmallRef = useRef<HTMLImageElement | null>(null);
   const topShapeRef = useRef<HTMLImageElement | null>(null);
   const bottomShapeRef = useRef<HTMLImageElement | null>(null);
   const firstRender = useRef(true);
@@ -64,7 +70,11 @@ export default function BPJtvSection({
     { ref: curriculumRef, x: layerMotion.titleMain, y: layerMotion.titleMain },
     { ref: vitaeRef, x: layerMotion.titleSub, y: layerMotion.titleSub },
     { ref: introWindowRef, x: layerMotion.intro, y: layerMotion.intro },
-    { ref: thumbRef, x: layerMotion.shapeTop, y: layerMotion.shapeTop },
+    { ref: mockup2Ref, x: layerMotion.language, y: layerMotion.language },
+    { ref: mockup1Ref, x: layerMotion.experience, y: layerMotion.experience },
+    { ref: logo2Ref, x: layerMotion.language, y: layerMotion.language },
+    { ref: logo1Ref, x: layerMotion.experience, y: layerMotion.experience },
+    { ref: mockSmallRef, x: layerMotion.shapeTop, y: layerMotion.shapeTop },
     { ref: topShapeRef, x: layerMotion.skill, y: layerMotion.skill },
     { ref: bottomShapeRef, x: layerMotion.shapeBottom, y: layerMotion.shapeBottom },
   ];
@@ -120,58 +130,86 @@ export default function BPJtvSection({
     if (firstRender.current) {
       firstRender.current = false;
       gsap.set(containerRef.current, {
-        yPercent: 100,
+        xPercent: 200,
       });
       gsap.set(curriculumRef.current, {
-        yPercent: 120,
+        xPercent: 120,
       });
       gsap.set(vitaeRef.current, {
-        yPercent: 165,
+        xPercent: 165,
       });
       gsap.set(introWindowRef.current, {
-        yPercent: 40,
+        xPercent: 40,
       });
-      gsap.set(thumbRef.current, {
-        yPercent: 55,
+      gsap.set(mockup2Ref.current, {
+        xPercent: 100,
+      });
+      gsap.set(mockup1Ref.current, {
+        xPercent: 70,
+      });
+      gsap.set(logo2Ref.current, {
+        xPercent: 100,
+      });
+      gsap.set(logo1Ref.current, {
+        xPercent: 70,
+      });
+      gsap.set(mockSmallRef.current, {
+        xPercent: 55,
       });
       gsap.set(topShapeRef.current, {
-        yPercent: 22,
+        xPercent: 22,
       });
       gsap.set(bottomShapeRef.current, {
-        yPercent: 34,
+        xPercent: 34,
       });
       return;
     }
-    if (activePage.current == "bp-jtv") {
+    if (activePage.current == "br-ragam") {
       setBackground("white");
       registerBackAction(() => handleBackToWelcome);
       gsap.set(containerRef.current, {
-        yPercent: 100,
-        xPercent: 0,
+        xPercent: 100,
+        yPercent: 0,
       });
       gsap.set(curriculumRef.current, {
-        yPercent: 120,
-        xPercent: 0,
+        xPercent: 120,
+        yPercent: 0,
       });
       gsap.set(vitaeRef.current, {
-        yPercent: 165,
-        xPercent: 0,
+        xPercent: 165,
+        yPercent: 0,
       });
       gsap.set(introWindowRef.current, {
-        yPercent: 200,
-        xPercent: 0,
+        xPercent: 200,
+        yPercent: 0,
       });
-      gsap.set(thumbRef.current, {
-        yPercent: 55,
-        xPercent: 0,
+      gsap.set(mockup2Ref.current, {
+        xPercent: 100,
+        yPercent: 0,
+      });
+      gsap.set(mockup1Ref.current, {
+        xPercent: 70,
+        yPercent: 0,
+      });
+      gsap.set(logo2Ref.current, {
+        xPercent: 100,
+        yPercent: 0,
+      });
+      gsap.set(logo1Ref.current, {
+        xPercent: 70,
+        yPercent: 0,
+      });
+      gsap.set(mockSmallRef.current, {
+        xPercent: 55,
+        yPercent: 0,
       });
       gsap.set(topShapeRef.current, {
-        yPercent: 22,
-        xPercent: 0,
+        xPercent: 22,
+        yPercent: 0,
       });
       gsap.set(bottomShapeRef.current, {
-        yPercent: 34,
-        xPercent: 0,
+        xPercent: 34,
+        yPercent: 0,
       });
 
       const timeline = gsap.timeline({
@@ -192,7 +230,11 @@ export default function BPJtvSection({
         .to(curriculumRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(vitaeRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(introWindowRef.current, {}, `-=${TRANSITION_DURATION}`)
-        .to(thumbRef.current, {}, `-=${TRANSITION_DURATION}`)
+        .to(mockup2Ref.current, {}, `-=${TRANSITION_DURATION}`)
+        .to(mockup1Ref.current, {}, `-=${TRANSITION_DURATION}`)
+        .to(logo2Ref.current, {}, `-=${TRANSITION_DURATION}`)
+        .to(logo1Ref.current, {}, `-=${TRANSITION_DURATION}`)
+        .to(mockSmallRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(topShapeRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(bottomShapeRef.current, {}, `-=${TRANSITION_DURATION}`);
     }
@@ -206,7 +248,7 @@ export default function BPJtvSection({
     isThisPageActive.current = false;
     containerRef.current?.removeEventListener("mousemove", handleMouseMove);
     containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
-    setActivePage({ current: "welcome", before: "bp-jtv" });
+    setActivePage({ current: "welcome", before: "br-ragam" });
     setIsTransitioning(true);
     setBackground("light");
 
@@ -221,12 +263,16 @@ export default function BPJtvSection({
       .to(curriculumRef.current, { yPercent: 125 }, `-=${TRANSITION_DURATION}`)
       .to(vitaeRef.current, { yPercent: 155 }, `-=${TRANSITION_DURATION}`)
       .to(introWindowRef.current, { yPercent: 200 }, `-=${TRANSITION_DURATION}`)
-      .to(thumbRef.current, { yPercent: 30 }, `-=${TRANSITION_DURATION}`)
+      .to(mockup2Ref.current, { yPercent: 30 }, `-=${TRANSITION_DURATION}`)
+      .to(mockup1Ref.current, { yPercent: 30 }, `-=${TRANSITION_DURATION}`)
+      .to(logo2Ref.current, { yPercent: 30 }, `-=${TRANSITION_DURATION}`)
+      .to(logo1Ref.current, { yPercent: 30 }, `-=${TRANSITION_DURATION}`)
+      .to(mockSmallRef.current, { yPercent: 30 }, `-=${TRANSITION_DURATION}`)
       .to(topShapeRef.current, { yPercent: 30 }, `-=${TRANSITION_DURATION}`)
       .to(bottomShapeRef.current, { yPercent: 46 }, `-=${TRANSITION_DURATION}`);
   };
 
-  const handleToMore = (page: string) => {
+  const handleBackToBranding = () => {
     if (isTransitionRef.current) {
       return;
     }
@@ -234,9 +280,9 @@ export default function BPJtvSection({
     isThisPageActive.current = false;
     containerRef.current?.removeEventListener("mousemove", handleMouseMove);
     containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
-    setActivePage({ current: page, before: "bp-jtv" });
+    setActivePage({ current: "branding", before: "br-ragam" });
     setIsTransitioning(true);
-    setBackground("light");
+    setBackground("dark-glow");
 
     const timeline = gsap.timeline({
       defaults: { duration: TRANSITION_DURATION, ease: "power3.inOut" },
@@ -246,96 +292,119 @@ export default function BPJtvSection({
     });
 
     timeline
-      .to(containerRef.current, { yPercent: -100 }, 0)
-      .to(curriculumRef.current, { yPercent: -125 }, `-=${TRANSITION_DURATION}`)
-      .to(vitaeRef.current, { yPercent: -155 }, `-=${TRANSITION_DURATION}`)
-      .to(introWindowRef.current, { yPercent: -200 }, `-=${TRANSITION_DURATION}`)
-      .to(thumbRef.current, { yPercent: -55 }, `-=${TRANSITION_DURATION}`)
-      .to(topShapeRef.current, { yPercent: -30 }, `-=${TRANSITION_DURATION}`)
-      .to(bottomShapeRef.current, { yPercent: -46 }, `-=${TRANSITION_DURATION}`);
+      .to(containerRef.current, { xPercent: 100 }, 0)
+      .to(curriculumRef.current, { xPercent: 125 }, `-=${TRANSITION_DURATION}`)
+      .to(vitaeRef.current, { xPercent: 155 }, `-=${TRANSITION_DURATION}`)
+      .to(introWindowRef.current, { xPercent: 200 }, `-=${TRANSITION_DURATION}`)
+      .to(mockup2Ref.current, { xPercent: 100 }, `-=${TRANSITION_DURATION}`)
+      .to(mockup1Ref.current, { xPercent: 70 }, `-=${TRANSITION_DURATION}`)
+      .to(logo2Ref.current, { xPercent: 100 }, `-=${TRANSITION_DURATION}`)
+      .to(logo1Ref.current, { xPercent: 70 }, `-=${TRANSITION_DURATION}`)
+      .to(mockSmallRef.current, { xPercent: 55 }, `-=${TRANSITION_DURATION}`)
+      .to(topShapeRef.current, { xPercent: 30 }, `-=${TRANSITION_DURATION}`)
+      .to(bottomShapeRef.current, { xPercent: 46 }, `-=${TRANSITION_DURATION}`);
   };
 
   return (
     <section
       ref={containerRef}
-      className={`absolute flex justify-center items-center inset-0 transition-colors duration-500 ${
-        activePage.current !== "bp-jtv" ? "pointer-events-none" : ""
+      className={`absolute [container-type:size] flex justify-center items-center inset-0 transition-colors duration-500 ${
+        activePage.current !== "br-ragam" ? "pointer-events-none" : ""
       }`}
     >
-      <div className="absolute inset-0 overflow-hidden z-1 flex flex-col gap-[1svh]">
+      <div className="absolute inset-0 overflow-hidden z-9">
         <Carousel
-          images={[scroll1Image]}
+          images={[scrollImage]}
           autoScroll="right"
           className="h-full"
           imageClassName="rounded-none"
-          classNameWrapperImg="gap-[1svh]"
-        />
-        <Carousel
-          images={[scroll2Image]}
-          autoScroll="left"
-          className="h-full"
-          imageClassName="rounded-none"
-          classNameWrapperImg="gap-[1svh]"
-        />
-        <Carousel
-          images={[scroll3Image]}
-          autoScroll="right"
-          className="h-full"
-          imageClassName="rounded-none"
-          classNameWrapperImg="gap-[1svh]"
         />
       </div>
+
+      <button
+        type="button"
+        onClick={handleBackToBranding}
+        className={`absolute right-[4%] bottom-[5%] z-50 flex h-[5svh] aspect-[28/9] items-center justify-center rounded-[1svh] border border-white bg-gradient-to-b from-transparent to-white text-white shadow-lg transition-transform duration-300 ${isMobile ? "gap-1" : "gap-3"}`}
+        aria-label="Back to curriculum section"
+      >
+        <p className="text-[2svh]">Back</p>
+        <ChevronRight strokeWidth={2.75} className={"h-[2svh] w-[2svh]"} />
+      </button>
+
       <img
         src={overlayImage}
         alt=""
-        className="pointer-events-none absolute left-0 top-0 z-2 h-full w-full object-cover"
+        className="pointer-events-none absolute left-0 top-0 z-10 h-full w-full object-cover"
       />
 
       {/* menjaga rasio 16:9 */}
-      <div className={`z-3 relative aspect-video ${aspectFitClassName}`}>
+      <div className={`relative aspect-video ${aspectFitClassName}`}>
+        <img
+          ref={mockSmallRef}
+          src={bannerImage}
+          alt="Mockup Small"
+          className="absolute left-[-17%] top-[10%] z-11 h-[73%]"
+        />
+
+        <img
+          ref={mockup1Ref}
+          src={cupImage}
+          alt="Mockup SWK 1"
+          className="absolute top-[40%] left-[20%] z-12 h-[50%]"
+        />
+
+        <img
+          ref={logo2Ref}
+          src={idCard}
+          alt="Logo SWK Red"
+          className="absolute top-[-35%] left-[30%] z-13 h-[100%]"
+        />
         <img
           ref={topShapeRef}
           src={shapeBottomLeft}
           alt=""
-          className="pointer-events-none absolute left-[10%] top-[-7%] z-11 w-[37cqh]"
+          className="pointer-events-none absolute left-[5%] top-[-13%] z-14 w-[20%]"
         />
         <img
           ref={bottomShapeRef}
           src={shapeBottomLeft}
           alt=""
-          className="pointer-events-none absolute bottom-[-10%] left-[30%] z-11 w-[60cqh]"
+          className="pointer-events-none absolute bottom-[-20%] left-[30%] z-15 w-[35%]"
         />
 
         <img
-          ref={thumbRef}
-          src={tunnelThumbImage}
-          alt="Internship Jawapos Television"
-          className="absolute left-[20%] bottom-[11%] z-30 w-[75cqh] rotate-[7deg] drop-shadow-[0_28px_60px_rgba(0,0,0,0.28)]"
+          ref={logo1Ref}
+          src={logoRagam}
+          alt="Logo SWK Red"
+          className={`absolute right-[10%] z-30 h-[26%] bottom-[2%]`}
         />
 
         <div
           ref={curriculumRef}
-          className="absolute right-[7%] top-[10%] z-20 flex items-baseline leading-[0.8] text-secondary-950 h-[20%]"
+          className="absolute right-[11.2%] top-[8.5%] z-40 flex items-baseline leading-[0.82] text-white"
         >
-          <span className="kapakana-font text-[20cqh] leading-[0.72]">B</span>
-          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">ig</span>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">
+            Ragam Rasa
+          </span>
         </div>
 
         <div
           ref={vitaeRef}
-          className="absolute right-[10.6%] top-[20%] z-20 flex items-baseline leading-[0.8] text-secondary-950 h-[20%]"
+          className="absolute right-[23%] top-[14.2%] z-20 flex items-baseline leading-[0.8] text-white h-[20%]"
         >
-          <span className="kapakana-font text-[20cqh] leading-[0.72]">P</span>
-          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">roject</span>
+          <span className="kapakana-font text-[20cqh] leading-[0.72]">B</span>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">randing</span>
         </div>
 
-        <div ref={introWindowRef} className="absolute right-[6%] top-[35%] z-40 w-[40%]">
+        <div ref={introWindowRef} className="absolute right-[6%] top-[30%] z-40 w-[30%]">
           <Window size="custom" isMobile={isMobile} variant="lightBw">
             <div>
               <p className="inter-font text-[2cqh] leading-[1.27] tracking-[-0.02em] text-secondary-950/92">
-                This Big Project is the result of my internship at a local television station in
-                Surabaya (Jawa Pos Media), here I created social media posts for JTV Surabaya's
-                Instagram and other design needs, such as posters and so on.
+                This project involved creating an alternative branding concept for “Ragam Rasa”, a
+                culinary festival featuring local food experiences and live music performances. I
+                developed the event's logo and supergraphics to establish a vibrant and cohesive
+                visual identity that captured the festive atmosphere while maintaining strong brand
+                consistency. The project was created using Adobe Illustrator and Adobe Photoshop.
               </p>
               <button
                 type="button"
@@ -345,32 +414,6 @@ export default function BPJtvSection({
               </button>
             </div>
           </Window>
-        </div>
-
-        <div className="absolute bottom-[8.3%] right-[8.9%] z-40 flex flex-col items-start gap-[4cqh]">
-          <button
-            type="button"
-            onClick={() => handleToMore("bp-muhi")}
-            className="inter-font cursor-pointer border-b border-transparent text-start text-[2cqh] leading-[1.08] tracking-[-0.03em] text-secondary-950/58 hover:border-secondary-950"
-          >
-            Museum
-            <br />
-            Muhammadiyah
-          </button>
-          <div className="inter-font text-[3.5cqh] leading-[1.05] tracking-[-0.04em] text-secondary-950 transition-colors">
-            Internship
-            <br />
-            JTV
-          </div>
-          <button
-            type="button"
-            onClick={() => handleToMore("bp-tunnel")}
-            className="inter-font cursor-pointer border-b border-transparent text-start text-[2cqh] leading-[1.08] tracking-[-0.03em] text-secondary-950/58 hover:border-secondary-950"
-          >
-            Tunnel
-            <br />
-            KBS
-          </button>
         </div>
       </div>
     </section>

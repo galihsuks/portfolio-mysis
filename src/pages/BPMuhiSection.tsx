@@ -21,6 +21,8 @@ type BPMuhiSectionProps = {
   };
   setActivePage: ({ current, before }: { current: string; before: string }) => void;
   registerBackAction: (handler: (() => void) | null) => void;
+  isMobile: boolean;
+  aspectFitClassName: string;
 };
 
 const layerMotion = {
@@ -44,6 +46,8 @@ export default function BPMuhiSection({
   setActivePage,
   setBackground,
   registerBackAction,
+  isMobile,
+  aspectFitClassName,
 }: BPMuhiSectionProps) {
   const containerRef = useRef<HTMLElement | null>(null);
   const curriculumRef = useRef<HTMLDivElement | null>(null);
@@ -254,131 +258,122 @@ export default function BPMuhiSection({
   return (
     <section
       ref={containerRef}
-      className={`absolute inset-0 transition-colors duration-500 ${
+      className={`absolute flex justify-center items-center inset-0 transition-colors duration-500 ${
         activePage.current !== "bp-muhi" ? "pointer-events-none" : ""
       }`}
     >
-      <img
-        ref={topShapeRef}
-        src={shapeBottomLeft}
-        alt=""
-        className="pointer-events-none absolute left-[10%] top-[-7%] z-11 w-[26rem] max-w-[25vw]"
-      />
-      <img
-        ref={bottomShapeRef}
-        src={shapeBottomLeft}
-        alt=""
-        className="pointer-events-none absolute bottom-[-10%] left-[31%] z-11 w-[30rem]"
-      />
-
-      <div className="absolute inset-0 overflow-hidden z-9 flex flex-col">
+      <div className="absolute inset-0 overflow-hidden z-1 flex flex-col gap-[1svh]">
         <Carousel
           images={[scroll1Image]}
           autoScroll="right"
           className="h-full"
           imageClassName="rounded-none"
-          classNameWrapperImg="gap-[12px]"
+          classNameWrapperImg="gap-[1svh]"
         />
         <Carousel
           images={[scroll2Image]}
           autoScroll="left"
           className="h-full"
           imageClassName="rounded-none"
-          classNameWrapperImg="gap-[12px]"
+          classNameWrapperImg="gap-[1svh]"
         />
         <Carousel
           images={[scroll3Image]}
           autoScroll="right"
           className="h-full"
           imageClassName="rounded-none"
-          classNameWrapperImg="gap-[12px]"
+          classNameWrapperImg="gap-[1svh]"
         />
       </div>
       <img
         src={overlayImage}
         alt=""
-        className="pointer-events-none absolute left-0 top-0 z-10 h-full w-full object-cover"
+        className="pointer-events-none absolute left-0 top-0 z-2 h-full w-full object-cover"
       />
 
-      <img
-        ref={thumbRef}
-        src={tunnelThumbImage}
-        alt="Museum Muhammadiyah"
-        className="absolute left-[40%] bottom-[23%] z-30 w-[50rem] rotate-[7deg] drop-shadow-[0_28px_60px_rgba(0,0,0,0.28)]"
-      />
+      {/* menjaga rasio 16:9 */}
+      <div className={`z-3 relative aspect-video ${aspectFitClassName}`}>
+        <img
+          ref={topShapeRef}
+          src={shapeBottomLeft}
+          alt=""
+          className="pointer-events-none absolute left-[10%] top-[-7%] z-11 w-[37cqh]"
+        />
+        <img
+          ref={bottomShapeRef}
+          src={shapeBottomLeft}
+          alt=""
+          className="pointer-events-none absolute bottom-[-20%] left-[30%] z-11 w-[70cqh]"
+        />
 
-      <div
-        ref={curriculumRef}
-        className="absolute right-[7.4%] top-[8.5%] z-40 flex items-baseline leading-[0.82] text-secondary-950"
-      >
-        <span className="kapakana-font text-[clamp(8rem,12vw,13rem)] leading-[0.72]">B</span>
-        <span className="inter-font text-[clamp(4rem,5.7vw,6.15rem)] font-normal tracking-[-0.055em]">
-          ig
-        </span>
-      </div>
+        <img
+          ref={thumbRef}
+          src={tunnelThumbImage}
+          alt="Museum Muhammadiyah"
+          className="absolute right-[15%] bottom-[21%] z-30 w-[72cqh] rotate-[7deg] drop-shadow-[0_28px_60px_rgba(0,0,0,0.28)]"
+        />
 
-      <div
-        ref={vitaeRef}
-        className="absolute right-[11.2%] top-[18.2%] z-40 flex items-baseline leading-[0.8] text-secondary-950"
-      >
-        <span className="kapakana-font text-[clamp(8rem,12vw,13rem)] leading-[0.72]">P</span>
-        <span className="inter-font text-[clamp(4rem,5.7vw,6.15rem)] font-normal tracking-[-0.055em]">
-          roject
-        </span>
-      </div>
-
-      <div
-        ref={introWindowRef}
-        className="absolute right-[30%] bottom-[10%] z-40 w-[31rem] max-w-[31vw]"
-      >
-        <Window
-          size="custom"
-          variant="light"
-          bodyClassName="px-12 pb-7 pt-2"
-          panelClassName="bg-[linear-gradient(135deg,rgba(255,255,255,0.95)_0%,rgba(247,255,244,0.92)_52%,rgba(214,255,200,0.88)_100%)]"
+        <div
+          ref={curriculumRef}
+          className="absolute right-[7%] top-[10%] z-20 flex items-baseline leading-[0.8] text-secondary-950 h-[20%]"
         >
-          <div className="space-y-5">
-            <p className="inter-font max-w-[25rem] text-[0.9rem] leading-[1.2] tracking-[-0.02em] text-secondary-950/92">
-              This was my big project as a freelance graphic designer, working on the Muhammadiyah
-              Museum in Yogyakarta. In this project, I successfully designed and created murals for
-              the museum walls, measuring an average of 3x12 meters. I worked on the design
-              requirements using Photoshop and Adobe Illustrator.
-            </p>
-
-            <button
-              type="button"
-              className="jersey-font inline-flex min-w-[8.7rem] items-center justify-center rounded-full border-[3px] border-secondary-950/60 bg-white/70 px-6 py-2 text-[1.12rem] leading-none text-secondary-950 shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:scale-[1.02]"
-            >
-              Full Result
-            </button>
-          </div>
-        </Window>
-      </div>
-
-      <div className="absolute bottom-[8.3%] right-[8.9%] z-40 flex flex-col items-start gap-13">
-        <div className="inter-font text-[1.25rem] leading-[1.05] tracking-[-0.04em] text-secondary-950 transition-colors">
-          Museum
-          <br />
-          Muhammadiyah
+          <span className="kapakana-font text-[20cqh] leading-[0.72]">B</span>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">ig</span>
         </div>
-        <button
-          type="button"
-          onClick={() => handleToMore("bp-jtv")}
-          className="inter-font cursor-pointer border-b border-transparent text-start text-[1.02rem] leading-[1.08] tracking-[-0.03em] text-secondary-950/58 hover:border-secondary-950"
+
+        <div
+          ref={vitaeRef}
+          className="absolute right-[10.6%] top-[20%] z-20 flex items-baseline leading-[0.8] text-secondary-950 h-[20%]"
         >
-          Internship
-          <br />
-          JTV
-        </button>
-        <button
-          type="button"
-          onClick={() => handleToMore("bp-tunnel")}
-          className="inter-font cursor-pointer border-b border-transparent text-start text-[1.02rem] leading-[1.08] tracking-[-0.03em] text-secondary-950/58 hover:border-secondary-950"
-        >
-          Tunnel
-          <br />
-          KBS
-        </button>
+          <span className="kapakana-font text-[20cqh] leading-[0.72]">P</span>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">roject</span>
+        </div>
+
+        <div ref={introWindowRef} className="absolute right-[30%] bottom-[5%] z-40 w-[50%]">
+          <Window size="custom" isMobile={isMobile} variant="lightBw">
+            <div className="space-y-[2cqh]">
+              <p className="inter-font text-[2cqh] leading-[1.2] tracking-[-0.02em] text-secondary-950/92">
+                This was my big project as a freelance graphic designer, working on the Muhammadiyah
+                Museum in Yogyakarta. In this project, I successfully designed and created murals
+                for the museum walls, measuring an average of 3x12 meters. I worked on the design
+                requirements using Photoshop and Adobe Illustrator.
+              </p>
+
+              <button
+                type="button"
+                className="mx-auto jersey-font block rounded-full border-[0.1cqh] border-secondary-950/60 bg-white/70 px-[3cqh] py-[1cqh] text-[1.12cqw] leading-none text-secondary-950 shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:scale-[1.02]"
+              >
+                Full Result
+              </button>
+            </div>
+          </Window>
+        </div>
+
+        <div className="absolute bottom-[8.3%] right-[8.9%] z-40 flex flex-col items-start gap-[4cqh]">
+          <div className="inter-font text-[3.5cqh] leading-[1.05] tracking-[-0.04em] text-secondary-950 transition-colors">
+            Museum
+            <br />
+            Muhammadiyah
+          </div>
+          <button
+            type="button"
+            onClick={() => handleToMore("bp-jtv")}
+            className="inter-font cursor-pointer border-b border-transparent text-start text-[2cqh] leading-[1.08] tracking-[-0.03em] text-secondary-950/58 hover:border-secondary-950"
+          >
+            Internship
+            <br />
+            JTV
+          </button>
+          <button
+            type="button"
+            onClick={() => handleToMore("bp-tunnel")}
+            className="inter-font cursor-pointer border-b border-transparent text-start text-[2cqh] leading-[1.08] tracking-[-0.03em] text-secondary-950/58 hover:border-secondary-950"
+          >
+            Tunnel
+            <br />
+            KBS
+          </button>
+        </div>
       </div>
     </section>
   );

@@ -22,6 +22,7 @@ type SocialMedia1SectionProps = {
   setActivePage: ({ current, before }: { current: string; before: string }) => void;
   registerBackAction: (handler: (() => void) | null) => void;
   isMobile: boolean;
+  aspectFitClassName: string;
 };
 
 const layerMotion = {
@@ -45,7 +46,7 @@ export default function SocialMedia1Section({
   setActivePage,
   setBackground,
   registerBackAction,
-  isMobile,
+  aspectFitClassName,
 }: SocialMedia1SectionProps) {
   const [, setIsLanguageWindowOpen] = useState(false);
   const containerRef = useRef<HTMLElement | null>(null);
@@ -158,7 +159,7 @@ export default function SocialMedia1Section({
         yPercent: 70,
       });
       gsap.set(topShapeRef.current, {
-        yPercent: 22,
+        yPercent: 30,
       });
       gsap.set(bottomShapeRef.current, {
         yPercent: 34,
@@ -203,7 +204,7 @@ export default function SocialMedia1Section({
         [directionOpposite]: 0,
       });
       gsap.set(topShapeRef.current, {
-        [direction]: (fromWelcome ? 1 : -1) * 22,
+        [direction]: (fromWelcome ? 1 : -1) * 30,
         [directionOpposite]: 0,
       });
       gsap.set(bottomShapeRef.current, {
@@ -305,80 +306,68 @@ export default function SocialMedia1Section({
   return (
     <section
       ref={containerRef}
-      className={`absolute inset-0 transition-colors duration-500 ${
+      className={`absolute flex justify-center items-center inset-0 transition-colors duration-500 ${
         activePage.current !== "social-media-1" ? "pointer-events-none" : ""
       }`}
     >
       {/* menjaga rasio 16:9 */}
-      <div className="h-full relative aspect-video mx-auto">
+      <div className={`relative aspect-video ${aspectFitClassName}`}>
         <img
           ref={topShapeRef}
           src={shapeBottomLeft}
           alt=""
-          className={`pointer-events-none absolute ${isMobile ? "left-[20%]" : "left-[14.5%]"} top-[-10%] z-0 h-[60svh] blur-[16px] opacity-95`}
+          className={`pointer-events-none absolute left-[14.5%] top-[-18%] z-0 h-[60%]`}
         />
         <img
           ref={bottomShapeRef}
           src={shapeBottomLeft}
           alt=""
-          className={`pointer-events-none absolute bottom-[5%] ${isMobile ? "left-[-5%]" : "left-[-1.5%]"} z-11 h-[40svh] opacity-95`}
+          className={`pointer-events-none absolute bottom-[2%] left-[-7%] z-11 h-[40%]`}
         />
 
         <div
           ref={curriculumRef}
-          className="absolute right-[15%] top-[4.5%] z-20 flex items-baseline leading-[0.82] text-primary-500"
+          className="absolute right-[15%] top-[10%] z-20 flex items-baseline leading-[0.8] text-primary-500 h-[20%]"
         >
-          <span className="kapakana-font text-[20svh] leading-[0.72]">S</span>
-          <span className="inter-font text-[10svh] font-normal tracking-[-0.055em]">ocial</span>
+          <span className="kapakana-font text-[20cqh] leading-[0.72]">S</span>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">ocial</span>
         </div>
 
         <div
           ref={vitaeRef}
-          className="absolute right-[10.6%] top-[14.2%] z-20 flex items-baseline leading-[0.8] text-primary-500"
+          className="absolute right-[7%] top-[20%] z-20 flex items-baseline leading-[0.8] text-primary-500 h-[20%]"
         >
-          <span className="kapakana-font text-[20svh] leading-[0.72]">M</span>
-          <span className="inter-font text-[10svh] font-normal tracking-[-0.055em]">edia</span>
+          <span className="kapakana-font text-[20cqh] leading-[0.72]">M</span>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">edia</span>
         </div>
 
-        <div
-          ref={introWindowRef}
-          className={`absolute ${isMobile ? "right-[14%]" : "right-[20%]"} top-[41.5%] z-20 w-[30svh]`}
-        >
-          <p className="inter-font text-[1.5svh] leading-[1.22] tracking-[-0.02em] text-primary-400/95">
+        <div ref={introWindowRef} className={`absolute right-[20%] top-[41.5%] z-20 w-[30cqh]`}>
+          <p className="inter-font text-[1.5cqh] leading-[1.22] tracking-[-0.02em] text-primary-400/95">
             This is the result of my design while at Tedmond Groups in holding responsibility for
             the design of their main product, namely water tanks. This design result uses Photoshop,
             Illustrator and Canva software (if needed).
           </p>
         </div>
 
-        <div
-          ref={educationRef}
-          className={`absolute right-[40%] top-[5%] z-20 w-[100svh] max-w-[60.7vw]`}
-        >
-          <Window
-            isMobile={isMobile}
-            size="custom"
-            panelClassName="bg-secondary-900/52"
-            bodyClassName={isMobile ? "px-1 pb-1 pt-1" : "px-16 pb-16 pt-4"}
-            closeButtonClassName="text-primary-500"
-          >
-            <div className="grid grid-cols-3 gap-1.5">
+        <div ref={educationRef} className={`absolute right-[40%] top-[5%] z-20 w-[100cqh]`}>
+          <Window size="custom" closeButtonClassName="text-primary-500">
+            <div className="grid grid-cols-3 gap-[1cqh]">
               {socialMediaPosts.map((imageSrc, index) => (
                 <img
                   key={imageSrc}
                   src={imageSrc}
                   alt={`Social media design ${index + 1}`}
-                  className="block aspect-[4.1/5.16] w-full rounded-[0.2rem] object-cover"
+                  className="block aspect-[4.1/5.16] w-full rounded-[1cqh] object-cover"
                 />
               ))}
             </div>
           </Window>
         </div>
 
-        <div className={`absolute bottom-[9.8%] z-20 ${isMobile ? "right-[0%]" : "right-[8.7%]"}`}>
+        <div className={`absolute bottom-[9.8%] z-20 right-[8.7%]`}>
           <div
             onClick={() => handleToMore("social-media-2")}
-            className={`inter-font text-[3svh] tracking-[-0.03em] text-primary-400/70 ${isMobile ? "mb-5" : "mb-10"} border-b border-transparent hover:border-primary-400 cursor-pointer`}
+            className={`inter-font text-[3cqh] tracking-[-0.03em] text-primary-400/70 mb-[5cqh] border-b border-transparent hover:border-primary-400 cursor-pointer`}
           >
             Beauty
             <br />
@@ -386,13 +375,13 @@ export default function SocialMedia1Section({
           </div>
           <div
             onClick={() => handleToMore("social-media-3")}
-            className={`inter-font text-[3svh] tracking-[-0.03em] text-primary-400/70 ${isMobile ? "mb-5" : "mb-10"} border-b border-transparent hover:border-primary-400 cursor-pointer`}
+            className={`inter-font text-[3cqh] tracking-[-0.03em] text-primary-400/70 mb-[5cqh] border-b border-transparent hover:border-primary-400 cursor-pointer`}
           >
             Food and
             <br />
             Beverage
           </div>
-          <div className="inter-font text-[3.5svh] leading-[1.05] tracking-[-0.04em] text-primary-400">
+          <div className="inter-font text-[3.5cqh] leading-[1.05] tracking-[-0.04em] text-primary-400">
             Product
           </div>
         </div>

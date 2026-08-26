@@ -21,8 +21,8 @@ type IconMotionClasses = {
 const iconLayoutByCount: Record<number, IconMotionClasses[]> = {
   1: [
     {
-      base: "left-[-5%] bottom-[8%] z-[8] w-[110%] rotate-0",
-      hover: "left-[-15%] bottom-[12%] z-[8] w-[120%] rotate-0",
+      base: "left-[0%] bottom-[8%] z-[8] w-[110%] rotate-0",
+      hover: "left-[-5%] bottom-[12%] z-[8] w-[120%] rotate-0",
     },
   ],
   2: [
@@ -265,20 +265,17 @@ const sizeClasses = {
   sm: {
     wrapper: "w-[9.75rem]",
     stage: "h-[7.5rem] w-[8.2rem]",
-    back: "bottom-[0.95rem] w-[86%]",
     label: "mt-2 text-[0.88rem]",
   },
   md: {
     wrapper: "w-[11.5rem]",
     stage: "h-[8.75rem] w-[9.6rem]",
-    back: "bottom-[1.05rem] w-[87%]",
     label: "mt-2 text-[10svh]",
   },
   lg: {
-    wrapper: "w-[28svh]",
-    stage: "h-[20svh] w-[27svh]",
-    back: "h-auto w-[21svh]",
-    label: "mt-[1svh] text-[3.5svh]",
+    wrapper: "w-[15cqw]",
+    stage: "w-[70%] aspect-square",
+    label: "mt-[5%] text-[3.5cqh]",
   },
 } as const;
 
@@ -308,7 +305,7 @@ function Folder({
         <img
           src={folderBack}
           alt=""
-          className={`pointer-events-none absolute right-0 bottom-0 ${sizeConfig.back}`}
+          className={`pointer-events-none absolute right-0 bottom-0 h-auto w-[90%]`}
         />
 
         {visibleIcons.map((icon, index) => {

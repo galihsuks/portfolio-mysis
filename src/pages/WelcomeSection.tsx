@@ -14,6 +14,7 @@ type WelcomeSectionProps = {
     before: string;
   };
   setActivePage: ({ current, before }: { current: string; before: string }) => void;
+  aspectFitClassName: string;
 };
 
 export default function WelcomeSection({
@@ -23,6 +24,7 @@ export default function WelcomeSection({
   setActivePage,
   setBackground,
   background,
+  aspectFitClassName,
 }: WelcomeSectionProps) {
   const containerRef = useRef<HTMLElement | null>(null);
   const heroContentRef = useRef<HTMLDivElement | null>(null);
@@ -270,7 +272,10 @@ export default function WelcomeSection({
       ref={containerRef}
       className={`absolute inset-0 overflow-hidden transition-colors duration-500 ${activePage.current !== "welcome" ? "pointer-events-none" : ""}`}
     >
-      <div ref={heroContentRef} className="absolute inset-0 z-20 pointer-events-auto">
+      <div
+        ref={heroContentRef}
+        className="absolute flex justify-center items-center inset-0 z-20 pointer-events-auto"
+      >
         {categoryLabels.map((label, index) => (
           <button
             key={`${label.id}-${label.text}-${index}`}
@@ -291,29 +296,27 @@ export default function WelcomeSection({
           </button>
         ))}
 
-        <div
-          ref={portfolioRef}
-          className={`absolute left-[29%] top-[40%] z-20 flex items-baseline leading-[0.85] transition-colors duration-500 ${
-            background === "light" ? "text-secondary-950" : "text-primary-500"
-          }`}
-        >
-          <span className="kapakana-font text-[clamp(7rem,13vw,12rem)] leading-[0.75]">P</span>
-          <span className="inter-font text-[clamp(3rem,5.7vw,5.25rem)] font-normal tracking-[-0.05em]">
-            ort
-          </span>
-          <span className="jersey-font ml-[0.2rem] text-[clamp(3rem,5.7vw,5.25rem)]">folio</span>
-        </div>
+        <div className={`aspect-video ${aspectFitClassName}`}>
+          <div
+            ref={portfolioRef}
+            className={`absolute left-[29%] top-[40%] z-20 flex items-baseline leading-[0.85] transition-colors duration-500 ${
+              background === "light" ? "text-secondary-950" : "text-primary-500"
+            }`}
+          >
+            <span className="kapakana-font text-[30cqh] leading-[0.75]">P</span>
+            <span className="inter-font text-[13cqh] font-normal tracking-[-0.05em]">ort</span>
+            <span className="jersey-font ml-[0.2rem] text-[13cqh]">folio</span>
+          </div>
 
-        <div
-          ref={amaliaRef}
-          className={`absolute left-[44%] top-[54%] z-20 flex items-baseline leading-[0.85] transition-colors duration-500 ${
-            background === "light" ? "text-secondary-950" : "text-primary-500"
-          }`}
-        >
-          <span className="kapakana-font text-[clamp(7rem,13vw,12rem)] leading-[0.75]">A</span>
-          <span className="inter-font text-[clamp(3rem,5.7vw,5.25rem)] font-normal tracking-[-0.05em]">
-            malia
-          </span>
+          <div
+            ref={amaliaRef}
+            className={`absolute left-[44%] top-[54%] z-20 flex items-baseline leading-[0.85] transition-colors duration-500 ${
+              background === "light" ? "text-secondary-950" : "text-primary-500"
+            }`}
+          >
+            <span className="kapakana-font text-[30cqh] leading-[0.75]">A</span>
+            <span className="inter-font text-[13cqh] font-normal tracking-[-0.05em]">malia</span>
+          </div>
         </div>
       </div>
     </section>

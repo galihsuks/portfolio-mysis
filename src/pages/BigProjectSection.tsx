@@ -16,6 +16,8 @@ type BigProjectSectionProps = {
   };
   setActivePage: ({ current, before }: { current: string; before: string }) => void;
   registerBackAction: (handler: (() => void) | null) => void;
+  isMobile: boolean;
+  aspectFitClassName: string;
 };
 
 const layerMotion = {
@@ -39,6 +41,7 @@ export default function BigProjectSection({
   setActivePage,
   setBackground,
   registerBackAction,
+  aspectFitClassName,
 }: BigProjectSectionProps) {
   const containerRef = useRef<HTMLElement | null>(null);
   const curriculumRef = useRef<HTMLDivElement | null>(null);
@@ -272,91 +275,75 @@ export default function BigProjectSection({
   return (
     <section
       ref={containerRef}
-      className={`absolute inset-0 transition-colors duration-500 ${
+      className={`absolute flex justify-center items-center inset-0 transition-colors duration-500 ${
         activePage.current !== "big-project" ? "pointer-events-none" : ""
       }`}
     >
-      <img
-        ref={topShapeRef}
-        src={shapeBottomLeft}
-        alt=""
-        className="pointer-events-none absolute right-[-10%] bottom-[0%] z-0 w-[40rem] max-w-[36vw] blur-[16px] opacity-95"
-      />
-      <img
-        ref={bottomShapeRef}
-        src={shapeBottomLeft}
-        alt=""
-        className="pointer-events-none absolute top-[10%] left-[10%] z-11 w-[20rem] max-w-[22vw] opacity-95"
-      />
-
-      <div
-        ref={curriculumRef}
-        className="absolute right-[8.4%] top-[4.5%] z-20 flex items-baseline leading-[0.82] text-primary-500"
-      >
-        <span className="kapakana-font text-[clamp(7.8rem,12.4vw,13rem)] leading-[0.72]">B</span>
-        <span className="inter-font text-[clamp(4rem,6vw,6.25rem)] font-normal tracking-[-0.055em]">
-          ig
-        </span>
-      </div>
-
-      <div
-        ref={vitaeRef}
-        className="absolute right-[10.6%] top-[14.2%] z-20 flex items-baseline leading-[0.8] text-primary-500"
-      >
-        <span className="kapakana-font text-[clamp(7.8rem,12.4vw,13rem)] leading-[0.72]">P</span>
-        <span className="inter-font text-[clamp(4rem,6vw,6.25rem)] font-normal tracking-[-0.055em]">
-          roject
-        </span>
-      </div>
-
-      <div
-        ref={introWindowRef}
-        className="absolute right-[20%] top-[30%] z-9 w-[27.7rem] max-w-[27vw]"
-      >
-        <Window size="md" bodyClassName="px-15 pb-13">
-          <p className="inter-font text-[0.9rem] leading-[1.27] tracking-[-0.02em] text-primary-400/95">
-            Big Project is my design project on a large scale, such as an internship at JTV, a
-            national television company in Surabaya, then collaborating with a design studio in
-            Jogja to work on a wall design project for a Muhammadiyah Museum, then working on a
-            project for a tunnel at the Surabaya Zoo.
-          </p>
-        </Window>
-      </div>
-
-      <div ref={muhiRef} className="absolute left-[35%] top-[32%] z-30">
-        <Folder
-          label="Museum Muhammadiyah"
-          size="lg"
-          icons={["muhi"]}
-          className="w-[14.5rem]"
-          folderClassName="h-[12.1rem] w-[12.5rem]"
-          labelClassName="mt-1 text-[1.1rem]"
-          onClick={() => handleToFolder("bp-muhi")}
+      {/* menjaga rasio 16:9 */}
+      <div className={`relative aspect-video ${aspectFitClassName}`}>
+        <img
+          ref={topShapeRef}
+          src={shapeBottomLeft}
+          alt=""
+          className="pointer-events-none absolute right-[-10%] bottom-[0%] z-0 w-[33%]"
         />
-      </div>
-
-      <div ref={tunnelRef} className="absolute left-[15%] top-[60%] z-30">
-        <Folder
-          label="Tunnel Surabaya Zoo"
-          size="lg"
-          icons={["tunnel"]}
-          className="w-[15.2rem]"
-          folderClassName="h-[12.4rem] w-[13rem]"
-          labelClassName="mt-0.5 text-[1.1rem]"
-          onClick={() => handleToFolder("bp-tunnel")}
+        <img
+          ref={bottomShapeRef}
+          src={shapeBottomLeft}
+          alt=""
+          className="pointer-events-none absolute top-[10%] left-[5%] z-11 w-[20%]"
         />
-      </div>
 
-      <div ref={jtvRef} className="absolute left-[35%] top-[60%] z-30">
-        <Folder
-          label="Internship Jawapos Television"
-          size="lg"
-          icons={["jtv"]}
-          className="w-[14.5rem]"
-          folderClassName="h-[12.2rem] w-[12.4rem]"
-          labelClassName="mt-0.5 text-[1.1rem]"
-          onClick={() => handleToFolder("bp-jtv")}
-        />
+        <div
+          ref={curriculumRef}
+          className="absolute right-[7%] top-[10%] z-20 flex items-baseline leading-[0.8] text-primary-500 h-[20%]"
+        >
+          <span className="kapakana-font text-[20cqh] leading-[0.72]">B</span>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">ig</span>
+        </div>
+
+        <div
+          ref={vitaeRef}
+          className="absolute right-[10.6%] top-[20%] z-20 flex items-baseline leading-[0.8] text-primary-500 h-[20%]"
+        >
+          <span className="kapakana-font text-[20cqh] leading-[0.72]">P</span>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">roject</span>
+        </div>
+
+        <div ref={introWindowRef} className="absolute right-[20%] top-[35%] z-9 w-[27.7%]">
+          <Window size="custom">
+            <p className="inter-font text-[1.3cqh] leading-[1.27] tracking-[-0.02em] text-primary-400/95">
+              Big Project is my design project on a large scale, such as an internship at JTV, a
+              national television company in Surabaya, then collaborating with a design studio in
+              Jogja to work on a wall design project for a Muhammadiyah Museum, then working on a
+              project for a tunnel at the Surabaya Zoo.
+            </p>
+          </Window>
+        </div>
+
+        <div ref={muhiRef} className="absolute left-[33%] top-[25%] z-30">
+          <Folder
+            label="Museum Muhammadiyah"
+            icons={["muhi"]}
+            onClick={() => handleToFolder("bp-muhi")}
+          />
+        </div>
+
+        <div ref={tunnelRef} className="absolute left-[13%] top-[55%] z-30">
+          <Folder
+            label="Tunnel Surabaya Zoo"
+            icons={["tunnel"]}
+            onClick={() => handleToFolder("bp-tunnel")}
+          />
+        </div>
+
+        <div ref={jtvRef} className="absolute left-[33%] top-[55%] z-30">
+          <Folder
+            label="Internship Jawapos Television"
+            icons={["jtv"]}
+            onClick={() => handleToFolder("bp-jtv")}
+          />
+        </div>
       </div>
     </section>
   );
