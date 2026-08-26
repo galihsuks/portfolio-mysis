@@ -140,6 +140,7 @@ export default function PortfolioExperience() {
           setBackground={setBackground}
           registerBackAction={setBackAction}
           isMobile={isMobile}
+          aspectFitClassName={fitClassName}
         />
 
         <PhotoVideo2Section
@@ -150,6 +151,7 @@ export default function PortfolioExperience() {
           setBackground={setBackground}
           registerBackAction={setBackAction}
           isMobile={isMobile}
+          aspectFitClassName={fitClassName}
         />
 
         <SocialMedia1Section

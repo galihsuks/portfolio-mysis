@@ -20,6 +20,7 @@ type PhotoVideo2SectionProps = {
   setActivePage: ({ current, before }: { current: string; before: string }) => void;
   registerBackAction: (handler: (() => void) | null) => void;
   isMobile: boolean;
+  aspectFitClassName: string;
 };
 
 const layerMotion = {
@@ -43,7 +44,7 @@ export default function PhotoVideo2Section({
   setActivePage,
   setBackground,
   registerBackAction,
-  isMobile,
+  aspectFitClassName,
 }: PhotoVideo2SectionProps) {
   const [, setIsLanguageWindowOpen] = useState(false);
   const containerRef = useRef<HTMLElement | null>(null);
@@ -279,191 +280,151 @@ export default function PhotoVideo2Section({
   return (
     <section
       ref={containerRef}
-      className={`absolute inset-0 transition-colors duration-500 ${
+      className={`absolute flex justify-center items-center inset-0 transition-colors duration-500 ${
         activePage.current !== "photo-video-2" ? "pointer-events-none" : ""
       }`}
     >
       {/* menjaga rasio 16:9 */}
-      <div className="h-full relative aspect-video mx-auto">
+      <div className={`relative aspect-video ${aspectFitClassName}`}>
         <img
           ref={topShapeRef}
           src={shapeBottomLeft}
           alt=""
-          className={`pointer-events-none absolute ${isMobile ? "left-[20%]" : "left-[14.5%]"} top-[-10%] z-0 h-[60svh] blur-[16px] opacity-95`}
+          className={`pointer-events-none absolute left-[14.5%] top-[-18%] z-0 h-[60%]`}
         />
         <img
           ref={bottomShapeRef}
           src={shapeBottomLeft}
           alt=""
-          className={`pointer-events-none absolute bottom-[5%] ${isMobile ? "left-[-5%]" : "left-[-1.5%]"} z-11 h-[40svh] opacity-95`}
+          className={`pointer-events-none absolute bottom-[2%] left-[-7%] z-11 h-[40%]`}
         />
 
         <div
           ref={curriculumRef}
-          className="absolute right-[8.4%] top-[4.5%] z-20 flex items-baseline leading-[0.82] text-primary-500"
+          className="absolute right-[10.6%] top-[10%] z-20 flex items-baseline leading-[0.8] text-primary-500 h-[20%]"
         >
-          <span className="kapakana-font text-[20svh] leading-[0.72]">P</span>
-          <span className="inter-font text-[10svh] font-normal tracking-[-0.055em]">
-            hoto <p className="inline kapakana-font text-[20svh] leading-[0.72]">n</p>
+          <span className="kapakana-font text-[20cqh] leading-[0.72]">P</span>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">
+            hoto <p className="inline kapakana-font text-[20cqh] leading-[0.72]">n</p>
           </span>
         </div>
 
         <div
           ref={vitaeRef}
-          className="absolute right-[10.6%] top-[14.2%] z-20 flex items-baseline leading-[0.8] text-primary-500"
+          className="absolute right-[10.6%] top-[20%] z-20 flex items-baseline leading-[0.8] text-primary-500 h-[20%]"
         >
-          <span className="kapakana-font text-[20svh] leading-[0.72]">V</span>
-          <span className="inter-font text-[10svh] font-normal tracking-[-0.055em]">ideo</span>
+          <span className="kapakana-font text-[20cqh] leading-[0.72]">V</span>
+          <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">ideo</span>
         </div>
 
-        <div ref={introWindowRef} className="absolute bottom-[10%] left-[22%] z-20 w-[20svh]">
-          <p className="inter-font text-[1.5svh] leading-[1.22] tracking-[-0.02em] text-primary-400/95">
+        <div ref={introWindowRef} className="absolute bottom-[16%] left-[18%] z-20 w-[25cqh]">
+          <p className="inter-font text-[1.5cqh] leading-[1.22] tracking-[-0.02em] text-primary-400/95">
             I successfully created a video for the campus where I teach, and in 2021, I was given
             the responsibility to create a branding video for Klaten. The software I used to create
             the video was Adobe Premiere Pro and CapCut.
           </p>
         </div>
 
-        <div ref={educationRef} className="absolute left-[13%] top-[6%] z-20">
-          <Window
-            isMobile={isMobile}
-            size="custom"
-            panelClassName="bg-secondary-900/52"
-            bodyClassName={isMobile ? "px-1 pb-1 pt-1" : "px-6 pb-6 pt-4"}
-            closeButtonClassName="text-primary-500"
-          >
-            <div className={`flex items-center w-full ${isMobile ? "gap-2 pb-2" : "gap-3 pb-4"}`}>
+        <div ref={educationRef} className="absolute left-[7%] top-[6%] z-20">
+          <Window size="custom" closeButtonClassName="text-primary-500">
+            <div className={`flex items-center w-full gap-[2cqh] pb-[2cqh]`}>
               <img
                 src={ppIgImage}
                 alt="Instagram profile"
-                className={`${isMobile ? "h-4 w-4" : "h-11 w-11"} rounded-full object-cover`}
+                className={`h-[4cqh] w-[4cqh] rounded-full object-cover`}
               />
               <div className="min-w-0 flex-1 text-primary-50">
-                <p className="inter-font truncate text-[1.4svh] font-semibold">
+                <p className="inter-font truncate text-[1.4cqh] font-semibold">
                   amalialatifahputri
                 </p>
-                <p className="inter-font truncate text-[1svh] text-primary-50/85">
+                <p className="inter-font truncate text-[1cqh] text-primary-50/85">
                   ♫ AMEL PUTRI . Mawar Tanpa Duri
                 </p>
               </div>
-              <span className="inter-font text-[1svh] text-primary-50/85">...</span>
+              <span className="inter-font text-[1cqh] text-primary-50/85">...</span>
             </div>
 
             <img
               src={photoVideo1Image}
               alt="Graduation concept photography 1"
-              className={`block h-[40svh] ${isMobile ? "rounded-[6px]" : "rounded-[1.1rem]"} object-cover`}
+              className={`block h-[35cqh] rounded-[2cqh] object-cover`}
             />
 
-            <div
-              className={`${isMobile ? "mt-2 gap-2" : "mt-4 gap-4"} flex items-center text-primary-50`}
-            >
-              <div className={`flex items-center ${isMobile ? "gap-[2px]" : "gap-1.5"}`}>
-                <Heart
-                  className={isMobile ? "h-1.5 w-1.5 -translate-y-[1px]" : "h-5 w-5"}
-                  strokeWidth={2.2}
-                />
-                <span className="inter-font text-[1.5svh]">04</span>
+            <div className={`mt-[2cqh] gap-[2cqh] flex items-center text-primary-50`}>
+              <div className={`flex items-center gap-[1cqh]`}>
+                <Heart fill="white" className={"h-[2cqh] w-[2cqh]"} strokeWidth={2.2} />
+                <span className="inter-font text-[1.2cqh]">04</span>
               </div>
-              <div className={`flex items-center ${isMobile ? "gap-[2px]" : "gap-1.5"}`}>
-                <MessageCircle
-                  className={isMobile ? "h-1.5 w-1.5 -translate-y-[1px]" : "h-5 w-5"}
-                  strokeWidth={2.2}
-                />
-                <span className="inter-font text-[1.5svh]">07</span>
+              <div className={`flex items-center gap-[1cqh]`}>
+                <MessageCircle className={"h-[2cqh] w-[2cqh]"} strokeWidth={2.2} />
+                <span className="inter-font text-[1.2cqh]">07</span>
               </div>
-              <div className={`flex items-center ${isMobile ? "gap-[2px]" : "gap-1.5"}`}>
-                <Repeat2
-                  className={isMobile ? "h-1.5 w-1.5 -translate-y-[1px]" : "h-5 w-5"}
-                  strokeWidth={2.2}
-                />
-                <span className="inter-font text-[1.5svh]">19</span>
+              <div className={`flex items-center gap-[1cqh]`}>
+                <Repeat2 className={"h-[2cqh] w-[2cqh]"} strokeWidth={2.2} />
+                <span className="inter-font text-[1.2cqh]">19</span>
               </div>
-              <div className={`flex items-center ${isMobile ? "gap-[2px]" : "gap-1.5"}`}>
-                <Send
-                  className={isMobile ? "h-1.5 w-1.5 -translate-y-[1px]" : "h-5 w-5"}
-                  strokeWidth={2.2}
-                />
-                <span className="inter-font text-[1.5svh]">99</span>
+              <div className={`flex items-center gap-[1cqh]`}>
+                <Send className={"h-[2cqh] w-[2cqh]"} strokeWidth={2.2} />
+                <span className="inter-font text-[1.2cqh]">99</span>
               </div>
             </div>
           </Window>
         </div>
 
         <div ref={experienceRef} className="absolute right-[20%] bottom-[5%] z-22">
-          <Window
-            isMobile={isMobile}
-            size="custom"
-            panelClassName="bg-secondary-900/52"
-            bodyClassName={isMobile ? "px-1 pb-1 pt-1" : "px-6 pb-6 pt-4"}
-            closeButtonClassName="text-primary-500"
-          >
-            <div className={`flex items-center w-full ${isMobile ? "gap-2 pb-2" : "gap-3 pb-4"}`}>
+          <Window size="custom" closeButtonClassName="text-primary-500">
+            <div className={`flex items-center w-full gap-[2cqh] pb-[2cqh]`}>
               <img
                 src={ppIgImage}
                 alt="Instagram profile"
-                className={`${isMobile ? "h-4 w-4" : "h-11 w-11"} rounded-full object-cover`}
+                className={`h-[4cqh] w-[4cqh] rounded-full object-cover`}
               />
               <div className="min-w-0 flex-1 text-primary-50">
-                <p className="inter-font truncate text-[1.4svh] font-semibold">
+                <p className="inter-font truncate text-[1.4cqh] font-semibold">
                   amalialatifahputri
                 </p>
-                <p className="inter-font truncate text-[1svh] text-primary-50/85">
+                <p className="inter-font truncate text-[1cqh] text-primary-50/85">
                   ♫ AMEL PUTRI . Mawar Tanpa Duri
                 </p>
               </div>
-              <span className="inter-font text-[1svh] text-primary-50/85">...</span>
+              <span className="inter-font text-[1cqh] text-primary-50/85">...</span>
             </div>
 
             <img
               src={photoVideo2Image}
               alt="Depression theme concept photography"
-              className={`block h-[40svh] ${isMobile ? "rounded-[6px]" : "rounded-[1.1rem]"} object-cover`}
+              className={`block h-[35cqh] rounded-[2cqh] object-cover`}
             />
 
-            <div
-              className={`${isMobile ? "mt-2 gap-2" : "mt-4 gap-4"} flex items-center text-primary-50`}
-            >
-              <div className={`flex items-center ${isMobile ? "gap-[2px]" : "gap-1.5"}`}>
-                <Heart
-                  className={isMobile ? "h-1.5 w-1.5 -translate-y-[1px]" : "h-5 w-5"}
-                  strokeWidth={2.2}
-                />
-                <span className="inter-font text-[1.5svh]">04</span>
+            <div className={`mt-[2cqh] gap-[2cqh] flex items-center text-primary-50`}>
+              <div className={`flex items-center gap-[1cqh]`}>
+                <Heart fill="white" className={"h-[2cqh] w-[2cqh]"} strokeWidth={2.2} />
+                <span className="inter-font text-[1.2cqh]">04</span>
               </div>
-              <div className={`flex items-center ${isMobile ? "gap-[2px]" : "gap-1.5"}`}>
-                <MessageCircle
-                  className={isMobile ? "h-1.5 w-1.5 -translate-y-[1px]" : "h-5 w-5"}
-                  strokeWidth={2.2}
-                />
-                <span className="inter-font text-[1.5svh]">07</span>
+              <div className={`flex items-center gap-[1cqh]`}>
+                <MessageCircle className={"h-[2cqh] w-[2cqh]"} strokeWidth={2.2} />
+                <span className="inter-font text-[1.2cqh]">07</span>
               </div>
-              <div className={`flex items-center ${isMobile ? "gap-[2px]" : "gap-1.5"}`}>
-                <Repeat2
-                  className={isMobile ? "h-1.5 w-1.5 -translate-y-[1px]" : "h-5 w-5"}
-                  strokeWidth={2.2}
-                />
-                <span className="inter-font text-[1.5svh]">19</span>
+              <div className={`flex items-center gap-[1cqh]`}>
+                <Repeat2 className={"h-[2cqh] w-[2cqh]"} strokeWidth={2.2} />
+                <span className="inter-font text-[1.2cqh]">19</span>
               </div>
-              <div className={`flex items-center ${isMobile ? "gap-[2px]" : "gap-1.5"}`}>
-                <Send
-                  className={isMobile ? "h-1.5 w-1.5 -translate-y-[1px]" : "h-5 w-5"}
-                  strokeWidth={2.2}
-                />
-                <span className="inter-font text-[1.5svh]">99</span>
+              <div className={`flex items-center gap-[1cqh]`}>
+                <Send className={"h-[2cqh] w-[2cqh]"} strokeWidth={2.2} />
+                <span className="inter-font text-[1.2cqh]">99</span>
               </div>
             </div>
           </Window>
         </div>
 
-        <div className={`absolute bottom-[9.8%] z-20 ${isMobile ? "right-[0%]" : "right-[8.7%]"}`}>
-          <div className="inter-font text-[3.5svh] leading-[1.05] tracking-[-0.04em] text-primary-400 mb-10">
+        <div className={`absolute bottom-[9.8%] z-20 right-[8.7%]`}>
+          <div className="inter-font text-[3.5cqh] leading-[1.05] tracking-[-0.04em] text-primary-400 mb-[5cqh]">
             Video
           </div>
           <button
             type="button"
             onClick={() => handleToBack("photo-video-1")}
-            className="text-start inter-font text-[3svh] tracking-[-0.03em] text-primary-400/70 border-b border-transparent hover:border-primary-400 cursor-pointer"
+            className="text-start inter-font text-[3cqh] tracking-[-0.03em] text-primary-400/70 border-b border-transparent hover:border-primary-400 cursor-pointer"
           >
             Photo
             <br />
