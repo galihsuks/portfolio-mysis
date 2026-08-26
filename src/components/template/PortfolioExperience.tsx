@@ -25,6 +25,13 @@ import BrandingRagamRasaSection from "../../pages/BrandingRagamRasaSection";
 import BrandingGSMSection from "../../pages/BrandingGSMSection";
 import Greeting from "../ui/Greeting";
 
+const preloadAssetModules = import.meta.glob("../../assets/**/*.{png,jpg,jpeg,svg,webp,avif}", {
+  eager: true,
+  import: "default",
+});
+const preloadAssetUrls = Object.values(preloadAssetModules) as string[];
+const MIN_GREETING_MS = 1200;
+
 export default function PortfolioExperience() {
   const shellRef = useRef<HTMLDivElement | null>(null);
   const [backAction, setBackAction] = useState<(() => void) | null>(null);
@@ -36,11 +43,68 @@ export default function PortfolioExperience() {
   });
   const [background, setBackground] = useState<VariantBackgroundType>("light");
   const { isMobile, isLandscape } = useDeviceDetect();
-  const [isLoad, setIsLoad] = useState(true);
+  const [isGreetingHidden, setIsGreetingHidden] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
 
   useEffect(() => {
     const ctx = gsap.context(() => {}, shellRef);
     return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    let isCancelled = false;
+    let loadedCount = 0;
+    const totalAssets = preloadAssetUrls.length;
+    const startedAt = Date.now();
+
+    if (!totalAssets) {
+      setLoadingProgress(100);
+      setIsGreetingHidden(true);
+      return;
+    }
+
+    const finish = () => {
+      const elapsed = Date.now() - startedAt;
+      const remaining = Math.max(0, MIN_GREETING_MS - elapsed);
+
+      window.setTimeout(() => {
+        if (isCancelled) {
+          return;
+        }
+
+        setLoadingProgress(100);
+        setIsGreetingHidden(true);
+      }, remaining);
+    };
+
+    const markLoaded = () => {
+      loadedCount += 1;
+
+      if (isCancelled) {
+        return;
+      }
+
+      setLoadingProgress((loadedCount / totalAssets) * 100);
+
+      if (loadedCount === totalAssets) {
+        finish();
+      }
+    };
+
+    preloadAssetUrls.forEach((src) => {
+      const image = new Image();
+      image.onload = markLoaded;
+      image.onerror = markLoaded;
+      image.src = src;
+
+      if (image.complete) {
+        markLoaded();
+      }
+    });
+
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   useEffect(() => {
@@ -69,7 +133,7 @@ export default function PortfolioExperience() {
 
   return (
     <>
-      <Greeting hide={isLoad} />
+      <Greeting hide={isGreetingHidden} progress={loadingProgress} />
       <main className="block h-[100svh] w-full overflow-hidden text-secondary-950">
         <Background variant={background} />
         <div ref={shellRef} className={`relative h-full w-full overflow-hidden`}>
