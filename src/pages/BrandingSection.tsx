@@ -288,7 +288,7 @@ export default function BrandingSection({
           ref={topShapeRef}
           src={shapeBottomLeft}
           alt=""
-          className="pointer-events-none absolute right-[-10%] bottom-[0%] z-0 w-[40%] blur-[16px] opacity-95"
+          className="pointer-events-none absolute right-[-10%] bottom-[0%] z-0 w-[40%] opacity-95"
         />
         <img
           ref={bottomShapeRef}

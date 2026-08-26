@@ -162,6 +162,7 @@ export default function PortfolioExperience() {
           setBackground={setBackground}
           registerBackAction={setBackAction}
           isMobile={isMobile}
+          aspectFitClassName={fitClassName}
         />
 
         <SocialMedia2Section
@@ -172,6 +173,7 @@ export default function PortfolioExperience() {
           setBackground={setBackground}
           registerBackAction={setBackAction}
           isMobile={isMobile}
+          aspectFitClassName={fitClassName}
         />
 
         <SocialMedia3Section
@@ -182,6 +184,7 @@ export default function PortfolioExperience() {
           setBackground={setBackground}
           registerBackAction={setBackAction}
           isMobile={isMobile}
+          aspectFitClassName={fitClassName}
         />
 
         <BigProjectSection
@@ -191,6 +194,8 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
+          aspectFitClassName={fitClassName}
         />
 
         <BPTunnelSection
@@ -200,6 +205,8 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
+          aspectFitClassName={fitClassName}
         />
 
         <BPJtvSection
@@ -209,6 +216,8 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
+          aspectFitClassName={fitClassName}
         />
 
         <BPMuhiSection
@@ -218,6 +227,8 @@ export default function PortfolioExperience() {
           setActivePage={setActivePage}
           setBackground={setBackground}
           registerBackAction={setBackAction}
+          isMobile={isMobile}
+          aspectFitClassName={fitClassName}
         />
 
         <BrandingSection
