@@ -127,7 +127,7 @@ export default function CurriculumSection({
     if (firstRender.current) {
       firstRender.current = false;
       gsap.set(containerRef.current, {
-        yPercent: 100,
+        yPercent: 200,
       });
       gsap.set(curriculumRef.current, {
         yPercent: 120,
@@ -398,7 +398,6 @@ export default function CurriculumSection({
         <div ref={skillRef} className="absolute right-[27%] top-[66%] z-30">
           <Folder
             label="Skill"
-            size="lg"
             icons={[
               "canva",
               "premier",

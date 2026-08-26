@@ -172,7 +172,7 @@ export default function ExperienceSection({
     if (firstRender.current) {
       firstRender.current = false;
       gsap.set(containerRef.current, {
-        xPercent: 100,
+        xPercent: 200,
       });
       gsap.set(experienceRef.current, {
         xPercent: 165,

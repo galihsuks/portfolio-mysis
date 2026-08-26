@@ -130,7 +130,7 @@ export default function BrandingRagamRasaSection({
     if (firstRender.current) {
       firstRender.current = false;
       gsap.set(containerRef.current, {
-        xPercent: 100,
+        xPercent: 200,
       });
       gsap.set(curriculumRef.current, {
         xPercent: 120,

@@ -328,7 +328,7 @@ export default function SkillSection({
     if (firstRender.current) {
       firstRender.current = false;
       gsap.set(containerRef.current, {
-        xPercent: 100,
+        xPercent: 200,
       });
       gsap.set(titleRef.current, {
         xPercent: 165,

@@ -143,7 +143,7 @@ export default function PhotoVideo2Section({
         yPercent: -70,
       });
       gsap.set(topShapeRef.current, {
-        yPercent: -22,
+        yPercent: -30,
       });
       gsap.set(bottomShapeRef.current, {
         yPercent: -34,
@@ -181,7 +181,7 @@ export default function PhotoVideo2Section({
         yPercent: 0,
       });
       gsap.set(topShapeRef.current, {
-        xPercent: -22,
+        xPercent: -30,
         yPercent: 0,
       });
       gsap.set(bottomShapeRef.current, {

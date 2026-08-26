@@ -124,7 +124,7 @@ export default function BrandingAssignmentSection({
     if (firstRender.current) {
       firstRender.current = false;
       gsap.set(containerRef.current, {
-        yPercent: 100,
+        yPercent: 200,
       });
       gsap.set(curriculumRef.current, {
         yPercent: 120,

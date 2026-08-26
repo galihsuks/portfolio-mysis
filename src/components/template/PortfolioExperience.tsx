@@ -23,6 +23,7 @@ import BrandingPlazaSection from "../../pages/BrandingPlazaSection";
 import BrandingAssignmentSection from "../../pages/BrandingAssignmentSection";
 import BrandingRagamRasaSection from "../../pages/BrandingRagamRasaSection";
 import BrandingGSMSection from "../../pages/BrandingGSMSection";
+import Greeting from "../ui/Greeting";
 
 export default function PortfolioExperience() {
   const shellRef = useRef<HTMLDivElement | null>(null);
@@ -35,6 +36,7 @@ export default function PortfolioExperience() {
   });
   const [background, setBackground] = useState<VariantBackgroundType>("light");
   const { isMobile, isLandscape } = useDeviceDetect();
+  const [isLoad, setIsLoad] = useState(true);
 
   useEffect(() => {
     const ctx = gsap.context(() => {}, shellRef);
@@ -66,237 +68,241 @@ export default function PortfolioExperience() {
   }
 
   return (
-    <main className="block h-[100svh] w-full overflow-hidden text-secondary-950">
-      <Background variant={background} />
-      <div ref={shellRef} className={`relative h-full w-full overflow-hidden`}>
-        {activePage.current !== "welcome" && backAction ? (
-          <button
-            type="button"
-            onClick={backAction}
-            className="absolute right-[2.15%] top-[3.4%] z-50 flex h-[6svh] w-[6svh] items-center justify-center rounded-[1cqh] border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
-            aria-label="Back to welcome section"
-          >
-            <Menu strokeWidth={2.75} className={"h-[4svh] w-[4svh]"} />
-          </button>
-        ) : null}
+    <>
+      <Greeting hide={isLoad} />
+      <main className="block h-[100svh] w-full overflow-hidden text-secondary-950">
+        <Background variant={background} />
+        <div ref={shellRef} className={`relative h-full w-full overflow-hidden`}>
+          {activePage.current !== "welcome" && backAction ? (
+            <button
+              type="button"
+              onClick={backAction}
+              className="absolute right-[2.15%] top-[3.4%] z-50 flex h-[6svh] w-[6svh] items-center justify-center rounded-[1cqh] border border-primary-500/90 bg-secondary-950/20 text-primary-400 shadow-[0_0_24px_rgba(132,204,22,0.18)] backdrop-blur-[6px] transition-transform duration-300 hover:scale-[1.03]"
+              aria-label="Back to welcome section"
+            >
+              <Menu strokeWidth={2.75} className={"h-[4svh] w-[4svh]"} />
+            </button>
+          ) : null}
 
-        <WelcomeSection
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          background={background}
-        />
+          <WelcomeSection
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            background={background}
+            aspectFitClassName={fitClassName}
+          />
 
-        <CurriculumSection
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <CurriculumSection
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <ExperienceSection
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <ExperienceSection
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <EducationSection
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <EducationSection
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <SkillSection
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-        />
+          <SkillSection
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+          />
 
-        <PhotoVideo1Section
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <PhotoVideo1Section
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <PhotoVideo2Section
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <PhotoVideo2Section
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <SocialMedia1Section
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <SocialMedia1Section
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <SocialMedia2Section
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <SocialMedia2Section
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <SocialMedia3Section
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <SocialMedia3Section
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <BigProjectSection
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <BigProjectSection
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <BPTunnelSection
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <BPTunnelSection
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <BPJtvSection
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <BPJtvSection
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <BPMuhiSection
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <BPMuhiSection
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <BrandingSection
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <BrandingSection
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <BrandingSWKSection
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <BrandingSWKSection
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <BrandingPlazaSection
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <BrandingPlazaSection
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <BrandingAssignmentSection
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <BrandingAssignmentSection
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <BrandingRagamRasaSection
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
+          <BrandingRagamRasaSection
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
 
-        <BrandingGSMSection
-          isTransitioning={isTransitioning}
-          setIsTransitioning={setIsTransitioning}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setBackground={setBackground}
-          registerBackAction={setBackAction}
-          isMobile={isMobile}
-          aspectFitClassName={fitClassName}
-        />
-      </div>
-    </main>
+          <BrandingGSMSection
+            isTransitioning={isTransitioning}
+            setIsTransitioning={setIsTransitioning}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setBackground={setBackground}
+            registerBackAction={setBackAction}
+            isMobile={isMobile}
+            aspectFitClassName={fitClassName}
+          />
+        </div>
+      </main>
+    </>
   );
 }

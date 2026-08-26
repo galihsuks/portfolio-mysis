@@ -163,7 +163,7 @@ export default function SocialMedia3Section({
         yPercent: 70,
       });
       gsap.set(topShapeRef.current, {
-        yPercent: 22,
+        yPercent: 30,
       });
       gsap.set(bottomShapeRef.current, {
         yPercent: 34,
@@ -208,7 +208,7 @@ export default function SocialMedia3Section({
         [directionOpposite]: 0,
       });
       gsap.set(topShapeRef.current, {
-        [direction]: (fromWelcome ? 1 : -1) * 22,
+        [direction]: (fromWelcome ? 1 : -1) * 30,
         [directionOpposite]: 0,
       });
       gsap.set(bottomShapeRef.current, {
