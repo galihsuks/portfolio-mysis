@@ -52,6 +52,19 @@ export default function PortfolioExperience() {
   }, []);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(orientation: landscape)");
+    const handleOrientationChange = () => {
+      window.location.reload();
+    };
+
+    mediaQuery.addEventListener("change", handleOrientationChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleOrientationChange);
+    };
+  }, []);
+
+  useEffect(() => {
     let isCancelled = false;
     let loadedCount = 0;
     const totalAssets = preloadAssetUrls.length;
