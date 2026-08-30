@@ -155,6 +155,9 @@ const dockIconRotations: Record<IconName, string> = {
   ragam: "rotate-0",
   sosmedITS: "rotate-0",
   swk: "rotate-0",
+  indo: "rotate-0",
+  inggris: "rotate-0",
+  java: "rotate-0",
 };
 
 const loopedShowcaseItems = [...skillShowcaseItems, ...skillShowcaseItems, ...skillShowcaseItems];
