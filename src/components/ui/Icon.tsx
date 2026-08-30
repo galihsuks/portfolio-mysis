@@ -18,6 +18,9 @@ import plazaIcon from "../../assets/branding/thumb_plaza.png";
 import ragamIcon from "../../assets/branding/thumb_ragam.png";
 import aafreedaIcon from "../../assets/branding/thumb_aafreeda.png";
 import sosmedITSIcon from "../../assets/branding/thumb_sosmed.png";
+import indoIcon from "../../assets/icons/indo.png";
+import inggrisIcon from "../../assets/icons/inggris.png";
+import javaIcon from "../../assets/icons/java.png";
 
 const iconMap = {
   afterEffect: afterEffectIcon,
@@ -40,6 +43,9 @@ const iconMap = {
   ragam: ragamIcon,
   aafreeda: aafreedaIcon,
   sosmedITS: sosmedITSIcon,
+  indo: indoIcon,
+  inggris: inggrisIcon,
+  java: javaIcon,
 } as const;
 
 export type IconName = keyof typeof iconMap;
