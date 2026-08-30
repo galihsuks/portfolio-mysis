@@ -416,7 +416,7 @@ export default function CurriculumSection({
         <div ref={languageRef} className="absolute right-[10%] top-[66%] z-30">
           <Folder
             label="Language"
-            icons={["figma", "canva", "blender"]}
+            icons={["indo", "java", "inggris"]}
             onClick={() => setIsLanguageWindowOpen(true)}
           />
         </div>
