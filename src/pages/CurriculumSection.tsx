@@ -6,6 +6,7 @@ import { TRANSITION_DURATION } from "../constant";
 import type { VariantBackgroundType } from "../components/ui/Background";
 import Folder from "../components/ui/Folder";
 import Window from "../components/ui/Window";
+import { Mail, Phone } from "lucide-react";
 
 type CurriculumSectionProps = {
   setBackground: (value: VariantBackgroundType) => void;
@@ -49,6 +50,7 @@ export default function CurriculumSection({
   const containerRef = useRef<HTMLElement | null>(null);
   const curriculumRef = useRef<HTMLDivElement | null>(null);
   const vitaeRef = useRef<HTMLDivElement | null>(null);
+  const contactRef = useRef<HTMLDivElement | null>(null);
   const nameRef = useRef<HTMLDivElement | null>(null);
   const photoRef = useRef<HTMLDivElement | null>(null);
   const introWindowRef = useRef<HTMLDivElement | null>(null);
@@ -65,6 +67,7 @@ export default function CurriculumSection({
   const getParallaxLayers = () => [
     { ref: curriculumRef, x: layerMotion.titleMain, y: layerMotion.titleMain },
     { ref: vitaeRef, x: layerMotion.titleSub, y: layerMotion.titleSub },
+    { ref: contactRef, x: layerMotion.titleSub, y: layerMotion.titleSub },
     { ref: nameRef, x: layerMotion.name, y: layerMotion.name },
     { ref: photoRef, x: layerMotion.photo, y: layerMotion.photo },
     { ref: introWindowRef, x: layerMotion.intro, y: layerMotion.intro },
@@ -135,6 +138,9 @@ export default function CurriculumSection({
       gsap.set(vitaeRef.current, {
         yPercent: 165,
       });
+      gsap.set(contactRef.current, {
+        yPercent: 165,
+      });
       gsap.set(nameRef.current, {
         yPercent: 52,
       });
@@ -178,6 +184,10 @@ export default function CurriculumSection({
         [directionOpposite]: 0,
       });
       gsap.set(vitaeRef.current, {
+        [direction]: fromWelcome ? 165 : -165,
+        [directionOpposite]: 0,
+      });
+      gsap.set(contactRef.current, {
         [direction]: fromWelcome ? 165 : -165,
         [directionOpposite]: 0,
       });
@@ -235,6 +245,7 @@ export default function CurriculumSection({
         .to(containerRef.current, {}, 0)
         .to(curriculumRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(vitaeRef.current, {}, `-=${TRANSITION_DURATION}`)
+        .to(contactRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(nameRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(photoRef.current, {}, `-=${TRANSITION_DURATION}`)
         .to(introWindowRef.current, {}, `-=${TRANSITION_DURATION}`)
@@ -270,6 +281,7 @@ export default function CurriculumSection({
       .to(containerRef.current, { yPercent: 100 }, 0)
       .to(curriculumRef.current, { yPercent: 125 }, `-=${TRANSITION_DURATION}`)
       .to(vitaeRef.current, { yPercent: 155 }, `-=${TRANSITION_DURATION}`)
+      .to(contactRef.current, { yPercent: 155 }, `-=${TRANSITION_DURATION}`)
       .to(nameRef.current, { yPercent: 70 }, `-=${TRANSITION_DURATION}`)
       .to(photoRef.current, { yPercent: 82 }, `-=${TRANSITION_DURATION}`)
       .to(introWindowRef.current, { yPercent: 200 }, `-=${TRANSITION_DURATION}`)
@@ -305,6 +317,7 @@ export default function CurriculumSection({
       .to(containerRef.current, { xPercent: -100 }, 0)
       .to(curriculumRef.current, { xPercent: -125 }, `-=${TRANSITION_DURATION}`)
       .to(vitaeRef.current, { xPercent: -155 }, `-=${TRANSITION_DURATION}`)
+      .to(contactRef.current, { xPercent: -155 }, `-=${TRANSITION_DURATION}`)
       .to(nameRef.current, { xPercent: -70 }, `-=${TRANSITION_DURATION}`)
       .to(photoRef.current, { xPercent: -82 }, `-=${TRANSITION_DURATION}`)
       .to(introWindowRef.current, { xPercent: -200 }, `-=${TRANSITION_DURATION}`)
@@ -347,7 +360,7 @@ export default function CurriculumSection({
           <p>Putri</p>
         </div>
 
-        <div ref={photoRef} className={`absolute bottom-[-45%] left-[4%] h-[130%] z-10`}>
+        <div ref={photoRef} className={`absolute bottom-[-45%] left-[0%] h-[130%] z-10`}>
           <img
             src={photoImage}
             alt="Portrait of Amalia Latifah Putri"
@@ -371,10 +384,10 @@ export default function CurriculumSection({
           <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">itae</span>
         </div>
 
-        <div ref={introWindowRef} className={`absolute left-[32%] top-[25%] w-[40%] z-9`}>
+        <div ref={introWindowRef} className={`absolute left-[30%] top-[25%] w-[25%] z-9`}>
           <Window isMobile={isMobile} size="custom">
             <p
-              className={`inter-font text-[2cqh] text-justify leading-[1.27] tracking-[-0.02em] text-primary-400/95`}
+              className={`inter-font text-[1.5cqh] text-justify leading-[1.27] tracking-[-0.02em] text-primary-400/95`}
             >
               As a Bachelor of Design graduate who is currently studying Postgraduate education in
               Videography, I have abilities in the field of visual design concepts, such as graphic
@@ -387,7 +400,7 @@ export default function CurriculumSection({
           </Window>
         </div>
 
-        <div ref={educationRef} className="absolute right-[10%] top-[37%] z-30">
+        <div ref={educationRef} className="absolute right-[27%] top-[27%] z-30">
           <Folder
             label="Education"
             icons={["univIsi", "univIts"]}
@@ -395,7 +408,7 @@ export default function CurriculumSection({
           />
         </div>
 
-        <div ref={skillRef} className="absolute right-[27%] top-[66%] z-30">
+        <div ref={skillRef} className="absolute right-[27%] top-[56%] z-30">
           <Folder
             label="Skill"
             icons={[
@@ -413,7 +426,7 @@ export default function CurriculumSection({
           />
         </div>
 
-        <div ref={languageRef} className="absolute right-[10%] top-[66%] z-30">
+        <div ref={languageRef} className="absolute right-[10%] top-[56%] z-30">
           <Folder
             label="Language"
             icons={["indo", "java", "inggris"]}
@@ -422,7 +435,7 @@ export default function CurriculumSection({
         </div>
 
         {isLanguageWindowOpen ? (
-          <div className="absolute right-[5.8%] top-[50%] z-50">
+          <div className="absolute right-[5.8%] top-[40%] z-50">
             <Window
               isMobile={isMobile}
               size="custom"
@@ -447,6 +460,26 @@ export default function CurriculumSection({
             icons={["star", "star", "star"]}
             onClick={() => handleToFolder("experience")}
           />
+        </div>
+
+        <div
+          ref={contactRef}
+          className="absolute right-[10.6%] bottom-[10%] z-20 flex items-center gap-[6cqh] text-primary-500"
+        >
+          <div className="flex items-center gap-[1cqh]">
+            <div>
+              <Phone className="h-[2cqh] w-[2cqh]" />
+            </div>
+            <span className="inter-font text-[1.5cqh] tracking-[-0.055em]">+6281703886555</span>
+          </div>
+          <div className="flex items-center gap-[1cqh]">
+            <div>
+              <Mail className="h-[2cqh] w-[2cqh]" />
+            </div>
+            <span className="inter-font text-[1.5cqh] tracking-[-0.055em]">
+              amalialatifahputri@gmail.com
+            </span>
+          </div>
         </div>
       </div>
     </section>
