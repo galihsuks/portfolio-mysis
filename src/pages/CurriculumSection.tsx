@@ -384,18 +384,19 @@ export default function CurriculumSection({
           <span className="inter-font text-[10cqh] font-normal tracking-[-0.055em]">itae</span>
         </div>
 
-        <div ref={introWindowRef} className={`absolute left-[30%] top-[25%] w-[25%] z-9`}>
+        <div ref={introWindowRef} className={`absolute left-[30%] top-[25%] w-[26%] z-9`}>
           <Window isMobile={isMobile} size="custom">
             <p
               className={`inter-font text-[1.5cqh] text-justify leading-[1.27] tracking-[-0.02em] text-primary-400/95`}
             >
-              As a Bachelor of Design graduate who is currently studying Postgraduate education in
-              Videography, I have abilities in the field of visual design concepts, such as graphic
-              design, 3D, videography and photography. I also have a deep interest in the study of
-              visual arts. I aspire to integrate my knowledge and skill to become a professional
-              contributing to the fields of design and video art. I am enthusiastic about sharing my
-              knowledge and experience with the work team and am open to receiving any feedback to
-              further develop my potential.
+              As a Bachelor of Design graduate with postgraduate education in video studies, I have
+              a deep understanding of the fundamentals of communication across various visual media
+              and design. My expertise includes visual design concepts such as graphic design, 3D
+              modelling, video production, and photography. I have a strong interest in visual arts
+              studies and aspire to integrate my knowledge and skills to become a professional
+              contributing to the field of design and visual communication. I am enthusiastic about
+              sharing knowledge and experience with the team and open to receiving constructive
+              feedback to develop my potential.
             </p>
           </Window>
         </div>

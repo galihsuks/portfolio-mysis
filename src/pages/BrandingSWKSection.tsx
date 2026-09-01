@@ -367,13 +367,13 @@ export default function BrandingSWKSection({
           ref={logo1Ref}
           src={logoSWKRed}
           alt="Logo SWK Red"
-          className="absolute bottom-[5%] right-[22%] z-30 h-[23%]"
+          className="absolute bottom-[2%] right-[22%] z-30 h-[23%]"
         />
         <img
           ref={logo2Ref}
           src={logoSWKWhite}
           alt="Logo SWK Red"
-          className="absolute bottom-[16%] right-[10%] z-30 h-[23%]"
+          className="absolute bottom-[10%] right-[10%] z-30 h-[23%]"
         />
 
         <div
@@ -394,11 +394,14 @@ export default function BrandingSWKSection({
         <div ref={introWindowRef} className="absolute right-[6%] top-[30%] z-40 w-[31%]">
           <Window size="custom" isMobile={isMobile} variant="lightBw">
             <div>
-              <p className="inter-font text-[2cqh] leading-[1.27] tracking-[-0.02em] text-secondary-950/92">
-                In this project, I successfully designed and created a mural for the tunnel wall
-                connecting the parking lot and the entrance to the Surabaya Zoo, with an average
-                tunnel wall size of 3x100 meters. I worked on the design requirements using
-                Photoshop and Adobe Illustrator.
+              <p className="inter-font text-[1.5cqh] leading-[1.27] tracking-[-0.02em] text-secondary-950/92">
+                This branding project was commissioned by PT. Krearture to develop the visual
+                identity for SWK (Sentra Wisata Kuliner) in Surabaya. Based on the design brief, I
+                created the logo, supergraphics, and merchandise mockups while incorporating visual
+                elements inspired by the city of Surabaya. Since SWK operates across multiple
+                locations in East Java, the branding system also included a unique serial
+                identification for each branch to ensure consistency and scalability. The project
+                was developed using Adobe Illustrator and Adobe Photoshop.
               </p>
               <button
                 type="button"
